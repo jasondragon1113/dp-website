@@ -128,6 +128,10 @@ a.tag:hover { border-color: var(--ink); color: var(--ink); }
 .nav summary::after { content: ""; display: inline-block; width: 6px; height: 6px; margin-left: 6px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-3px) rotate(45deg); }
 .nav-toggle .panel a.sub { padding-left: 18px; font-size: 15px; color: var(--ink-soft); }
 .nav .btn { padding: 9px 16px; font-size: 15px; margin-left: 8px; }
+/* VEX platform link wears a little LULU: dark pill + red live dot. VEX 選手平台：深色膠囊＋紅點，呼應 LULU。 */
+.nav > a.nav-vex { display: inline-flex; align-items: center; gap: 7px; background: #0f0f11; color: #fff; font-weight: 600; margin-left: 4px; }
+.nav > a.nav-vex:hover { background: #242427; }
+.nav-vex span { width: 8px; height: 8px; border-radius: 50%; background: #e31b23; box-shadow: 0 0 0 3px rgba(227, 27, 35, .25); }
 .nav-toggle { display: none; margin-left: auto; }
 .nav-toggle summary { list-style: none; cursor: pointer; padding: 8px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); display: flex; }
 .nav-toggle summary::-webkit-details-marker { display: none; }
@@ -139,7 +143,7 @@ a.tag:hover { border-color: var(--ink); color: var(--ink); }
 .nav-toggle .panel a { padding: 10px 4px; text-decoration: none; font-weight: 500; border-bottom: 1px dashed var(--line); }
 .nav-toggle .panel a[aria-current="page"] { color: var(--red); }
 .nav-toggle .panel .btn { margin-top: 12px; justify-content: center; border-bottom: 2px solid var(--line-green-dark); }
-@media (max-width: 1020px) { .nav { display: none; } .nav-toggle { display: block; } }
+@media (max-width: 1140px) { .nav { display: none; } .nav-toggle { display: block; } }
 
 /* ---------- Page hero (sub pages) ---------- */
 .page-hero {
@@ -382,6 +386,7 @@ a.tag:hover { border-color: var(--ink); color: var(--ink); }
   background: var(--red); color: #fff; display: grid; place-items: center; box-shadow: 0 6px 16px rgba(0,0,0,.3);
 }
 .video .play svg { width: 18px; height: 18px; margin-left: 3px; }
+.reveal-team { position: absolute; left: 8px; top: 8px; background: #e31b23; color: #fff; font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: 12px; padding: 2px 8px; border-radius: 6px; }
 .video .v-title { font-weight: 500; font-size: 15px; line-height: 1.45; overflow-wrap: anywhere;
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
 .video .v-meta { font-size: 13px; color: var(--ink-soft); margin-top: -6px; }
