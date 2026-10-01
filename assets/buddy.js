@@ -21,3 +21,16 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { open(false); btn.focus(); } });
   document.addEventListener('click', function (e) { if (!panel.hidden && !root.contains(e.target)) open(false); });
 })();
+
+// Close the header dropdowns when clicking elsewhere or opening another one. 頁首下拉選單：點外面或開另一個就收起。
+(function () {
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.nav details'));
+  groups.forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      if (d.open) groups.forEach(function (o) { if (o !== d) o.open = false; });
+    });
+  });
+  document.addEventListener('click', function (e) {
+    groups.forEach(function (d) { if (d.open && !d.contains(e.target)) d.open = false; });
+  });
+})();

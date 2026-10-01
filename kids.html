@@ -22,9 +22,15 @@
       <img class="logo-dark" src="assets/brand/wanle-logo-white.png" alt="玩樂高手" width="122" height="40">
     </a>
     <nav class="nav" aria-label="主選單">
-      <a data-nav="kids" aria-current="page" href="kids.html">小小玩家</a>
-      <a data-nav="courses" href="courses.html">課程介紹</a>
-      <a data-nav="camps" href="camps.html">營隊</a>
+      <details class="nav-group">
+        <summary data-group="courses" class="is-current">課程介紹</summary>
+        <div class="menu menu--left">
+          <a href="courses.html">課程地圖 <small>3 歲到高中</small></a>
+          <a href="kids.html">小小玩家 <small>3–8 歲</small></a>
+          <a href="courses.html#teen">進階課程 <small>9–14 歲</small></a>
+          <a href="camps.html">寒暑假營隊</a>
+        </div>
+      </details>
       <a data-nav="compete" href="compete.html">比賽專班</a>
       <a data-nav="awards" href="awards.html">榮譽榜</a>
       <a data-nav="locations" href="locations.html">教室介紹</a>
@@ -50,9 +56,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
       </summary>
       <div class="panel">
-        <a data-nav="kids" aria-current="page" href="kids.html">小小玩家 3–8 歲</a>
         <a data-nav="courses" href="courses.html">課程介紹</a>
-        <a data-nav="camps" href="camps.html">寒暑假營隊</a>
+        <a class="sub" data-nav="kids" aria-current="page" href="kids.html">小小玩家 3–8 歲</a>
+        <a class="sub" href="courses.html#teen">進階課程 9–14 歲</a>
+        <a class="sub" data-nav="camps" href="camps.html">寒暑假營隊</a>
         <a data-nav="compete" href="compete.html">比賽專班</a>
         <a data-nav="awards" href="awards.html">榮譽榜</a>
         <a data-nav="locations" href="locations.html">教室介紹</a>
