@@ -609,8 +609,11 @@ a.tag:hover { border-color: var(--ink); color: var(--ink); }
 .p-gamelogo img { display: block; max-width: 100%; max-height: 19cqw; width: auto; height: auto; object-fit: contain; }
 .pennant-face:has(.p-gamelogo) .p-mark--patch { height: 17cqw; }
 .pennant-face:has(.p-gamelogo) .p-event { -webkit-line-clamp: 3; }
-.season-logo { height: 64px; padding: 6px 12px; background: #fff; border-radius: 10px; display: inline-flex; align-items: center; }
-.season-logo img { max-height: 52px; max-width: 160px; width: auto; height: auto; }
+.season-logo { height: 64px; display: inline-flex; align-items: center; }
+/* Game logos sit straight on the dark wall (使用者 10-02：去背). A thin white die-cut edge keeps black lettering readable.
+   題目 logo 去背直接放；外圍細白邊，黑色字在深底也看得到。 */
+.season-logo img { max-height: 60px; max-width: 170px; width: auto; height: auto;
+  filter: drop-shadow(1.5px 0 0 #fff) drop-shadow(-1.5px 0 0 #fff) drop-shadow(0 1.5px 0 #fff) drop-shadow(0 -1.5px 0 #fff); }
 .p-award { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; margin-top: 5cqw;
   font-family: "Outfit", var(--f-body); font-size: 10.5cqw; font-weight: 700; line-height: 1.15; overflow-wrap: anywhere; -webkit-text-stroke: 0; }
 .p-award.gold { color: var(--gold); }
