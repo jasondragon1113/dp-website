@@ -12,7 +12,7 @@
       t.setAttribute('aria-selected', String(on));
       t.tabIndex = on ? 0 : -1;
       document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
-      if (on) t.scrollIntoView({ block: 'nearest', inline: 'center' });
+      if (on && scroll !== null) t.scrollIntoView({ block: 'nearest', inline: 'center' });
     });
     if (scroll && bar) bar.scrollIntoView({ block: 'start' });
   }
@@ -46,5 +46,5 @@
     });
   });
 
-  select(location.hash.slice(1), false);
+  select(location.hash.slice(1), null);
 })();

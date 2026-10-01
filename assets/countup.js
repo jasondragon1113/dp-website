@@ -3,7 +3,7 @@
 (function () {
   if (!('IntersectionObserver' in window)) return;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var sel = '.tech-kpis b, .l-stat b, .h-stats b, .h-prog b, .number b, .proof b';
+  var sel = '.tech-kpis b, .l-stat b, .h-stats b, .h-prog b, .number b';
   var items = Array.prototype.slice.call(document.querySelectorAll(sel)).map(function (el) {
     var node = Array.prototype.find.call(el.childNodes, function (n) { return n.nodeType === 3 && /\d/.test(n.nodeValue); });
     if (!node) return null;
