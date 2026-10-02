@@ -1150,3 +1150,16 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
   .ti-grid, .ti-dot, .ti-logo, .ti-eyebrow, .ti-line, .ti-title em::after, .ti-chips a, .ti-scroll, .ti-scroll span, .ti-caret { animation: none !important; opacity: 1 !important; transform: none !important; }
   .tool-row { opacity: 1; transform: none; transition: none; }
 }
+/* FTC off-field cards (dark) 賽場外的 Screw It */
+.l-sub-lede { color: var(--l-dim); margin: -4px 0 14px; }
+.off-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.off-card { display: grid; grid-template-rows: auto 1fr; background: #18181b; border: 1px solid #2d2d30; border-radius: 14px; overflow: hidden; transition: border-color .15s ease, transform .15s ease; }
+.off-card:hover { border-color: #F57E25; transform: translateY(-2px); }
+.off-card .camp-pics { aspect-ratio: 16 / 10; background: #000; }
+.off-body { padding: 14px 16px 16px; display: grid; gap: 6px; align-content: start; }
+.off-body time { font-family: var(--l-mono); font-size: 12px; color: #F57E25; }
+.off-body h4 { font-size: 17px; font-weight: 700; color: #fff; }
+.off-body p { font-size: 14px; color: var(--l-dim); line-height: 1.6; }
+.off-more { margin-top: 14px; }
+@media (max-width: 1000px) { .off-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .off-grid { grid-template-columns: 1fr; } }
