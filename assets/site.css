@@ -1364,3 +1364,17 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .scene-art--tree { width: auto; height: 108%; max-width: 48vw; object-fit: contain; object-position: left bottom; }
 .scene-art--bears { width: auto; height: 112%; max-width: 46vw; object-fit: contain; object-position: right bottom; }
 @media (max-width: 860px) { .scene-art--tree, .scene-art--bears, .scene-art--sea { height: 70%; max-width: 90vw; } }
+/* kids page v3: the three lower sections share ONE world — the bear forest on both sides and one grass floor
+   (使用者：下面三塊要同一主題) 小小玩家 v3：下半頁三區共用一個場景：左右兩片熊森林夾著內容，底部一條草地 */
+.kids-land { position: relative; overflow: hidden; isolation: isolate; padding-bottom: 90px; }
+.kids-land > .section { position: relative; z-index: 1; }
+.kids-land::after { content: ""; position: absolute; z-index: 0; left: 0; right: 0; bottom: 0; height: 150px;
+  background: linear-gradient(180deg, rgba(84,141,83,0) 0%, #548d53 55%, #4b7f4a 100%); }
+.land-forest { position: absolute; z-index: 0; bottom: 60px; height: min(62%, 780px); width: auto; max-width: 42vw; object-fit: contain; pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 88%); mask-image: linear-gradient(180deg, #000 70%, transparent 88%); }
+.land-forest--left { left: -3%; transform: scaleX(-1); object-position: right bottom; }
+.land-forest--right { right: -3%; object-position: right bottom; }
+@media (max-width: 860px) {
+  .land-forest { opacity: .45; height: 34%; max-width: 70vw; }
+  .land-forest--left { display: none; }
+}
