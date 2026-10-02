@@ -1502,3 +1502,49 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .camp-chip--fund { background: var(--tint-red); color: #7a1410; }
 .off-noimg { aspect-ratio: 16 / 10; display: grid; place-items: center; background: repeating-linear-gradient(45deg, #1f1f23 0 12px, #18181b 12px 24px); color: #F57E25; font-family: var(--l-mono); font-weight: 700; letter-spacing: .1em; }
 .off-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* kids hero rocket: tap to launch, fly away, come back and land (使用者：按火箭會冒煙噴火起飛再降落)
+   小小玩家主視覺火箭：點了冒煙、噴火、起飛，再飛回來降落 */
+.rocket { position: relative; display: block; padding: 0; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.rocket:focus-visible { outline: 3px solid var(--book-star); outline-offset: 6px; border-radius: 16px; }
+.rocket-ship { position: relative; display: block; z-index: 1; }
+.rocket .story-hero-art { animation: kid-float 3.6s ease-in-out infinite; }
+.rocket[class*="is-"] .story-hero-art { animation: none; }
+.rocket-flame { position: absolute; left: 50%; top: 92%; width: 26%; height: 0; translate: -50% 0; border-radius: 45% 45% 50% 50% / 25% 25% 75% 75%;
+  background: radial-gradient(ellipse 60% 70% at 50% 18%, #fffbe0 0 20%, #ffe066 34%, #ff9a2e 58%, rgba(255,72,0,.0) 78%);
+  filter: blur(.5px); transition: height .25s ease; }
+.rocket-smoke { position: absolute; left: 50%; bottom: -2%; width: 0; height: 0; z-index: 2; pointer-events: none; }
+.rocket-smoke i { position: absolute; left: -40px; top: -40px; width: 80px; height: 80px; border-radius: 50%; background: #fff; opacity: 0; filter: blur(1px); }
+.rocket-hint { position: absolute; right: 6%; top: 8%; z-index: 3; font: 700 15px var(--f-body); color: var(--ink); background: var(--book-star);
+  border: 2px solid var(--ink); border-radius: 999px; padding: 4px 12px; transform: rotate(6deg); animation: kid-float 2.4s ease-in-out infinite; }
+.rocket.was-flown .rocket-hint { display: none; }
+/* 1 ignite 點火 */
+.rocket.is-ignite .rocket-ship { animation: rk-shake .09s linear infinite; }
+.rocket.is-ignite .rocket-flame { height: 18%; animation: rk-flicker .12s ease-in-out infinite alternate; }
+.rocket.is-ignite .rocket-smoke i, .rocket.is-launch .rocket-smoke i, .rocket.is-land .rocket-smoke i { animation: rk-smoke 1.4s ease-out forwards; }
+.rocket-smoke i:nth-child(1) { --dx: -150px; --dy: -10px; } .rocket-smoke i:nth-child(2) { --dx: -90px; --dy: -40px; animation-delay: .08s !important; }
+.rocket-smoke i:nth-child(3) { --dx: -30px; --dy: -60px; animation-delay: .16s !important; } .rocket-smoke i:nth-child(4) { --dx: 30px; --dy: -55px; animation-delay: .05s !important; }
+.rocket-smoke i:nth-child(5) { --dx: 95px; --dy: -35px; animation-delay: .12s !important; } .rocket-smoke i:nth-child(6) { --dx: 155px; --dy: -8px; animation-delay: .2s !important; }
+.rocket-smoke i:nth-child(7) { --dx: 0px; --dy: -20px; animation-delay: .24s !important; }
+/* 2 launch 起飛 */
+.rocket.is-launch .rocket-ship { animation: rk-launch 1.4s cubic-bezier(.55,0,.9,.4) forwards; }
+.rocket.is-launch .rocket-flame, .rocket.is-return .rocket-flame { height: 46%; animation: rk-flicker .1s ease-in-out infinite alternate; }
+/* 3 away 飛出畫面 */
+.rocket.is-away .rocket-ship { translate: 0 -160vh; }
+/* 4 return 飛回來 */
+.rocket.is-return .rocket-ship { animation: rk-return 2.3s cubic-bezier(.15,.6,.35,1) forwards; }
+/* 5 land 降落 */
+.rocket.is-land .rocket-ship { animation: rk-land .9s cubic-bezier(.3,1.6,.5,1); }
+.rocket.is-land .rocket-flame { height: 6%; }
+.rocket.is-wiggle .rocket-ship { animation: rk-shake .12s linear 4; }
+@keyframes rk-shake { 0% { translate: -2px 0; rotate: -.6deg; } 50% { translate: 2px 1px; rotate: .6deg; } 100% { translate: -2px 0; rotate: -.6deg; } }
+@keyframes rk-flicker { from { scale: 1 .9; opacity: .9; } to { scale: 1.08 1.12; opacity: 1; } }
+@keyframes rk-smoke { 0% { opacity: .95; transform: translate(0, 0) scale(.3); } 60% { opacity: .8; } 100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.6); } }
+@keyframes rk-launch { 0% { translate: 0 0; } 15% { translate: 0 10px; } 100% { translate: 0 -160vh; } }
+@keyframes rk-return { 0% { translate: 0 -160vh; rotate: 0deg; } 60% { translate: 0 -12px; rotate: -2deg; } 85% { rotate: 1.5deg; } 100% { translate: 0 0; rotate: 0deg; } }
+@keyframes rk-land { 0% { translate: 0 0; } 30% { translate: 0 8px; scale: 1.03 .96; } 100% { translate: 0 0; scale: 1 1; } }
+@media (max-width: 860px) { .rocket { max-width: 380px; margin-inline: auto; } .rocket-hint { font-size: 13px; } }
+.rocket-ship .story-hero-art { position: relative; z-index: 1; }
+.rocket-flame { top: 76%; z-index: 0; width: 30%; }
+.rocket.is-ignite .rocket-flame { height: 26%; }
+.rocket.is-launch .rocket-flame, .rocket.is-return .rocket-flame { height: 60%; }
