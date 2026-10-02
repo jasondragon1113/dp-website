@@ -1291,3 +1291,50 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .shelf { grid-template-columns: minmax(0, 1fr); }
 .shelf-row, .shelf-books { min-width: 0; }
 @media (max-width: 560px) { .shelf-row { align-items: stretch; } .shelf-books { max-width: 100%; } }
+/* book shelf as fans of covers (replaces the listed rows) 書架改成扇形攤開的封面 */
+.shelf { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px 64px; margin: 8px 0 30px; grid-template-columns: none; }
+.shelf-row { display: none; }
+.fan { display: grid; justify-items: center; gap: 10px; }
+.fan-cards { position: relative; width: calc(150px + (var(--n-max, 4) - 1) * 44px); height: 230px; }
+.fan-level { font-family: var(--f-display); font-size: 22px; color: var(--book-star); }
+.shelf-book { position: absolute; left: 50%; bottom: 0; width: 130px; margin-left: -65px; padding: 0; border: 0; background: none; cursor: pointer;
+  transform-origin: 50% 120%; --a: calc((var(--i) - (var(--n) - 1) / 2) * 13deg);
+  transform: rotate(var(--a)); transition: transform .3s cubic-bezier(.3,1.4,.5,1), z-index 0s; z-index: calc(var(--i) + 1); }
+.shelf-book img { display: block; width: 100%; height: auto; border-radius: 8px; border: 3px solid #fff; box-shadow: 4px 6px 0 rgba(0,0,0,.3); transition: border-color .2s ease, box-shadow .2s ease; }
+.shelf-book:hover, .shelf-book:focus-visible { transform: rotate(var(--a)) translateY(-18px); z-index: 20; }
+.shelf-book[aria-pressed="true"] { transform: rotate(var(--a)) translateY(-26px); z-index: 30; }
+.shelf-book[aria-pressed="true"] img { border-color: var(--book-star); box-shadow: 0 0 0 3px var(--book-star), 6px 10px 0 rgba(0,0,0,.35); }
+.fan:first-child .fan-cards { --n-max: 4; }
+.fan:nth-child(2) .fan-cards { --n-max: 3; }
+@media (max-width: 560px) {
+  .shelf { gap: 18px 24px; }
+  .fan-cards { height: 170px; width: calc(110px + (var(--n-max, 4) - 1) * 30px); }
+  .shelf-book { width: 96px; margin-left: -48px; --a: calc((var(--i) - (var(--n) - 1) / 2) * 11deg); }
+}
+/* kids page: storybook scenery backgrounds (使用者：背景用故事書裡的景) 小小玩家：故事書場景當背景 */
+.scene { position: relative; color: #fff; background-repeat: no-repeat; background-position: center bottom; background-size: cover; border-bottom: 3px solid var(--ink); }
+.scene--tree { background-color: #385a9a; background-image: linear-gradient(180deg, #385a9a 0%, rgba(56,90,154,.55) 45%, rgba(56,90,154,0) 75%), url("img/books/scene-tree.webp"); }
+.scene--bears { background-color: #60b0e2; background-image: linear-gradient(180deg, #60b0e2 0%, rgba(96,176,226,.4) 40%, rgba(20,40,30,.15) 100%), url("img/books/scene-bears.webp"); }
+.scene--sea { background-color: #4a99c8; background-image: linear-gradient(180deg, #4a99c8 0%, rgba(74,153,200,.3) 50%, rgba(74,153,200,0) 80%), url("img/books/scene-sea.webp"); }
+.scene .section-head h2, .scene h2 { color: #fff; text-shadow: 0 2px 0 rgba(0,0,0,.25); }
+.scene .section-head p, .scene .eyebrow { text-shadow: none; }
+.scene .promise li { background: rgba(255,255,255,.92); color: var(--ink); border-radius: 999px; padding: 6px 14px; }
+.scene .class-life figure { box-shadow: 6px 6px 0 rgba(0,0,0,.25); }
+.scene .cta-band { background: rgba(255,255,255,.94); color: var(--ink); }
+.scene .cta-band h2 { color: var(--ink); text-shadow: none; }
+/* spread the fan wider so each cover shows 扇子再攤開一點 */
+.shelf-book { --x: calc((var(--i) - (var(--n) - 1) / 2) * 46px); transform: translateX(var(--x)) rotate(var(--a)); }
+.shelf-book:hover, .shelf-book:focus-visible { transform: translateX(var(--x)) rotate(var(--a)) translateY(-18px); }
+.shelf-book[aria-pressed="true"] { transform: translateX(var(--x)) rotate(var(--a)) translateY(-26px); }
+.fan-cards { width: calc(170px + (var(--n-max, 4) - 1) * 62px); }
+@media (max-width: 560px) {
+  .shelf-book { --x: calc((var(--i) - (var(--n) - 1) / 2) * 30px); }
+  .fan-cards { width: calc(120px + (var(--n-max, 4) - 1) * 40px); }
+}
+.team-more { margin-top: 18px; }
+/* show each scene whole on one side; the sky colour fills the rest 場景整張靠一側，其餘用天空色延伸 */
+.scene { background-size: auto 112%; }
+.scene--tree { background-image: url("img/books/scene-tree.webp"); background-position: left -40px bottom; }
+.scene--bears { background-image: linear-gradient(90deg, rgba(96,176,226,0) 40%, #60b0e2 75%), url("img/books/scene-bears.webp"); background-position: left bottom, left bottom; background-size: 100% 100%, auto 112%; }
+.scene--sea { background-image: url("img/books/scene-sea.webp"); background-position: right -40px bottom; }
+@media (max-width: 760px) { .scene { background-size: auto 70%; } .scene--bears { background-size: 100% 100%, auto 70%; } }
