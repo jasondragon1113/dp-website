@@ -231,7 +231,8 @@ a.tag:hover { border-color: var(--ink); color: var(--ink); }
 .number:nth-child(2) { background: var(--tint-red); }
 .number:nth-child(3) { background: var(--tint-sky); }
 .number:nth-child(4) { background: var(--tint-green); }
-.numbers-note { margin-top: 10px; font-size: 13px; color: var(--ink-soft); }
+.numbers-note { margin-top: 12px; font-size: 14px; color: var(--ink-soft); display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; }
+.numbers-note span { font-family: var(--f-num); letter-spacing: .02em; }
 @media (max-width: 760px) { .numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* ---------- Course staircase ---------- */
