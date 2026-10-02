@@ -39,6 +39,22 @@
     document.querySelectorAll('.book').forEach(function (b) { b.classList.add('in'); });
   }
 
+  // Shelf: show only the picked book; replay its pop-in. 書架：只顯示點到的那本，重播飛入動畫。
+  document.querySelectorAll('[data-shelf]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('[data-shelf]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === btn)); });
+      document.querySelectorAll('.book').forEach(function (bk) {
+        var on = bk.id === 'book-' + btn.dataset.shelf;
+        bk.hidden = !on;
+        if (on) {
+          bk.classList.remove('in');
+          bk.querySelector('.book-strip').scrollLeft = 0;
+          requestAnimationFrame(function () { requestAnimationFrame(function () { bk.classList.add('in'); }); });
+        }
+      });
+    });
+  });
+
   document.querySelectorAll('[data-book]').forEach(function (b) {
     b.addEventListener('click', function () {
       var book = document.getElementById('book-' + b.dataset.book);

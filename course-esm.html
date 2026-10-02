@@ -4,17 +4,16 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>免費工具｜玩樂高手</title>
-<meta name="description" content="玩樂高手 VEX 專區的免費工具：VEX Competition Timer 計時器、Override 計分器、Whiteboard 戰術白板、直播回放、全球排行。打開就能用，不用登入。">
+<title>ESM 幼兒啟蒙｜玩樂高手</title>
+<meta name="description" content="ESM 幼兒啟蒙：3 歲以上（學齡前）。大顆粒積木，玩出形狀、顏色和平衡感。小班最多 10 人、一人一套教具。">
 <link rel="icon" href="assets/brand/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@400;500;700&family=Fredoka:wght@500;600;700&family=Huninn&family=Outfit:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="assets/site.css?v=fb940f42">
 <script src="assets/countup.js?v=7639d8da" defer></script>
-<script src="assets/tools.js?v=43a0fcbb" defer></script>
 </head>
-<body class="tech-page">
+<body class="course-page course-page--cute">
 <a class="skip" href="#main">跳到主要內容</a>
 <header class="site-header">
   <div class="wrap">
@@ -24,7 +23,7 @@
     </a>
     <nav class="nav" aria-label="主選單">
       <details class="nav-group">
-        <summary data-group="courses">課程介紹</summary>
+        <summary data-group="courses" class="is-current">課程介紹</summary>
         <div class="menu menu--left">
           <a href="courses.html">課程地圖 <small>3 歲到高中</small></a>
           <a href="kids.html">小小玩家 <small>3–8 歲</small></a>
@@ -38,10 +37,10 @@
       <a data-nav="charity" href="charity.html">公益與偏鄉</a>
       <a data-nav="about" href="about.html">關於我們</a>
       <details class="nav-group">
-        <summary data-group="resources" class="is-current">教學資源</summary>
+        <summary data-group="resources">教學資源</summary>
         <div class="menu">
-          <a data-nav="tools" aria-current="page" href="tools.html">免費工具 <small>計時・計分・白板</small></a>
-          <a data-nav="tools" aria-current="page" href="tools.html">免費工具</a>
+          <a data-nav="tools" href="tools.html">免費工具 <small>計時・計分・白板</small></a>
+          <a data-nav="tools" href="tools.html">免費工具</a>
         <a href="https://course.dproboticslab.com/">教案系統</a>
           <a href="https://course-en.dproboticslab.com/">教案系統（英文）</a>
           <a href="https://dproboticslab.com/downloads">軟體下載</a>
@@ -59,7 +58,7 @@
       </summary>
       <div class="panel">
         <a data-nav="courses" href="courses.html">課程介紹</a>
-        <a class="sub" data-nav="kids" href="kids.html">小小玩家 3–8 歲</a>
+        <a class="sub" data-nav="kids" aria-current="page" href="kids.html">小小玩家 3–8 歲</a>
         <a class="sub" href="courses.html#teen">進階課程 9–14 歲</a>
         <a class="sub" data-nav="compete" href="compete.html">比賽專班</a>
         <a class="sub" data-nav="camps" href="camps.html">寒暑假營隊</a>
@@ -77,86 +76,63 @@
 </header>
 
 <main id="main">
-<section class="tool-intro" aria-labelledby="tools-title">
-  <div class="ti-grid" aria-hidden="true"></div>
-  <span class="ti-dot ti-dot--1" aria-hidden="true"></span>
-  <span class="ti-dot ti-dot--2" aria-hidden="true"></span>
-  <span class="ti-dot ti-dot--3" aria-hidden="true"></span>
-  <div class="wrap ti-wrap">
-    <img class="ti-logo" src="assets/brand/logo-mark.png" alt="" aria-hidden="true">
-    <p class="ti-eyebrow">OPEN TOOLS・免費工具</p>
-    <h1 id="tools-title" class="ti-title"><span class="ti-line">Free tools for</span> <span class="ti-line"><em>every team.</em></span></h1>
-    <p class="ti-code"><span class="ti-type" data-text="// 計時、計分、畫戰術、看回放、查排名——打開就能用，不用登入。"></span><span class="ti-caret" aria-hidden="true"></span></p>
-    <nav class="ti-chips" aria-label="工具">
-      <a href="#t-timer"><b>01</b>Timer</a>
-      <a href="#t-score"><b>02</b>計分器</a>
-      <a href="#t-field"><b>03</b>Whiteboard</a>
-      <a href="#t-replay"><b>04</b>直播回放</a>
-      <a href="#t-rankings"><b>05</b>全球排行</a>
-    </nav>
+<section class="page-hero page-hero--yellow course-hero course-hero--cute">
+  <div class="bricks-layer" aria-hidden="true"><span class="lego" style="left:64%;top:10%;--n:2;--c:var(--red);--r:10deg"></span><span class="lego" style="left:78%;top:70%;--n:3;--c:var(--green);--r:-8deg"></span><span class="lego" style="left:58%;top:78%;--n:2;--c:var(--sky);--r:14deg"></span><span class="lego" style="left:90%;top:8%;--n:2;--c:var(--purple);--r:-14deg"></span></div>
+  <div class="wrap">
+    <div class="hero-text">
+      <nav class="crumbs" aria-label="目前位置"><ol><li><a href="courses.html">課程地圖</a></li><li><a href="kids.html">小小玩家</a></li><li aria-current="page">ESM 幼兒啟蒙</li></ol></nav>
+      <p class="eyebrow">Step 1・LEGO Education</p>
+      <h1><small class="course-code">ESM</small>幼兒啟蒙</h1>
+      <p class="lede">大顆粒積木，玩出形狀、顏色和平衡感</p>
+      <ul class="course-facts" aria-label="課程資訊"><li><b>3+</b>3 歲以上</li><li>學齡前</li><li>LEGO 大顆粒積木</li><li>常態班</li></ul>
+      <div class="actions"><a class="btn btn--line" href="https://line.me/ti/p/@039qsoxy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>LINE 預約試聽</a><a class="btn" href="#info">開課資訊</a></div>
+    </div>
+    <div class="course-kit"><span class="box-age">3+</span><img src="assets/img/kit-esm.webp" alt="LEGO 大顆粒積木 教具" width="560" height="371"></div>
   </div>
-  <a class="ti-scroll" href="#t-timer" aria-label="往下看工具"><span></span></a>
+</section>
+<section class="section section--white course-about" aria-labelledby="about-title">
+  <div class="wrap course-about-grid">
+    <div>
+      <div class="section-head"><p class="eyebrow">課程介紹</p><h2 id="about-title">ESM 在學什麼</h2></div>
+      <div class="course-intro"><p>用適合幼兒的大顆粒樂高積木，一堂課一個生活主題，邊玩邊認識空間、形狀、顏色、平衡和數字。</p><p>孩子天生就好奇。我們順著這份好奇讓他動手做，刺激思考、練習手眼協調，快樂又有自信地完成自己的作品。</p></div>
+    </div>
+    <div class="learn-card"><h3>學到什麼</h3><ul class="learn-list"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>空間與形狀</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>顏色與數字</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>平衡與簡單機械</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>手眼協調</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>好奇心與創意</li></ul></div>
+  </div>
+</section>
+<section class="section course-features" aria-labelledby="feat-title">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">課程特色</p><h2 id="feat-title">上課長這樣</h2></div>
+    <div class="hl-grid"><article class="hl"><span class="hl-n">01</span><h3>從玩樂開始</h3><p>孩子對學習有與生俱來的好奇心和求知欲，我們鼓勵他在玩樂中學習，從小培養自信。</p></article><article class="hl"><span class="hl-n">02</span><h3>早期接觸 STEAM</h3><p>從小接觸科學、科技、工程、藝術和數學，也練習跟同學相處、分享，為之後的學習打底。</p></article></div>
+    <div class="course-pics" style="--n:2"><figure><img src="assets/img/course/esm-01.webp" alt="大顆粒樂高積木教具與作品" width="900" height="632" loading="lazy"><figcaption>上課教具</figcaption></figure><figure><img src="assets/img/esm-laugh.webp" alt="小朋友笑著操作自己組好的樂高作品" width="768" height="512" loading="lazy"><figcaption>ESM 課堂</figcaption></figure><img class="sticker course-pics-sticker" src="assets/stickers/good-job.png" alt="" aria-hidden="true" width="268" height="300" loading="lazy"></div>
+  </div>
+</section>
+<section class="section section--white course-promise" aria-labelledby="promise-title">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">上課方式</p><h2 id="promise-title">每一班都這樣上</h2></div>
+    <ul class="promise" aria-label="上課方式"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>一班最多 10 人</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>一人一套教具</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg>請假可以補課</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>零件定期消毒</li></ul>
+  </div>
 </section>
 
-<section class="section lulu tool-list" aria-label="工具列表">
+<section class="section" id="info" aria-labelledby="info-title">
   <div class="wrap">
-    <article class="tool-row" id="t-timer">
-      <div class="tool-screen"><video src="assets/img/tools/timer.mp4" poster="assets/img/tools/timer.webp" muted loop playsinline preload="none" aria-label="VEX Competition Timer 操作畫面"></video></div>
-      <div class="tool-text">
-        <p class="tool-n">01・練習與比賽</p>
-        <h2>VEX Competition Timer</h2>
-        <p>自動賽 15 秒、手動賽 1 分 45 秒，聲音提示照大會規則。練習時全螢幕投影，選手聽聲音就知道剩多久。</p>
-        <ul class="tool-tags"><li>免登入</li><li>全螢幕</li><li>大會音效</li></ul>
-        <a class="l-btn l-btn--primary" href="https://vex-v5.dproboticslab.com/timer">打開計時器 ↗</a>
+    <div class="cta-band course-info">
+      <div>
+        <h2 id="info-title">開課資訊</h2>
+        <ul class="class-list"><li><b>常態班</b></li></ul>
+        <p>各教室開的課不同，LINE 問我們，或看教室介紹。</p>
+        <p class="course-next">學完可以接：<a href="course-spm.html">SPM 動力機械 →</a></p>
+        <div class="actions">
+          <a class="btn btn--line" href="https://line.me/ti/p/@039qsoxy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>LINE 詢問</a>
+          <a class="btn" href="locations.html">看教室介紹</a>
+        </div>
       </div>
-    </article>
-    <article class="tool-row" id="t-score">
-      <div class="tool-screen"><video src="assets/img/tools/score.mp4" poster="assets/img/tools/score.webp" muted loop playsinline preload="none" aria-label="Override 計分器操作畫面"></video></div>
-      <div class="tool-text">
-        <p class="tool-n">02・當季賽制</p>
-        <h2>Override 計分器</h2>
-        <p>當季賽制的即時算分，點場地上的物件就好。裁判判分前，先自己算一次。</p>
-        <ul class="tool-tags"><li>免登入</li><li>點一下就算分</li></ul>
-        <a class="l-btn l-btn--primary" href="https://vex-v5.dproboticslab.com/score">打開計分器 ↗</a>
-      </div>
-    </article>
-    <article class="tool-row" id="t-field">
-      <div class="tool-screen"><video src="assets/img/tools/field.mp4" poster="assets/img/tools/field.webp" muted loop playsinline preload="none" aria-label="Whiteboard 戰術白板操作畫面"></video></div>
-      <div class="tool-text">
-        <p class="tool-n">03・賽前戰術</p>
-        <h2>Whiteboard</h2>
-        <p>畫路徑、排站位、標對手弱點。輸入隊號就帶出今天的對戰，畫的東西存在你自己的裝置裡。</p>
-        <ul class="tool-tags"><li>免登入</li><li>輸隊號帶出對戰</li><li>存在本機</li></ul>
-        <a class="l-btn l-btn--primary" href="https://vex-v5.dproboticslab.com/field">打開白板 ↗</a>
-      </div>
-    </article>
-    <article class="tool-row" id="t-replay">
-      <div class="tool-screen"><video src="assets/img/tools/replay.mp4" poster="assets/img/tools/replay.webp" muted loop playsinline preload="none" aria-label="直播回放操作畫面"></video></div>
-      <div class="tool-text">
-        <p class="tool-n">04・賽後檢討</p>
-        <h2>直播回放</h2>
-        <p>回看比賽直播與單場影片，點場次就跳到那一刻。</p>
-        <ul class="tool-tags"><li>免登入</li><li>點場次直接跳</li></ul>
-        <a class="l-btn l-btn--primary" href="https://vex-v5.dproboticslab.com/replay">打開直播回放 ↗</a>
-      </div>
-    </article>
-    <article class="tool-row" id="t-rankings">
-      <div class="tool-screen"><video src="assets/img/tools/rankings.mp4" poster="assets/img/tools/rankings.webp" muted loop playsinline preload="none" aria-label="全球排行操作畫面"></video></div>
-      <div class="tool-text">
-        <p class="tool-n">05・看見世界</p>
-        <h2>全球排行</h2>
-        <p>全世界隊伍的 Skills 排名、TrueSkill 評級與詳細數據，可以只看台灣，或只看某一場賽事。</p>
-        <ul class="tool-tags"><li>免登入</li><li>Skills・TrueSkill</li><li>可篩台灣</li></ul>
-        <a class="l-btn l-btn--primary" href="https://vex-v5.dproboticslab.com/rankings">打開全球排行 ↗</a>
-      </div>
-    </article>
-
-    <div class="tool-more">
-      <p>// 選手戰績、賽程、更多功能都在 VEX 專區</p>
-      <a class="l-btn" href="https://vex-v5.dproboticslab.com/">進入 VEX 專區 ↗</a>
+      <img class="sticker bob" src="assets/stickers/join-us.png" alt="" aria-hidden="true" width="318" height="300" loading="lazy">
     </div>
   </div>
 </section>
+<nav class="section step-nav" aria-label="課程階梯">
+  <div class="wrap step-row"><span class="step step--empty"></span><a class="step-map" href="courses.html">看整張課程地圖</a><a class="brick brick--2 step step--next" href="course-spm.html"><span class="step-dir">下一階 →</span><span class="name">SPM 動力機械</span></a></div>
+</nav>
 </main>
 <footer class="site-footer">
   <div class="wrap">

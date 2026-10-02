@@ -1163,3 +1163,131 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .off-more { margin-top: 14px; }
 @media (max-width: 1000px) { .off-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .off-grid { grid-template-columns: 1fr; } }
+
+/* ==========================================================================
+   Course detail pages (course-*.html, tools/courses.py) 課程內頁
+   Three looks from one template: cute＝小小玩家積木風（粗黑框、凸點、貼圖）、pro＝亮色專業（細框、無浮動積木）、
+   pro-lulu＝pro＋一段 .lulu 深色比賽銜接。Reuses page-hero / box-age / promise / cta-band / brick / lulu.
+   ========================================================================== */
+.course-hero .wrap { align-items: center; gap: 40px; }
+.course-hero .hero-text { gap: 10px; }
+.course-hero h1 .course-code { display: block; font-family: var(--f-num); font-weight: 600; font-size: .42em; letter-spacing: .04em; color: var(--ink-soft); -webkit-text-stroke: 0; }
+.course-hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+/* breadcrumb: 課程地圖 › 小小玩家 › ESM 麵包屑 */
+.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 2px 0; font-size: 14px; color: var(--ink-soft); }
+.crumbs li + li::before { content: "›"; margin: 0 8px; opacity: .6; }
+.crumbs a { text-decoration: none; font-weight: 500; }
+.crumbs a:hover { text-decoration: underline; }
+.crumbs [aria-current] { color: var(--ink); font-weight: 700; }
+/* fact chips under the title: age, grade, kit, class types 年齡／年級／教具／班別小膠囊 */
+.course-facts { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.course-facts li { display: inline-flex; align-items: baseline; gap: 6px; padding: 4px 14px; border-radius: 999px; background: var(--surface); border: 2px solid var(--ink); font-weight: 700; font-size: 15px; }
+.course-facts b { font-family: var(--f-num); font-size: 18px; color: var(--red); line-height: 1; }
+.course-facts .is-soon { background: var(--yellow); color: var(--plate-ink); }
+/* kit "box" on the right, like the toybox cards 右邊教具盒，跟小小玩家盒子同款 */
+.course-kit {
+  position: relative; flex: none; width: min(380px, 40%); aspect-ratio: 1 / 1; display: grid; place-items: center; padding: 34px 26px 22px;
+  background: var(--surface); border: 3px solid var(--ink); border-radius: 26px; box-shadow: 8px 8px 0 var(--ink); transform: rotate(1.5deg);
+}
+.course-kit img { max-height: 290px; width: auto; min-height: 0; object-fit: contain; filter: drop-shadow(0 10px 12px rgba(0,0,0,.18)); }
+@media (max-width: 760px) {
+  .course-hero .wrap { flex-direction: column; align-items: stretch; gap: 28px; }
+  .course-kit { width: 100%; aspect-ratio: auto; height: 240px; padding: 30px 20px 16px; transform: none; box-shadow: 6px 6px 0 var(--ink); }
+  .course-kit img { max-height: 190px; }
+}
+/* pro looks: plain tint, no studs, thin lines 專業版：純色底、不要凸點與浮動積木、細框 */
+.course-hero--pro, .course-hero--pro-lulu { background-image: none; border-bottom: 1px solid var(--line); }
+.course-hero--pro .course-kit, .course-hero--pro-lulu .course-kit { border: 1px solid var(--line); box-shadow: var(--shadow); transform: none; border-radius: 22px; }
+.course-hero--pro .course-facts li, .course-hero--pro-lulu .course-facts li { border-width: 1px; border-color: var(--line); font-weight: 500; }
+
+/* about: intro text + "what they learn" card 課程介紹＋學到什麼 */
+.course-about-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 48px; align-items: start; }
+.course-intro { display: grid; gap: 14px; font-size: 17px; max-width: 36em; }
+.learn-card { padding: 24px 26px; border-radius: 22px; background: var(--paper); border: 2px solid var(--ink); }
+.learn-card h3 { font-size: 24px; margin-bottom: 12px; }
+.learn-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.learn-list li { display: flex; align-items: center; gap: 12px; font-weight: 700; }
+.learn-list svg { width: 26px; height: 26px; flex: none; padding: 5px; border-radius: 50%; background: var(--green); color: #fff; }
+.course-page--pro .learn-card, .course-page--pro-lulu .learn-card { border: 1px solid var(--line); }
+.course-page--pro .learn-list svg, .course-page--pro-lulu .learn-list svg { background: var(--sky); }
+@media (max-width: 900px) { .course-about-grid { grid-template-columns: 1fr; gap: 28px; } }
+
+/* highlights + class photos 特色卡＋上課照片 */
+.hl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+.hl { display: grid; gap: 8px; align-content: start; padding: 22px 24px; border-radius: 22px; background: var(--surface); border: 2px solid var(--ink); }
+.hl-n { font-family: var(--f-num); font-weight: 700; font-size: 15px; color: var(--red); letter-spacing: .06em; }
+.hl h3 { font-size: 24px; }
+.hl p { color: var(--ink-soft); }
+.course-page--cute .hl { box-shadow: 5px 5px 0 var(--ink); }
+.course-page--cute .hl:nth-child(1) { background: var(--tint-yellow); }
+.course-page--cute .hl:nth-child(2) { background: var(--tint-sky); }
+.course-page--cute .hl:nth-child(3) { background: var(--tint-green); }
+.course-page--pro .hl, .course-page--pro-lulu .hl { border: 1px solid var(--line); box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.course-page--pro .hl::before, .course-page--pro-lulu .hl::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: var(--sky); }
+.course-page--pro .hl h3, .course-page--pro-lulu .hl h3 { font-family: var(--f-body); font-weight: 700; font-size: 20px; -webkit-text-stroke: 0; }
+.course-pics { position: relative; display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: 16px; margin-top: 36px; align-items: end; }
+.course-pics figure { margin: 0; position: relative; min-width: 0; }
+.course-pics figure img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 18px; border: 1px solid var(--line); background: var(--surface); }
+.course-pics figcaption {
+  position: absolute; left: 12px; bottom: 12px; background: var(--surface); color: var(--ink);
+  border-radius: 999px; padding: 3px 12px; font-size: 14px; font-weight: 700; border: 1px solid var(--line);
+}
+.course-page--cute .course-pics figure img { border: 3px solid var(--ink); border-radius: 20px; }
+.course-page--cute .course-pics figcaption { border: 2px solid var(--ink); }
+.course-page--cute .course-pics figure:nth-child(odd) { transform: rotate(-1.2deg); }
+.course-page--cute .course-pics figure:nth-child(even) { transform: rotate(1deg) translateY(-10px); }
+.course-pics-sticker { position: absolute; right: -14px; bottom: -40px; width: 110px; z-index: 1; }
+@media (max-width: 760px) {
+  .course-pics { grid-template-columns: 1fr 1fr; }
+  .course-pics figure:first-child:nth-last-child(odd) { grid-column: 1 / -1; }
+  .course-pics-sticker { width: 80px; bottom: -30px; right: -6px; }
+}
+.course-promise .promise { margin-top: 0; }
+
+/* competition bridge: light (EV3 → WRO/FLL) and LULU dark (VEX IQ/V5) 比賽銜接：亮色／LULU 深色 */
+.comp-links { display: flex; flex-wrap: wrap; gap: 14px; }
+.comp-link { display: inline-flex; align-items: center; gap: 14px; padding: 14px 20px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); text-decoration: none; font-weight: 700; }
+.comp-link img { height: 40px; width: auto; }
+.comp-link:hover { border-color: var(--ink); }
+.course-sub { font-family: var(--f-body); font-weight: 700; font-size: 20px; margin: 36px 0 14px; -webkit-text-stroke: 0; }
+.course-bridge .l-mark { height: 34px; margin-bottom: 14px; }
+.course-bridge .section-head { margin-bottom: 0; }
+.course-bridge-split { margin-top: 0; }
+
+/* class info band 開課資訊 */
+.course-info .class-list { list-style: none; margin: 14px 0 12px; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.course-info .class-list li { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 14px; background: var(--paper); border: 2px solid var(--ink); }
+.course-info .class-list b { font-size: 17px; }
+.course-info .class-list span:not(.tag) { color: var(--ink-soft); font-size: 14px; }
+.course-next { margin-top: 8px; font-weight: 700; }
+.course-next a { color: var(--purple); text-decoration: none; }
+.course-next a:hover { text-decoration: underline; }
+
+/* staircase prev / next — the same bricks as the course map 上一階／下一階：沿用課程地圖積木 */
+.step-nav { padding-top: 0; }
+.step-row { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 18px; align-items: end; padding-top: 12px; }
+.step-nav .brick { --h: auto; min-height: 104px; padding: 22px 18px 14px; justify-content: flex-end; }
+.step-nav .brick .name { font-size: 18px; }
+.step-dir { font-size: 14px; font-weight: 700; opacity: .9; }
+.step--next { text-align: right; align-items: flex-end; }
+.step-map { font-weight: 700; color: var(--purple); text-decoration: none; padding-bottom: 14px; white-space: nowrap; }
+.step-map:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .step-row { grid-template-columns: 1fr 1fr; gap: 22px 12px; }
+  .step-map { grid-column: 1 / -1; grid-row: 2; justify-self: center; padding-bottom: 0; }
+  .step-nav .brick .name { font-size: 15px; }
+}
+/* kids picture-book shelf 繪本書架 */
+.shelf { display: grid; gap: 14px; margin-bottom: 22px; }
+.shelf-row { display: flex; align-items: center; gap: 14px; }
+.shelf-level { flex: none; width: 52px; font-family: var(--f-display); font-size: 20px; color: var(--book-star); }
+.shelf-books { display: flex; gap: 12px; overflow-x: auto; padding: 6px 4px 10px; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.4) transparent; }
+.shelf-book { flex: none; display: grid; justify-items: center; gap: 6px; width: 96px; padding: 0; border: 0; background: none; color: #dfe5ff; cursor: pointer; font: 700 13px var(--f-body); }
+.shelf-book img { width: 96px; height: auto; border-radius: 6px; border: 3px solid rgba(255,255,255,.5); box-shadow: 4px 4px 0 rgba(0,0,0,.35); transition: transform .2s ease, border-color .2s ease; }
+.shelf-book:hover img { transform: translateY(-4px) rotate(-2deg); }
+.shelf-book[aria-pressed="true"] { color: #fff; }
+.shelf-book[aria-pressed="true"] img { border-color: var(--book-star); transform: translateY(-6px); box-shadow: 0 0 0 3px var(--book-star), 5px 8px 0 rgba(0,0,0,.35); }
+@media (max-width: 560px) { .shelf-row { align-items: flex-start; flex-direction: column; gap: 4px; } .shelf-book, .shelf-book img { width: 84px; } }
+.shelf { grid-template-columns: minmax(0, 1fr); }
+.shelf-row, .shelf-books { min-width: 0; }
+@media (max-width: 560px) { .shelf-row { align-items: stretch; } .shelf-books { max-width: 100%; } }
