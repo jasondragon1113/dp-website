@@ -4,16 +4,17 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>關於我們｜玩樂高手</title>
-<meta name="description" content="玩樂高手機器人教育中心：台灣機器人教育品牌，4 到 18 歲循序漸進的機器人課程，創辦人黃楹進。">
+<title>免費工具｜玩樂高手</title>
+<meta name="description" content="玩樂高手 VEX 專區的免費工具：VEX Competition Timer 計時器、Override 計分器、Whiteboard 戰術白板、直播回放、全球排行。打開就能用，不用登入。">
 <link rel="icon" href="assets/brand/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@400;500;700&family=Fredoka:wght@500;600;700&family=Huninn&family=Outfit:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="assets/site.css?v=b41495be">
 <script src="assets/countup.js?v=7639d8da" defer></script>
+<script src="assets/tools.js?v=43a0fcbb" defer></script>
 </head>
-<body>
+<body class="tech-page">
 <a class="skip" href="#main">跳到主要內容</a>
 <header class="site-header">
   <div class="wrap">
@@ -35,12 +36,12 @@
       <a data-nav="awards" href="awards.html">榮譽榜</a>
       <a data-nav="locations" href="locations.html">教室介紹</a>
       <a data-nav="charity" href="charity.html">公益與偏鄉</a>
-      <a data-nav="about" aria-current="page" href="about.html">關於我們</a>
+      <a data-nav="about" href="about.html">關於我們</a>
       <details class="nav-group">
-        <summary data-group="resources">教學資源</summary>
+        <summary data-group="resources" class="is-current">教學資源</summary>
         <div class="menu">
-          <a data-nav="tools" href="tools.html">免費工具 <small>計時・計分・白板</small></a>
-          <a data-nav="tools" href="tools.html">免費工具</a>
+          <a data-nav="tools" aria-current="page" href="tools.html">免費工具 <small>計時・計分・白板</small></a>
+          <a data-nav="tools" aria-current="page" href="tools.html">免費工具</a>
         <a href="https://course.dproboticslab.com/">教案系統</a>
           <a href="https://course-en.dproboticslab.com/">教案系統（英文）</a>
           <a href="https://dproboticslab.com/downloads">軟體下載</a>
@@ -65,7 +66,7 @@
         <a data-nav="awards" href="awards.html">榮譽榜</a>
         <a data-nav="locations" href="locations.html">教室介紹</a>
         <a data-nav="charity" href="charity.html">公益與偏鄉</a>
-        <a data-nav="about" aria-current="page" href="about.html">關於我們</a>
+        <a data-nav="about" href="about.html">關於我們</a>
         <a href="https://vex-v5.dproboticslab.com/">VEX 專區</a>
         <a href="https://course.dproboticslab.com/">教案系統</a>
         <a href="https://dproboticslab.com/downloads">軟體下載</a>
@@ -76,57 +77,83 @@
 </header>
 
 <main id="main">
-<section class="page-hero page-hero--yellow">
-  <div class="bricks-layer" aria-hidden="true"><span class="lego" style="left:64%;top:10%;--n:2;--c:var(--red);--r:10deg"></span><span class="lego" style="left:78%;top:70%;--n:3;--c:var(--green);--r:-8deg"></span><span class="lego" style="left:58%;top:78%;--n:2;--c:var(--sky);--r:14deg"></span><span class="lego" style="left:90%;top:8%;--n:2;--c:var(--purple);--r:-14deg"></span></div>
-  <div class="wrap">
-    <div class="hero-text">
-      <p class="eyebrow" style="color:var(--plate-ink)">About us</p>
-      <h1>關於玩樂高手</h1>
-      <p class="lede">台灣的機器人教育品牌，從積木到機器人，讓孩子在遊戲中學科技與程式。</p>
-    </div>
-    <img class="sticker bob" src="assets/stickers/hi.png" alt="" aria-hidden="true">
+<section class="tool-intro" aria-labelledby="tools-title">
+  <div class="ti-grid" aria-hidden="true"></div>
+  <span class="ti-dot ti-dot--1" aria-hidden="true"></span>
+  <span class="ti-dot ti-dot--2" aria-hidden="true"></span>
+  <span class="ti-dot ti-dot--3" aria-hidden="true"></span>
+  <div class="wrap ti-wrap">
+    <img class="ti-logo" src="assets/brand/logo-mark.png" alt="" aria-hidden="true">
+    <p class="ti-eyebrow">OPEN TOOLS・免費工具</p>
+    <h1 id="tools-title" class="ti-title"><span class="ti-line">Free tools for</span> <span class="ti-line"><em>every team.</em></span></h1>
+    <p class="ti-code"><span class="ti-type" data-text="// 計時、計分、畫戰術、看回放、查排名——打開就能用，不用登入。"></span><span class="ti-caret" aria-hidden="true"></span></p>
+    <nav class="ti-chips" aria-label="工具">
+      <a href="#t-timer"><b>01</b>Timer</a>
+      <a href="#t-score"><b>02</b>計分器</a>
+      <a href="#t-field"><b>03</b>Whiteboard</a>
+      <a href="#t-replay"><b>04</b>直播回放</a>
+      <a href="#t-rankings"><b>05</b>全球排行</a>
+    </nav>
   </div>
+  <a class="ti-scroll" href="#t-timer" aria-label="往下看工具"><span></span></a>
 </section>
 
-<section class="section" aria-labelledby="founder-title">
-  <div class="wrap founder">
-    <div>
-      <h2 id="founder-title">從<em>要我學</em>，到<em>我要學</em></h2>
-      <blockquote>
-        <p>機器人課程符合孩子愛玩的天性，在玩中學，學得更快。我們有 3 到 18 歲循序漸進的課程，讓孩子在不同階段接觸不同的教具，一步步走進機器人與程式設計的世界。</p>
-      </blockquote>
-      <cite>創辦人 黃楹進</cite>
-    </div>
-    <img class="photo" src="assets/img/team-flag.webp" alt="玩樂高手選手與老師拿著國旗在賽場合照" width="960" height="583" loading="lazy">
-  </div>
-</section>
-
-<section class="section" aria-labelledby="parents-title">
+<section class="section lulu tool-list" aria-label="工具列表">
   <div class="wrap">
-    <div class="head-row">
-      <div class="section-head">
-        <p class="eyebrow">家長怎麼說</p>
-        <h2 id="parents-title">來上過課的爸媽說</h2>
+    <article class="tool-row" id="t-timer">
+      <div class="tool-screen"><video src="assets/img/tools/timer.mp4" poster="assets/img/tools/timer.webp" muted loop playsinline preload="none" aria-label="VEX Competition Timer 操作畫面"></video></div>
+      <div class="tool-text">
+        <p class="tool-n">01・練習與比賽</p>
+        <h2>VEX Competition Timer</h2>
+        <p>自動賽 15 秒、手動賽 1 分 45 秒，聲音提示照大會規則。練習時全螢幕投影，選手聽聲音就知道剩多久。</p>
+        <ul class="tool-tags"><li>免登入</li><li>全螢幕</li><li>大會音效</li></ul>
+        <a class="l-btn l-btn--primary" href="https://vex-v5.dproboticslab.com/timer">打開計時器 ↗</a>
       </div>
-      <img class="sticker" src="assets/stickers/thank-you.png" alt="" aria-hidden="true">
-    </div>
-    <div class="parents">
-      <blockquote class="bubble"><p>協助小孩對結構、程式有所認識的好地方，也可以強化邏輯思考。</p><footer><img class="avatar" src="assets/img/parent-0.webp" alt="" width="44" height="44" loading="lazy">蘇振元・學生家長</footer></blockquote>
-      <blockquote class="bubble"><p>孩子發揮創意與想像力的樂園，讓孩子激發潛能。</p><footer><img class="avatar" src="assets/img/parent-1.webp" alt="" width="44" height="44" loading="lazy">阿璋・學生家長</footer></blockquote>
-      <blockquote class="bubble"><p>老師都蠻有耐心的，而且也很細心的教學。</p><footer><img class="avatar" src="assets/img/parent-2.webp" alt="" width="44" height="44" loading="lazy">實踐家幸福・學生家長</footer></blockquote>
-    </div>
-  </div>
-</section>
-
-<section class="section" style="padding-top:0">
-  <div class="wrap">
-    <div class="cta-band">
-      <div>
-        <h2>想在你的城市開一間玩樂高手？</h2>
-        <p>歡迎來聊聊合作方式。</p>
-        <div class="actions"><a class="btn" href="https://dproboticslab.com/franchise">合作機會</a></div>
+    </article>
+    <article class="tool-row" id="t-score">
+      <div class="tool-screen"><video src="assets/img/tools/score.mp4" poster="assets/img/tools/score.webp" muted loop playsinline preload="none" aria-label="Override 計分器操作畫面"></video></div>
+      <div class="tool-text">
+        <p class="tool-n">02・當季賽制</p>
+        <h2>Override 計分器</h2>
+        <p>當季賽制的即時算分，點場地上的物件就好。裁判判分前，先自己算一次。</p>
+        <ul class="tool-tags"><li>免登入</li><li>點一下就算分</li></ul>
+        <a class="l-btn l-btn--primary" href="https://vex-v5.dproboticslab.com/score">打開計分器 ↗</a>
       </div>
-      <img class="sticker bob" src="assets/stickers/go-go.png" alt="" aria-hidden="true">
+    </article>
+    <article class="tool-row" id="t-field">
+      <div class="tool-screen"><video src="assets/img/tools/field.mp4" poster="assets/img/tools/field.webp" muted loop playsinline preload="none" aria-label="Whiteboard 戰術白板操作畫面"></video></div>
+      <div class="tool-text">
+        <p class="tool-n">03・賽前戰術</p>
+        <h2>Whiteboard</h2>
+        <p>畫路徑、排站位、標對手弱點。輸入隊號就帶出今天的對戰，畫的東西存在你自己的裝置裡。</p>
+        <ul class="tool-tags"><li>免登入</li><li>輸隊號帶出對戰</li><li>存在本機</li></ul>
+        <a class="l-btn l-btn--primary" href="https://vex-v5.dproboticslab.com/field">打開白板 ↗</a>
+      </div>
+    </article>
+    <article class="tool-row" id="t-replay">
+      <div class="tool-screen"><video src="assets/img/tools/replay.mp4" poster="assets/img/tools/replay.webp" muted loop playsinline preload="none" aria-label="直播回放操作畫面"></video></div>
+      <div class="tool-text">
+        <p class="tool-n">04・賽後檢討</p>
+        <h2>直播回放</h2>
+        <p>回看比賽直播與單場影片，點場次就跳到那一刻。</p>
+        <ul class="tool-tags"><li>免登入</li><li>點場次直接跳</li></ul>
+        <a class="l-btn l-btn--primary" href="https://vex-v5.dproboticslab.com/replay">打開直播回放 ↗</a>
+      </div>
+    </article>
+    <article class="tool-row" id="t-rankings">
+      <div class="tool-screen"><video src="assets/img/tools/rankings.mp4" poster="assets/img/tools/rankings.webp" muted loop playsinline preload="none" aria-label="全球排行操作畫面"></video></div>
+      <div class="tool-text">
+        <p class="tool-n">05・看見世界</p>
+        <h2>全球排行</h2>
+        <p>全世界隊伍的 Skills 排名、TrueSkill 評級與詳細數據，可以只看台灣，或只看某一場賽事。</p>
+        <ul class="tool-tags"><li>免登入</li><li>Skills・TrueSkill</li><li>可篩台灣</li></ul>
+        <a class="l-btn l-btn--primary" href="https://vex-v5.dproboticslab.com/rankings">打開全球排行 ↗</a>
+      </div>
+    </article>
+
+    <div class="tool-more">
+      <p>// 選手戰績、賽程、更多功能都在 VEX 專區</p>
+      <a class="l-btn" href="https://vex-v5.dproboticslab.com/">進入 VEX 專區 ↗</a>
     </div>
   </div>
 </section>

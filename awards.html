@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@400;500;700&family=Fredoka:wght@500;600;700&family=Huninn&family=Outfit:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
-<link rel="stylesheet" href="assets/site.css?v=51627f4e">
+<link rel="stylesheet" href="assets/site.css?v=b41495be">
 <script src="assets/countup.js?v=7639d8da" defer></script>
 <script src="assets/tabs.js?v=4838233b" defer></script>
 </head>
@@ -37,10 +37,12 @@
       <a data-nav="locations" href="locations.html">教室介紹</a>
       <a data-nav="charity" href="charity.html">公益與偏鄉</a>
       <a data-nav="about" href="about.html">關於我們</a>
-      <details>
-        <summary>教學資源</summary>
+      <details class="nav-group">
+        <summary data-group="resources">教學資源</summary>
         <div class="menu">
-          <a href="https://course.dproboticslab.com/">教案系統</a>
+          <a data-nav="tools" href="tools.html">免費工具 <small>計時・計分・白板</small></a>
+          <a data-nav="tools" href="tools.html">免費工具</a>
+        <a href="https://course.dproboticslab.com/">教案系統</a>
           <a href="https://course-en.dproboticslab.com/">教案系統（英文）</a>
           <a href="https://dproboticslab.com/downloads">軟體下載</a>
         </div>
