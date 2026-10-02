@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Weekly Tips #7 – VEX V5 Smart Motor 大揭密｜玩樂高手</title>
+<meta name="description" content="V5 Smart Motor 大揭密：三種可換齒輪箱、轉速與扭力，拆開來看內部結構與保護裝置。">
+<link rel="icon" href="assets/brand/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@400;500;700&family=Fredoka:wght@500;600;700&family=Huninn&family=Outfit:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="assets/site.css?v=98a067ed">
+<script src="assets/countup.js?v=7639d8da" defer></script>
+</head>
+<body class="article-page">
+<a class="skip" href="#main">跳到主要內容</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="玩樂高手機器人教育中心 首頁">
+      <img class="logo-light" src="assets/brand/wanle-logo-horizontal.png" alt="玩樂高手" width="120" height="40">
+      <img class="logo-dark" src="assets/brand/wanle-logo-white.png" alt="玩樂高手" width="122" height="40">
+    </a>
+    <nav class="nav" aria-label="主選單">
+      <details class="nav-group">
+        <summary data-group="courses">課程介紹</summary>
+        <div class="menu menu--left">
+          <a href="courses.html">課程地圖 <small>3 歲到高中</small></a>
+          <a href="kids.html">小小玩家 <small>3–8 歲</small></a>
+          <a href="courses.html#teen">進階課程 <small>9–14 歲</small></a>
+          <a data-nav="compete" href="compete.html">比賽專班 <small>選手培訓</small></a>
+          <a href="camps.html">寒暑假營隊</a>
+        </div>
+      </details>
+      <a data-nav="awards" href="awards.html">榮譽榜</a>
+      <a data-nav="locations" href="locations.html">教室介紹</a>
+      <a data-nav="charity" href="charity.html">公益與偏鄉</a>
+      <a data-nav="about" href="about.html">關於我們</a>
+      <details class="nav-group">
+        <summary data-group="resources" class="is-current">教學資源</summary>
+        <div class="menu">
+          <a data-nav="tools" href="tools.html">免費工具</a>
+          <a data-nav="articles" aria-current="page" href="articles.html">文章</a>
+          <a href="https://course.dproboticslab.com/">教案系統</a>
+          <a href="https://course-en.dproboticslab.com/">教案系統（英文）</a>
+          <a href="https://dproboticslab.com/downloads">軟體下載</a>
+        </div>
+      </details>
+      <a class="nav-vex" href="https://vex-v5.dproboticslab.com/"><span aria-hidden="true"></span>VEX 專區</a>
+      <a class="btn btn--line" href="https://line.me/ti/p/@039qsoxy">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+        預約試聽
+      </a>
+    </nav>
+    <details class="nav-toggle">
+      <summary aria-label="開啟選單">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </summary>
+      <div class="panel">
+        <a data-nav="courses" href="courses.html">課程介紹</a>
+        <a class="sub" data-nav="kids" href="kids.html">小小玩家 3–8 歲</a>
+        <a class="sub" href="courses.html#teen">進階課程 9–14 歲</a>
+        <a class="sub" data-nav="compete" href="compete.html">比賽專班</a>
+        <a class="sub" data-nav="camps" href="camps.html">寒暑假營隊</a>
+        <a data-nav="awards" href="awards.html">榮譽榜</a>
+        <a data-nav="locations" href="locations.html">教室介紹</a>
+        <a data-nav="charity" href="charity.html">公益與偏鄉</a>
+        <a data-nav="about" href="about.html">關於我們</a>
+        <a href="https://vex-v5.dproboticslab.com/">VEX 專區</a>
+        <a data-nav="tools" href="tools.html">免費工具</a>
+        <a data-nav="articles" aria-current="page" href="articles.html">文章</a>
+        <a href="https://course.dproboticslab.com/">教案系統</a>
+        <a href="https://dproboticslab.com/downloads">軟體下載</a>
+        <a class="btn btn--line" href="https://line.me/ti/p/@039qsoxy">LINE 預約試聽</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main id="main">
+<section class="page-hero page-hero--green a-hero">
+  <div class="wrap">
+    <div class="hero-text">
+      <nav class="crumbs" aria-label="目前位置"><ol><li><a href="articles.html">文章</a></li><li><a href="articles.html#tips">Weekly Tips</a></li></ol></nav>
+      <div class="a-card-meta"><span class="a-chip a-chip--tips">Weekly Tips</span><time datetime="2020-06-18">2020/06/18</time></div>
+      <h1>Weekly Tips #7 – VEX V5 Smart Motor 大揭密</h1>
+      <p class="a-stale">這是 2020 年的文章，內容可能已更新</p>
+    </div>
+  </div>
+</section>
+<article class="section section--white a-page">
+  <div class="wrap"><div class="a-body"><figure><img src="assets/img/articles/weekly-tips-7-01.webp" alt="Weekly Tips #7 – VEX V5 Smart Motor 大揭密 配圖" width="1080" height="768" loading="lazy"></figure><figure><img src="assets/img/articles/weekly-tips-7-02.webp" alt="Weekly Tips #7 – VEX V5 Smart Motor 大揭密 配圖" width="1024" height="576" loading="lazy"></figure><p>本週的Weekly Tips，換我們的V5 Smart Motor登場拉~~<br>馬達可謂機器人相當重要的一個部件，讓我們來看看VEX V5套裝中唯一的馬達吧~</p><figure><img src="assets/img/articles/weekly-tips-7-03.webp" alt="Weekly Tips #7 – VEX V5 Smart Motor 大揭密 配圖" width="1024" height="576" loading="lazy"></figure><p>VEX V5 Smart Motor與其他馬達不同的是，他可以更換”齒輪箱”！！，所以不需要為了特定需求，而去購買其他的馬達。</p><figure><img src="assets/img/articles/weekly-tips-7-04.webp" alt="Weekly Tips #7 – VEX V5 Smart Motor 大揭密 配圖" width="1024" height="576" loading="lazy"></figure><p>並且提供36:1、18:1、6:1三種規格的 “行星” 齒輪箱，可以按需求自行更換，比如說底盤要跑快需要6:1，馬達夾重物需要36:1，VEX出廠預設都是18:1的齒輪箱，如果有需要更換可以自行購買。<br>VEX V5的軸其實分為細的與粗的，V5的連接器設計得很巧妙，兩種軸都是可以接上的喔~~</p><figure><img src="assets/img/articles/weekly-tips-7-05.webp" alt="Weekly Tips #7 – VEX V5 Smart Motor 大揭密 配圖" width="1024" height="576" loading="lazy"></figure><p>根據不同齒輪箱，馬達可以輸出100、200或600 rpm，最高可以帶出2.1N/m的扭力，可謂輸出相當強勁的馬達，讓VEX V5在各大賽事中可以成為強而有力的機器人平台。</p><figure><img src="assets/img/articles/weekly-tips-7-06.webp" alt="Weekly Tips #7 – VEX V5 Smart Motor 大揭密 配圖" width="808" height="190" loading="lazy"></figure><p>VEX馬達的Encoder也是相當準確的，但是由於可以自己更換齒輪箱的關係，所以Encoder的精確度會跟著齒輪比有所差距</p><figure><img src="assets/img/articles/weekly-tips-7-07.webp" alt="Weekly Tips #7 – VEX V5 Smart Motor 大揭密 配圖" width="1024" height="576" loading="lazy"></figure><p>這次從國外網站分享的圖片來跟各位解說，VEX V5的內裝吧~<br>拆開後可以看到上蓋的自訂義齒輪箱，下方連接主要馬達部件</p><figure><img src="assets/img/articles/weekly-tips-7-08.webp" alt="Weekly Tips #7 – VEX V5 Smart Motor 大揭密 配圖" width="1024" height="576" loading="lazy"></figure><p>接著自訂齒輪組的傳動接到底下的固定齒輪箱(意即不可更換的齒輪箱)，最後連接到130小馬達上。</p><figure><img src="assets/img/articles/weekly-tips-7-09.webp" alt="Weekly Tips #7 – VEX V5 Smart Motor 大揭密 配圖" width="1024" height="576" loading="lazy"></figure><p>最後這裡有PTC保護裝置，以及VP1782的通訊IC與主機溝通，由於馬達電力大，所以馬達如果故障通常比較高機率是VP1782被擊穿。</p><figure><img src="assets/img/articles/weekly-tips-7-10.webp" alt="Weekly Tips #7 – VEX V5 Smart Motor 大揭密 配圖" width="1024" height="576" loading="lazy"></figure><p>從另外一面可以看到，他上面自帶供電與CorTex M0微控器，所以馬達相關的PID微調控制，會由馬達內部IC管理，另外馬達IC本身帶有溫控與過電保護等措施。</p><p>所以可以看到國外隊伍常常拿壓縮空氣噴馬達，因為過熱會導致內部IC直接關閉馬達運作，另外如果短路或是過載，可能會導致PTC保險裝置斷開，須過一段時間才會恢復喔~</p></div></div>
+</article>
+<nav class="section a-pager" aria-label="上一篇與下一篇">
+  <div class="wrap">
+    <div class="a-pager-row"><a class="a-step a-step--prev" href="article-weekly-tips-6.html"><span class="a-step-dir">← 上一篇</span><span class="a-step-title">Weekly Tips #6 – VEX V5 主機硬體大解密</span></a><a class="a-step a-step--next" href="article-weekly-tips-8.html"><span class="a-step-dir">下一篇 →</span><span class="a-step-title">Weekly Tips #8 – VEX IQ 軟體自動安裝工具 AutoRobot</span></a></div>
+    <p class="a-more"><a class="btn" href="articles.html">看更多文章</a></p>
+  </div>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <img class="logo" src="assets/brand/wanle-logo-white.png" alt="玩樂高手" width="147" height="48">
+      <p style="margin-top:14px;max-width:22em">從積木到機器人，讓孩子在遊戲中學科技與程式。</p>
+      <div class="social">
+        <a href="https://www.facebook.com/dproboticslab" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://line.me/ti/p/@039qsoxy" aria-label="LINE"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></a>
+        <a href="https://www.youtube.com/channel/UC3KDr_rlFTTawn3Bh5bZUlQ" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <h4>課程與比賽</h4>
+      <ul>
+        <li><a href="kids.html">小小玩家 3–8 歲</a></li>
+        <li><a href="courses.html">課程介紹</a></li>
+        <li><a href="camps.html">寒暑假營隊</a></li>
+        <li><a href="compete.html">比賽專班</a></li>
+        <li><a href="awards.html">榮譽榜</a></li>
+        <li><a href="locations.html">教室介紹</a></li>
+        <li><a href="charity.html">公益與偏鄉</a></li>
+        <li><a href="about.html">關於我們</a></li>
+        <li><a href="https://vex-v5.dproboticslab.com/">VEX 專區</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>教學資源</h4>
+      <ul>
+        <li><a href="https://course.dproboticslab.com/">教案系統</a></li>
+        <li><a href="https://course-en.dproboticslab.com/">教案系統（英文）</a></li>
+        <li><a href="https://dproboticslab.com/downloads">軟體下載</a></li>
+        <li><a href="tools.html">免費工具</a></li>
+        <li><a href="articles.html">文章</a></li>
+        <li><a href="https://dproboticslab.com/franchise">合作機會</a></li>
+      </ul>
+    </div>
+    <p class="copyright">© 玩樂高手機器人教育中心 DC.Player Robotics Lab</p>
+  </div>
+</footer>
+<div class="buddy" id="buddy">
+  <div class="buddy-panel" id="buddy-panel" role="dialog" aria-label="小幫手" hidden>
+    <div class="buddy-head"><b>嗨！需要幫忙嗎？</b><button type="button" class="buddy-x" aria-label="關閉小幫手">×</button></div>
+    <div class="buddy-actions">
+      <a class="buddy-act buddy-act--line" href="https://line.me/ti/p/@039qsoxy">LINE 預約試聽</a>
+      <button type="button" class="buddy-act" data-buddy="phones">打給教室</button>
+      <button type="button" class="buddy-act" data-buddy="faq">常見問題</button>
+      <a class="buddy-act" href="camps.html">寒暑假營隊</a>
+    </div>
+    <ul class="buddy-sub buddy-phones" data-sub="phones" hidden><li><span>台北大安</span><a href="tel:+886227791555">02-2779-1555</a></li><li><span>新竹竹北</span><a href="tel:+88636577333">03-657-7333</a></li><li><span>台中文心</span><a href="tel:+886424734555">04-2473-4555</a></li><li><span>台中實驗中心</span><a href="tel:+886423231666">04-2323-1666</a></li><li><span>南投草屯</span><a href="tel:+886492334111">049-233-4111</a></li><li><span>高雄左營</span><a href="tel:+88673501777">07-350-1777</a></li></ul>
+    <div class="buddy-sub buddy-faq" data-sub="faq" hidden>
+      <details><summary>幾歲可以開始上課？</summary><p>3 歲起就有 ESM 幼兒啟蒙，6 歲 SPM、7 歲 VEX GO，之後一路銜接到高中。</p></details>
+      <details><summary>一班幾個人？</summary><p>小班制，一班最多 10 人。</p></details>
+      <details><summary>教具要自己買嗎？</summary><p>不用，上課一人一套教具，不必跟別人共用。</p></details>
+      <details><summary>請假可以補課嗎？</summary><p>可以，請假後安排補課。</p></details>
+      <details><summary>想參加比賽怎麼辦？</summary><p>有比賽專班：VEX、FIRST、WRO。VEX IQ／V5 競賽班每年 6 月底開班。<a href="compete.html">看比賽專班</a></p></details>
+    </div>
+  </div>
+  <button type="button" class="buddy-btn" aria-expanded="false" aria-controls="buddy-panel" aria-label="打開小幫手">
+    <span class="buddy-say">有問題找我！</span>
+    <img src="assets/stickers/find-me.png" alt="" width="124" height="130">
+  </button>
+</div>
+<script src="assets/buddy.js" defer></script>
+
+</body>
+</html>

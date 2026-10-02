@@ -1414,6 +1414,10 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .a-chip { display: inline-flex; padding: 3px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; border: 2px solid var(--ink); line-height: 1.4; }
 .a-chip--news { background: var(--yellow); color: var(--plate-ink); }
 .a-chip--skills { background: #bfe6ff; color: #0b3554; }
+.a-chip--tips { background: var(--tint-green); color: #14532d; }
+.a-chip--media { background: var(--tint-purple); color: #3b0764; }
+.a-chip--award { background: var(--tint-red); color: #7a1410; }
+.a-chip--class { background: #ffe2c2; color: #6b3200; }
 .a-card-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
 .a-card-meta time { font-family: var(--f-num); color: var(--ink-soft); font-size: 14px; }
 /* list: brick cards, 3 → 2 → 1 columns 列表：積木卡片 */
@@ -1468,6 +1472,15 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
   background: var(--red) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") center / 30px no-repeat;
   border: 3px solid #fff; box-shadow: 0 4px 12px rgba(0,0,0,.3); transition: transform .15s ease; }
 .a-yt a:hover::after { transform: scale(1.08); }
+
+/* original news reports (media posts) 原始報導：連結或「已下架」 */
+.a-body .a-sources { margin-top: 2em; padding: 14px 18px; border: 2px dashed var(--line); border-radius: 16px; }
+.a-sources > p { font-size: 14px; font-weight: 700; color: var(--ink-soft); }
+.a-sources ul { list-style: none; padding: 0; margin-top: 6px; display: grid; gap: 4px; }
+.a-sources li { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 12px; }
+.a-sources li span { font-weight: 700; }
+.a-sources li em { font-style: normal; font-size: 14px; color: var(--ink-soft); }
+.a-sources li.is-gone span { color: var(--ink-soft); font-weight: 500; }
 
 /* previous / next + more 上一篇／下一篇＋看更多 */
 .a-pager { padding-block: 40px 64px; }
