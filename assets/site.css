@@ -870,7 +870,7 @@ body.tech-page .site-footer::before { background-image: none; }
 .rv-block > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; }
 .rv-block > summary::-webkit-details-marker { display: none; }
 .rv-block > summary::after { content: "展開"; font-size: 13px; color: #a1a1aa; border: 1px solid #3f3f46; border-radius: 999px; padding: 2px 10px; }
-.rv-block[open] > summary::after { content: "收合"; }
+.rv-block[open] > summary::after { content: "收合"; white-space: nowrap; }
 .rv-block > summary h3 { margin-bottom: 0 !important; }
 .rv-list { display: grid; gap: 28px; margin-top: 18px; }
 .rv-season .season-head { margin-bottom: 12px; }
@@ -910,3 +910,39 @@ body.tech-page .h-tabs button[aria-selected="true"] { background: #e31b23; borde
 .charity-grid .camp-pics, .charity-grid .charity-video .thumb { aspect-ratio: 16 / 10; }
 .charity-grid .camp-body { grid-template-rows: auto auto 1fr auto; }
 .charity-grid .charity-links { align-self: end; }
+
+/* compete page: pick a competition 比賽專班：選賽事分頁 */
+.c-tabs-bar .wrap { display: flex; align-items: center; gap: 14px; }
+.c-tabs-label { flex: none; font-size: 13px; letter-spacing: .08em; color: #a1a1aa; }
+.c-tabs { flex: 1; min-width: 0; }
+.c-tabs button { display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px 8px 8px; font-size: 16px; font-weight: 700; }
+.c-logo { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 4px 10px; border-radius: 8px; background: #fff; }
+.c-logo img { height: 22px; width: auto; }
+.t-programs--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 20px; }
+@media (max-width: 760px) {
+  .c-tabs-label { display: none; }
+  .c-tabs button { font-size: 14px; padding: 6px 12px 6px 6px; gap: 8px; }
+  .c-logo { height: 28px; padding: 3px 7px; }
+  .c-logo img { height: 16px; }
+}
+@media (max-width: 900px) { .t-programs--3 { grid-template-columns: 1fr; } }
+.c-logo--dark { background: #000; border: 1px solid #3f3f46; }
+@media (max-width: 760px) {
+  .c-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; overflow: visible; }
+  .c-tabs button { flex-direction: column; justify-content: center; gap: 4px; padding: 6px 4px 8px; border-radius: 12px; font-size: 13px; min-width: 0; }
+  .c-tabs .tab-n { display: none; }
+  .c-logo { height: 26px; padding: 3px 6px; max-width: 100%; }
+  .c-logo img { height: 14px; min-width: 0; }
+}
+
+/* FIRST reveals: one sideways row 歷年 Reveal 一排左右滑 */
+.rv-scroll { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(240px, 270px); gap: 16px; overflow-x: auto; padding: 4px 2px 14px;
+  scroll-snap-type: x proximity; scrollbar-width: thin; scrollbar-color: #52525b transparent; margin-top: 14px; }
+.rv-card { scroll-snap-align: start; display: grid; gap: 10px; align-content: start; }
+.rv-meta { display: flex; align-items: center; gap: 10px; height: 44px; }
+.rv-meta b { font-family: var(--l-mono); font-size: 18px; color: #fff; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rv-logo img { max-height: 40px; max-width: 120px; width: auto; height: auto;
+  filter: drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff) drop-shadow(0 1px 0 #fff) drop-shadow(0 -1px 0 #fff); }
+.rv-meta .season-game { font-size: 11px; padding: 2px 10px; white-space: nowrap; }
+.rv-scroll:focus-visible { outline: 2px solid #e31b23; outline-offset: 4px; }
+.rv-hint { font-size: 13px; font-weight: 400; color: #a1a1aa; margin-left: 8px; }
