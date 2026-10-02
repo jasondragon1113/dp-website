@@ -881,3 +881,22 @@ body.tech-page .h-tabs button[aria-selected="true"] { background: #e31b23; borde
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* ---------- charity page 公益頁 ---------- */
+.camp-chip--school { background: var(--tint-purple); color: #33276e; }
+.camp-chip b { font-family: var(--f-num); margin-left: 4px; }
+.charity-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.charity-legend .camp-chip { background-color: var(--surface); }
+.charity-legend .camp-chip--charity { background: var(--tint-green); }
+.charity-legend .camp-chip--winter { background: #bfe6ff; }
+.charity-legend .camp-chip--summer { background: var(--yellow); }
+.charity-legend .camp-chip--school { background: var(--tint-purple); }
+.charity-quote { font-family: var(--f-display); font-size: clamp(20px, 2.6vw, 26px); line-height: 1.5; margin: 6px 0 10px; color: var(--ink); }
+.charity-more { margin-top: 14px; }
+.charity-feature .thumb { border-width: 3px; border-radius: 24px; box-shadow: 8px 8px 0 var(--green); }
+.charity-feature .v-title { font-size: 16px; }
+.charity-video { display: block; }
+.charity-video .thumb { border: 0; border-bottom: 2px solid var(--ink); border-radius: 0; }
+.charity-links { list-style: none; margin: 6px 0 0; padding: 8px 0 0; border-top: 2px dotted var(--line); display: grid; gap: 4px; font-size: 14px; }
+.charity-links a { color: var(--purple); font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
+.charity-links a:hover { text-decoration: underline; }
