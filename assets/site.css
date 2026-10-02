@@ -1548,3 +1548,7 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .rocket-flame { top: 76%; z-index: 0; width: 30%; }
 .rocket.is-ignite .rocket-flame { height: 26%; }
 .rocket.is-launch .rocket-flame, .rocket.is-return .rocket-flame { height: 60%; }
+/* cut-out rocket (no sky box) sits on the hero's own starry sky 去背火箭直接放在主視覺星空上 */
+.story-hero .rocket { margin-top: 24px; }
+.rocket-ship .story-hero-art { filter: drop-shadow(0 10px 24px rgba(0,0,0,.25)); }
+.rocket-flame { top: 88%; width: 34%; }
