@@ -1389,3 +1389,13 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 @keyframes cloud-drift { from { translate: -24px 0; } to { translate: 24px 0; } }
 @media (prefers-reduced-motion: reduce) { .land-cloud { animation: none; } }
 @media (max-width: 860px) { .land-cloud { width: 90px !important; opacity: .55; } .land-cloud--2, .land-cloud--4 { display: none; } }
+/* v4: the forest becomes the floor of the page, a mirrored panorama below the content — nothing covers the trees
+   (使用者：樹被照片擋一半) v4：森林改成頁面最底下的一整排林地（左右鏡射接成全景），內容都在天空裡，不再擋到樹 */
+.kids-land { padding-bottom: 0; }
+.kids-land::after { content: none; }
+.land-forest { display: none; }
+.land-floor { position: relative; z-index: 0; display: flex; justify-content: center; height: clamp(220px, 30vw, 460px); margin-top: -10px; overflow: hidden; }
+.land-floor img { flex: none; height: 100%; width: auto; display: block; }
+.land-floor img.flip { transform: scaleX(-1); }
+.land-floor img + img { margin-left: -1px; }
+.land-cloud--1 { top: 52%; } .land-cloud--2 { top: 47%; } .land-cloud--3 { top: 50%; } .land-cloud--4 { top: 45%; } .land-cloud--5 { top: 43%; }
