@@ -1338,3 +1338,29 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .scene--bears { background-image: linear-gradient(90deg, rgba(96,176,226,0) 40%, #60b0e2 75%), url("img/books/scene-bears.webp"); background-position: left bottom, left bottom; background-size: 100% 100%, auto 112%; }
 .scene--sea { background-image: url("img/books/scene-sea.webp"); background-position: right -40px bottom; }
 @media (max-width: 760px) { .scene { background-size: auto 70%; } .scene--bears { background-size: 100% 100%, auto 70%; } }
+/* kids page v2: one continuous sky (night → day), cut-out scenes fading into it (使用者：主題不連續很醜)
+   小小玩家 v2：整頁一條夜空到白天的連續天空，去背場景靠邊淡出，區塊之間不再換底色、不畫分隔線 */
+.kids-page main { background: linear-gradient(180deg, #334388 0%, #334388 34%, #3b5aa2 48%, #4a83c6 64%, #62a9de 82%, #79bdea 100%); }
+.kids-page .story-hero, .kids-page .story-sky { border-bottom: 0; background-color: transparent; }
+.kids-page .scene { background: none !important; border-bottom: 0; overflow: hidden; isolation: isolate; }
+.kids-page .scene > .wrap { position: relative; z-index: 1; }
+.scene-art { position: absolute; z-index: 0; bottom: 0; height: auto; pointer-events: none; }
+.scene-art--tree { left: -3%; width: min(44vw, 600px);
+  -webkit-mask-image: linear-gradient(90deg, #000 50%, transparent 92%), linear-gradient(180deg, #000 55%, transparent 98%); -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(90deg, #000 50%, transparent 92%), linear-gradient(180deg, #000 55%, transparent 98%); mask-composite: intersect; }
+.scene-art--bears { right: -3%; width: min(42vw, 580px);
+  -webkit-mask-image: linear-gradient(270deg, #000 50%, transparent 92%), linear-gradient(180deg, #000 60%, transparent 100%); -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(270deg, #000 50%, transparent 92%), linear-gradient(180deg, #000 60%, transparent 100%); mask-composite: intersect; }
+.scene-art--sea { right: 0; width: min(58vw, 820px);
+  -webkit-mask-image: linear-gradient(270deg, #000 55%, transparent 100%); mask-image: linear-gradient(270deg, #000 55%, transparent 100%); }
+.kids-page .scene--tree .section-head, .kids-page .scene--bears .section-head { position: relative; }
+@media (max-width: 860px) {
+  .scene-art { opacity: .55; }
+  .scene-art--tree, .scene-art--bears { width: 80vw; }
+  .scene-art--sea { width: 100vw; }
+}
+.kids-page main { background: linear-gradient(180deg, #334388 0%, #334388 32%, #3f66ad 42%, #4f8fcf 55%, #66aee0 70%, #7cc0eb 100%); }
+.scene-art--sea { width: auto; height: 118%; max-width: 70vw; object-fit: contain; object-position: right bottom; }
+.scene-art--tree { width: auto; height: 108%; max-width: 48vw; object-fit: contain; object-position: left bottom; }
+.scene-art--bears { width: auto; height: 112%; max-width: 46vw; object-fit: contain; object-position: right bottom; }
+@media (max-width: 860px) { .scene-art--tree, .scene-art--bears, .scene-art--sea { height: 70%; max-width: 90vw; } }
