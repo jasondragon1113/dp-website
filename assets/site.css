@@ -904,3 +904,9 @@ body.tech-page .h-tabs button[aria-selected="true"] { background: #e31b23; borde
 .charity-links a { color: var(--purple); font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
 .charity-links a:hover { text-decoration: underline; }
 .charity-video .thumb { aspect-ratio: 16 / 10; }
+/* charity wall: every card same media height, rows stretch, links pinned to the bottom 公益卡牆：照片區同高、同排等高、連結貼底 */
+.charity-grid { align-items: stretch; }
+.charity-grid .camp-card { grid-template-rows: auto 1fr; align-content: stretch; }
+.charity-grid .camp-pics, .charity-grid .charity-video .thumb { aspect-ratio: 16 / 10; }
+.charity-grid .camp-body { grid-template-rows: auto auto 1fr auto; }
+.charity-grid .charity-links { align-self: end; }
