@@ -1565,3 +1565,9 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .rocket-smoke i:nth-child(5) { --dx: 120px; --dy: 60px; }  .rocket-smoke i:nth-child(6) { --dx: 190px; --dy: 30px; }
 .rocket-smoke i:nth-child(7) { --dx: 0px; --dy: 100px; }
 @media (max-width: 860px) { .rocket-smoke i { width: 64px; height: 64px; left: -32px; top: -20px; } }
+/* desktop: smaller rocket, centred with the text (使用者：電腦版火箭小一點) 電腦版火箭縮小、與文字置中 */
+@media (min-width: 861px) {
+  .story-hero .wrap { grid-template-columns: 1fr minmax(220px, 340px); align-items: center; }
+  .story-hero .hero-text { padding-bottom: 0; }
+  .story-hero .rocket { margin: 24px auto 110px; width: 100%; }
+}
