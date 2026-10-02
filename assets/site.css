@@ -946,3 +946,36 @@ body.tech-page .h-tabs button[aria-selected="true"] { background: #e31b23; borde
 .rv-meta .season-game { font-size: 11px; padding: 2px 10px; white-space: nowrap; }
 .rv-scroll:focus-visible { outline: 2px solid #e31b23; outline-offset: 4px; }
 .rv-hint { font-size: 13px; font-weight: 400; color: #a1a1aa; margin-left: 8px; }
+
+/* charity: cute Taiwan footprint map 公益頁：可愛台灣足跡地圖 */
+.tw-map { display: grid; grid-template-columns: minmax(240px, 360px) 1fr; gap: 40px; align-items: center; }
+.tw-art { position: relative; padding: 18px; border-radius: 32px; background: var(--tint-sky);
+  background-image: radial-gradient(circle at 50% 50%, #c8e7f8 0 5px, transparent 6px); background-size: 26px 26px; border: 3px solid var(--ink); }
+.tw-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.tw-sticker { position: absolute; width: 104px; left: -26px; bottom: -22px; }
+.tw-pin { cursor: pointer; }
+.tw-pin circle { fill: var(--c); stroke: var(--ink); stroke-width: 1.1; }
+.tw-pin text { font: 700 5.4px var(--f-num); fill: #fff; text-anchor: middle; paint-order: stroke; stroke: var(--ink); stroke-width: .6px; pointer-events: none; }
+.tw-pin:hover circle:not(.tw-pulse), .tw-pin:focus-visible circle:not(.tw-pulse) { stroke-width: 1.8; }
+.tw-pulse { opacity: .5; transform-box: fill-box; transform-origin: center; animation: tw-pulse 2.4s ease-out infinite; }
+.tw-pin:nth-of-type(2n) .tw-pulse { animation-delay: .8s; }
+.tw-pin:nth-of-type(3n) .tw-pulse { animation-delay: 1.6s; }
+@keyframes tw-pulse { from { transform: scale(1); opacity: .55; } to { transform: scale(2.4); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .tw-pulse { animation: none; opacity: 0; } }
+.tw-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.tw-place { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; background: var(--surface); border: 2px solid var(--ink); border-radius: 18px; }
+.tw-n { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--c); border: 2px solid var(--ink);
+  font: 700 15px var(--f-num); color: #fff; -webkit-text-stroke: .6px var(--ink); paint-order: stroke fill; }
+.tw-place b { font-family: var(--f-display); font-weight: 400; font-size: 20px; }
+.tw-place small { margin-left: 8px; color: var(--ink-soft); font-size: 13px; }
+.tw-place ul { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 2px; font-size: 14px; }
+.tw-place li { display: flex; justify-content: space-between; gap: 10px; }
+.tw-place li a { color: var(--purple); font-weight: 700; text-decoration: none; }
+.tw-place li a:hover { text-decoration: underline; }
+.tw-place time { flex: none; font-family: var(--f-num); color: var(--ink-soft); }
+.charity-grid .camp-card:target { box-shadow: 0 0 0 4px var(--yellow), 5px 5px 0 var(--ink); }
+@media (max-width: 900px) {
+  .tw-map { grid-template-columns: 1fr; gap: 28px; }
+  .tw-art { max-width: 320px; margin-inline: auto; }
+  .tw-list { grid-template-columns: 1fr; }
+}
