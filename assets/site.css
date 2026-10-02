@@ -1070,3 +1070,10 @@ body.tech-page .h-tabs button[aria-selected="true"] { background: #e31b23; borde
   .book-page, .book-units li { opacity: 1; translate: none; scale: none; transition: none; }
 }
 .book-info > p.book-series { color: var(--ink); margin-top: 0; }
+/* compete tabs: quiet cards, selected = accent outline + underline (使用者：紅底太醜) 選中只用代表色細框＋底線 */
+body.tech-page .c-tabs button { background: #18181b; border: 1px solid #3f3f46; color: #a1a1aa; border-radius: 14px; position: relative; }
+body.tech-page .c-tabs button:hover { border-color: #71717a; color: #fff; }
+body.tech-page .c-tabs button[aria-selected="true"] { background: #232327; border-color: var(--accent); color: #fff; box-shadow: 0 0 0 1px var(--accent), 0 8px 24px -12px var(--accent); }
+body.tech-page .c-tabs button[aria-selected="true"]::after { content: ""; position: absolute; left: 18px; right: 18px; bottom: -1px; height: 3px; border-radius: 3px 3px 0 0; background: var(--accent); }
+body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--accent); color: #0f0f11; }
+.c-logo--dark { background: #0b0b0f; border: 1px solid #3f3f46; }
