@@ -1378,3 +1378,14 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
   .land-forest { opacity: .45; height: 34%; max-width: 70vw; }
   .land-forest--left { display: none; }
 }
+/* white clouds drifting above the forest (使用者：森林上半部加白雲) 森林上方的白雲，慢慢飄 */
+.land-forest { height: min(70%, 860px); max-width: 40vw; }
+.land-cloud { position: absolute; z-index: 0; height: auto; pointer-events: none; opacity: .95; animation: cloud-drift 26s ease-in-out infinite alternate; }
+.land-cloud--1 { width: 170px; left: 3%;  top: 36%; }
+.land-cloud--2 { width: 120px; left: 21%; top: 30%; animation-duration: 32s; animation-delay: -8s; opacity: .85; }
+.land-cloud--3 { width: 200px; right: 4%; top: 33%; animation-duration: 29s; animation-delay: -4s; }
+.land-cloud--4 { width: 110px; right: 24%; top: 27%; animation-duration: 35s; animation-delay: -15s; opacity: .8; }
+.land-cloud--5 { width: 140px; left: 44%; top: 24%; animation-duration: 38s; animation-delay: -20s; opacity: .7; }
+@keyframes cloud-drift { from { translate: -24px 0; } to { translate: 24px 0; } }
+@media (prefers-reduced-motion: reduce) { .land-cloud { animation: none; } }
+@media (max-width: 860px) { .land-cloud { width: 90px !important; opacity: .55; } .land-cloud--2, .land-cloud--4 { display: none; } }
