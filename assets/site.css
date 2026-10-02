@@ -1552,3 +1552,16 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .story-hero .rocket { margin-top: 24px; }
 .rocket-ship .story-hero-art { filter: drop-shadow(0 10px 24px rgba(0,0,0,.25)); }
 .rocket-flame { top: 88%; width: 34%; }
+/* smoke and flame come out BELOW the rocket (使用者：煙和火要從下面跑出來) 煙和火從火箭底下冒出來 */
+.story-hero .rocket { margin-bottom: clamp(90px, 12vw, 140px); }
+.rocket-flame { top: 97%; width: 32%; z-index: 0; }
+.rocket.is-ignite .rocket-flame { height: 34%; }
+.rocket.is-launch .rocket-flame, .rocket.is-return .rocket-flame { height: 70%; }
+.rocket-smoke { bottom: -6%; z-index: 0; }
+.rocket-ship { z-index: 1; }
+.rocket-smoke i { width: 90px; height: 90px; left: -45px; top: -30px; }
+.rocket-smoke i:nth-child(1) { --dx: -190px; --dy: 30px; } .rocket-smoke i:nth-child(2) { --dx: -120px; --dy: 60px; }
+.rocket-smoke i:nth-child(3) { --dx: -50px; --dy: 80px; }  .rocket-smoke i:nth-child(4) { --dx: 50px; --dy: 80px; }
+.rocket-smoke i:nth-child(5) { --dx: 120px; --dy: 60px; }  .rocket-smoke i:nth-child(6) { --dx: 190px; --dy: 30px; }
+.rocket-smoke i:nth-child(7) { --dx: 0px; --dy: 100px; }
+@media (max-width: 860px) { .rocket-smoke i { width: 64px; height: 64px; left: -32px; top: -20px; } }
