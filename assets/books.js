@@ -59,7 +59,7 @@
     b.addEventListener('click', function () {
       var book = document.getElementById('book-' + b.dataset.book);
       pages = JSON.parse(book.dataset.pages);
-      title.textContent = '《' + book.dataset.title + '》';
+      title.textContent = book.dataset.title;
       i = Number(b.dataset.i) || 0;
       show();
       if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
