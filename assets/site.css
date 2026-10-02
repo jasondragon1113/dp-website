@@ -759,6 +759,9 @@ a.tag:hover { border-color: var(--ink); color: var(--ink); }
 .camp-pics img { width: 100%; height: 100%; min-height: 0; object-fit: cover; }
 .camp-pics img:first-child { grid-row: 1 / 3; }
 .camp-pics img:only-child { grid-column: 1 / -1; }
+/* 4 photos: big one left, three stacked right 四張：左大圖、右邊三張疊 */
+.camp-pics:has(img:nth-child(4)) { grid-template-rows: repeat(3, minmax(0, 1fr)); }
+.camp-pics:has(img:nth-child(4)) img:first-child { grid-row: 1 / 4; }
 .camp-pics--one { display: grid; place-items: center; aspect-ratio: 4 / 3; background: var(--paper); }
 .camp-pics--one img { max-height: 100%; width: auto; max-width: 100%; height: auto; object-fit: contain; }
 .camp-pics--two { grid-template-columns: 1fr 1fr; grid-template-rows: minmax(0, 1fr); }
@@ -900,3 +903,4 @@ body.tech-page .h-tabs button[aria-selected="true"] { background: #e31b23; borde
 .charity-links { list-style: none; margin: 6px 0 0; padding: 8px 0 0; border-top: 2px dotted var(--line); display: grid; gap: 4px; font-size: 14px; }
 .charity-links a { color: var(--purple); font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
 .charity-links a:hover { text-decoration: underline; }
+.charity-video .thumb { aspect-ratio: 16 / 10; }
