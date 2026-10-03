@@ -1544,7 +1544,7 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 @keyframes rk-launch { 0% { translate: 0 0; } 15% { translate: 0 10px; } 100% { translate: 0 -160vh; } }
 @keyframes rk-return { 0% { translate: 0 -160vh; rotate: 0deg; } 60% { translate: 0 -12px; rotate: -2deg; } 85% { rotate: 1.5deg; } 100% { translate: 0 0; rotate: 0deg; } }
 @keyframes rk-land { 0% { translate: 0 0; } 30% { translate: 0 8px; scale: 1.03 .96; } 100% { translate: 0 0; scale: 1 1; } }
-@media (max-width: 860px) { .rocket { max-width: 380px; margin-inline: auto; } .rocket-hint { font-size: 13px; } }
+@media (max-width: 860px) { .rocket { max-width: min(60vw, 250px); margin-inline: auto; } .rocket-hint { font-size: 13px; } } /* 使用者：手機版火箭小一點 */
 .rocket-ship .story-hero-art { position: relative; z-index: 1; }
 .rocket-flame { top: 76%; z-index: 0; width: 30%; }
 .rocket.is-ignite .rocket-flame { height: 26%; }
@@ -1582,13 +1582,17 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
   padding: 6px 14px; white-space: nowrap; opacity: 0; scale: .7; rotate: -3deg; transition: opacity .35s ease, scale .35s cubic-bezier(.3,1.6,.5,1); }
 .rocket.is-gone .rocket-pad-note:not(:empty) { opacity: 1; scale: 1; }
 .rocket-pad-note b { display: inline-block; animation: rk-arrow 1s ease-in-out infinite; }
+/* the 玩 logo kept above the pad after the show; the note moves under it 飛完後留在發射台上方的「玩」，提示移到下面 */
+.rocket-pad-logo { position: absolute; height: auto; max-width: none; opacity: 1; transition: opacity .5s ease; filter: drop-shadow(0 6px 14px rgba(0,0,0,.25)); }
+.rocket-pad-logo.is-new { opacity: 0; }
+.rocket-pad.has-logo .rocket-pad-note { align-self: end; position: relative; z-index: 1; margin-bottom: 2%; }
 .rocket-pad-base { position: absolute; left: 50%; bottom: -5%; width: 64%; height: clamp(14px, 2vw, 20px); translate: -50% 0; border-radius: 50%;
   background: radial-gradient(ellipse at center, var(--book-star) 0 26%, #4d5487 28% 100%); border: 2px solid var(--ink); box-shadow: 0 5px 0 rgba(0,0,0,.25);
   opacity: 0; transition: opacity .4s ease; }
 .rocket.is-gone .rocket-pad-base, .rocket.is-return .rocket-pad-base, .rocket.is-land .rocket-pad-base { opacity: 1; }
 @keyframes rk-arrow { 0%, 100% { translate: 0 -2px; } 50% { translate: 0 4px; } }
 /* the parked rocket, standing on the grass in the middle of the forest floor 停在頁底森林中間草地上的火箭 */
-.rocket--park { position: absolute; z-index: 2; left: 50%; bottom: calc(clamp(220px, 30vw, 460px) * .13); width: clamp(92px, 12vw, 176px);
+.rocket--park { position: absolute; z-index: 2; left: 50%; bottom: calc(clamp(220px, 30vw, 460px) * .13); width: clamp(150px, 17vw, 250px); /* 使用者：森林裡大一點 */
   max-width: none; margin: 0; translate: -50% 0; }
 .rocket--park[hidden] { display: none; }
 .rocket-park-art { display: block; width: 100%; height: auto; position: relative; z-index: 1; filter: drop-shadow(0 6px 8px rgba(0,0,0,.3)); }

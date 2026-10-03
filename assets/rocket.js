@@ -65,6 +65,34 @@
   var hint = top.querySelector('.rocket-hint');
   function say(label, text) { top.setAttribute('aria-label', label); note.innerHTML = text; }
 
+  // ---- the 玩 logo stays above the launch pad after the show (part of the page, scrolls with it) until the
+  // rocket comes home (使用者：飛完之後「玩」固定在發射台上方) 飛完後「玩」留在發射台上方，火箭飛回來才淡出
+  var kept = null;
+  function keptBox() { // viewport box for the logo inside the rocket spot 頂端火箭位置裡 logo 的框
+    var r = top.getBoundingClientRect(), size = Math.min(r.width, r.height) * 0.86;
+    return { x: r.left + (r.width - size) / 2, y: r.top + r.height * 0.44 - size / 2, size: size, r: r };
+  }
+  function keepLogo(fadeIn) {
+    dropLogo(true);
+    var b = keptBox();
+    kept = document.createElement('img');
+    kept.className = 'rocket-pad-logo' + (fadeIn ? ' is-new' : '');
+    kept.src = LOGO; kept.alt = '';
+    kept.style.cssText = 'width:' + (b.size / b.r.width * 100).toFixed(2) + '%;left:' + ((b.x - b.r.left) / b.r.width * 100).toFixed(2) +
+      '%;top:' + ((b.y - b.r.top) / b.r.height * 100).toFixed(2) + '%';
+    pad.appendChild(kept);
+    pad.classList.add('has-logo');
+    if (fadeIn) after(0.05, function () { if (kept) kept.classList.remove('is-new'); });
+  }
+  function dropLogo(now) {
+    if (!kept) return;
+    var k = kept; kept = null;
+    pad.classList.remove('has-logo');
+    if (now) { k.remove(); return; }
+    k.classList.add('is-new');
+    after(0.6, function () { k.remove(); });
+  }
+
   // ---- the parked rocket in the forest 森林裡停著的火箭
   var park = document.createElement('button');
   park.type = 'button';
@@ -152,7 +180,7 @@
       [cx - 0.75 * S, cy + 0.6 * S], [cx, cy + 0.9 * S], [cx + 0.85 * S, cy + 0.3 * S], [cx + 0.65 * S, cy - 0.65 * S],
       [cx - 0.1 * S, cy - 0.8 * S], [cx - 0.8 * S, cy - 0.1 * S], [cx - 0.55 * S, cy + 0.9 * S], [cx - 0.2 * S, H + R * 2]];
     var WRITE_END = 8, WRITE_T = 3.0, EXIT_T = 1.4;
-    var T_LOGO = 4.5, T_DISPERSE = 6.9, T_END = 8.0;
+    var T_LOGO = 4.5, T_DISPERSE = 6.3, T_END = 7.4; // T_DISPERSE: the logo starts gliding to the pad 開始滑到發射台
 
     var targets = [];
     for (var i = 0; i < N; i++) {
@@ -193,7 +221,13 @@
         while (spawned < want) { spawn(s, pos, hx, hy); spawned++; }
       } else if (ship.parentNode) { ship.remove(); }
       if (s >= T_LOGO && !logo.classList.contains('is-on')) logo.classList.add('is-on');
-      if (s >= T_DISPERSE && !logo.classList.contains('is-off')) logo.classList.add('is-off');
+      if (s >= T_DISPERSE && !logo.dataset.settle) { // glide onto the launch pad 滑到發射台上方
+        logo.dataset.settle = '1';
+        var b = keptBox(), k0 = b.size / S;
+        logo.style.transition = 'opacity .6s ease, scale .6s ease, transform 1s cubic-bezier(.5,0,.2,1)';
+        logo.style.transformOrigin = '0 0';
+        logo.style.transform = 'translate(' + (b.x - (cx - S / 2)).toFixed(1) + 'px,' + (b.y - (cy - S / 2)).toFixed(1) + 'px) scale(' + k0.toFixed(3) + ')';
+      }
 
       // the puffs 煙團
       g.clearRect(0, 0, W, H);
@@ -206,7 +240,7 @@
         x += (p.t.x - x) * k; y += (p.t.y - y) * k;
         var wob = Math.sin(now * 2 + p.w);
         x += wob * 2; y += Math.cos(now * 1.7 + p.w) * 2;
-        if (gone > 0) { x += (p.t.x - cx) * gone * 0.6; y += (p.t.y - cy) * gone * 0.6 - gone * 40; }
+        if (gone > 0) { x += (p.t.x - cx) * gone * 0.3; y += (p.t.y - cy) * gone * 0.3 - gone * 30; }
         var r = pr * p.sz * Math.min(1, 0.35 + a / 0.5) * (1 + halo * 0.35 + gone * 0.6) * (1 + wob * 0.05);
         g.globalAlpha = (1 - halo * 0.45) * (1 - gone);
         g.drawImage(sprites[p.t.c][Math.round(k * (1 - halo) * (TINTS - 1))], x - r, y - r, r * 2, r * 2);
@@ -214,6 +248,7 @@
       g.globalAlpha = 1;
       if (s >= T_END) {
         frameFns.splice(frameFns.indexOf(frame), 1);
+        keepLogo(false);
         wrap.remove();
         done();
       }
@@ -221,19 +256,10 @@
     frameFns.push(frame); kick();
   }
 
-  // calm version: the logo just fades in and out 減少動態版：logo 只淡入淡出
+  // calm version: the logo just fades in above the pad 減少動態版：logo 直接在發射台上方淡入
   function calmLogo(done) {
-    var W = document.documentElement.clientWidth, H = window.innerHeight, S = Math.round(Math.min(W * 0.5, H * 0.38, 260));
-    var rb = top.getBoundingClientRect(), cx = W >= 861 ? Math.min(W - S, Math.max(S, rb.left + rb.width / 2)) : W / 2;
-    var wrap = document.createElement('div');
-    wrap.className = 'sky-show sky-show--calm'; wrap.setAttribute('aria-hidden', 'true');
-    wrap.innerHTML = '<img class="sky-logo" src="' + LOGO + '" alt="" style="width:' + S + 'px;height:' + S + 'px;left:' +
-      (cx - S / 2) + 'px;top:' + (H * 0.42 - S / 2) + 'px">';
-    document.body.appendChild(wrap);
-    var img = wrap.firstChild;
-    after(0.05, function () { img.classList.add('is-on'); });
-    after(1.8, function () { img.classList.add('is-off'); });
-    after(2.3, function () { wrap.remove(); done(); });
+    keepLogo(true);
+    after(0.45, done);
   }
 
   // ---- state changes 狀態切換
@@ -257,11 +283,11 @@
       if (hint) { hint.textContent = '再飛一次！'; top.classList.remove('was-flown'); }
       state = 'home';
     }
-    if (!animateLanding) { done(); return; }
+    if (!animateLanding) { dropLogo(false); done(); return; }
     state = 'waiting';
     setStep(top, 'is-gone is-away');
     say(LABEL_WAIT, '火箭飛回來囉！');
-    whenSeen(top, function () { run(top, [['is-return', 2.3], ['is-land', 0.9]], done); });
+    whenSeen(top, function () { dropLogo(false); run(top, [['is-return', 2.3], ['is-land', 0.9]], done); });
   }
 
   top.addEventListener('click', function () {
