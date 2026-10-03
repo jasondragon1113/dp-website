@@ -1572,6 +1572,54 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
   .story-hero .hero-text { padding-bottom: 0; }
   .story-hero .rocket { margin: 24px auto 110px; width: 100%; }
 }
+/* rocket v2: sky-writes the 玩 logo in smoke, then parks in the forest at the bottom of the page; tap it there to fly home
+   (使用者：起飛後噴煙聚成「玩」logo，最後降落到頁底森林) 火箭 v2：噴煙寫出「玩」、停到森林、點森林裡的火箭飛回來 */
+.rocket .rocket-ship { transition: opacity .4s ease, visibility .4s; }
+.rocket.is-gone .rocket-ship, .rocket.is-fade .rocket-ship { opacity: 0; visibility: hidden; }
+.rocket.is-gone .rocket-flame { height: 0; }
+.rocket-pad { position: absolute; inset: 0; z-index: 0; display: grid; place-items: center; pointer-events: none; }
+.rocket-pad-note { font: 700 16px/1.3 var(--f-body); color: var(--ink); background: var(--book-star); border: 2px solid var(--ink); border-radius: 999px;
+  padding: 6px 14px; white-space: nowrap; opacity: 0; scale: .7; rotate: -3deg; transition: opacity .35s ease, scale .35s cubic-bezier(.3,1.6,.5,1); }
+.rocket.is-gone .rocket-pad-note:not(:empty) { opacity: 1; scale: 1; }
+.rocket-pad-note b { display: inline-block; animation: rk-arrow 1s ease-in-out infinite; }
+.rocket-pad-base { position: absolute; left: 50%; bottom: -5%; width: 64%; height: clamp(14px, 2vw, 20px); translate: -50% 0; border-radius: 50%;
+  background: radial-gradient(ellipse at center, var(--book-star) 0 26%, #4d5487 28% 100%); border: 2px solid var(--ink); box-shadow: 0 5px 0 rgba(0,0,0,.25);
+  opacity: 0; transition: opacity .4s ease; }
+.rocket.is-gone .rocket-pad-base, .rocket.is-return .rocket-pad-base, .rocket.is-land .rocket-pad-base { opacity: 1; }
+@keyframes rk-arrow { 0%, 100% { translate: 0 -2px; } 50% { translate: 0 4px; } }
+/* the parked rocket, standing on the grass in the middle of the forest floor 停在頁底森林中間草地上的火箭 */
+.rocket--park { position: absolute; z-index: 2; left: 50%; bottom: calc(clamp(220px, 30vw, 460px) * .13); width: clamp(92px, 12vw, 176px);
+  max-width: none; margin: 0; translate: -50% 0; }
+.rocket--park[hidden] { display: none; }
+.rocket-park-art { display: block; width: 100%; height: auto; position: relative; z-index: 1; filter: drop-shadow(0 6px 8px rgba(0,0,0,.3)); }
+.rocket--park .rocket-hint { top: -22%; right: -42%; font-size: 13px; padding: 2px 10px; }
+.rocket--park:not(.is-ready) .rocket-hint { display: none; }
+.rocket--park .rocket-smoke i { width: 40px; height: 40px; left: -20px; top: -16px; }
+.rocket--park .rocket-smoke i:nth-child(1) { --dx: -90px; --dy: 0px; }  .rocket--park .rocket-smoke i:nth-child(2) { --dx: -58px; --dy: 6px; }
+.rocket--park .rocket-smoke i:nth-child(3) { --dx: -24px; --dy: 8px; }  .rocket--park .rocket-smoke i:nth-child(4) { --dx: 24px; --dy: 8px; }
+.rocket--park .rocket-smoke i:nth-child(5) { --dx: 58px; --dy: 6px; }   .rocket--park .rocket-smoke i:nth-child(6) { --dx: 90px; --dy: 0px; }
+.rocket--park .rocket-smoke i:nth-child(7) { --dx: 0px; --dy: 4px; }
+/* the sky show layer (fixed over the viewport, never catches clicks) 天空秀圖層：蓋在畫面上、不擋點擊 */
+.sky-show { position: fixed; inset: 0; z-index: 45; pointer-events: none; overflow: hidden; contain: strict; }
+.sky-show canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.sky-logo { position: absolute; opacity: 0; scale: .88; transition: opacity .6s ease, scale .6s cubic-bezier(.3,1.5,.5,1); filter: drop-shadow(0 6px 14px rgba(0,0,0,.25)); }
+.sky-logo.is-on { opacity: 1; scale: 1; }
+.sky-logo.is-off { opacity: 0; scale: 1.12; transition-duration: .8s; }
+.sky-show--calm .sky-logo { scale: 1 !important; transition: opacity .4s ease; }
+.sky-rocket { position: absolute; left: 0; top: 0; will-change: transform; }
+.sky-rocket img { position: relative; z-index: 1; display: block; width: 100%; height: auto; }
+.sky-flame { position: absolute; z-index: 0; left: 50%; top: 90%; width: 34%; height: 62%; translate: -50% 0; border-radius: 45% 45% 50% 50% / 25% 25% 75% 75%;
+  background: radial-gradient(ellipse 60% 70% at 50% 18%, #fffbe0 0 20%, #ffe066 34%, #ff9a2e 58%, rgba(255,72,0,0) 78%); animation: rk-flicker .1s ease-in-out infinite alternate; }
+.rk-paused .rocket *, .rk-paused .sky-show * { animation-play-state: paused !important; }
+@keyframes rk-fadein { from { opacity: 0; } to { opacity: 1; } }
+/* reduced motion: no flight, no particles, just gentle fades (beats the site-wide "no transitions" rule on purpose)
+   減少動態：不飛、不噴煙，只保留淡入淡出（刻意蓋過全站關閉轉場的規則） */
+@media (prefers-reduced-motion: reduce) {
+  .rocket .rocket-hint, .rocket .rocket-pad-note b { animation: none !important; }
+  .rocket .rocket-ship, .sky-show--calm .sky-logo { transition: opacity .4s ease, visibility .4s !important; }
+  .rocket .rocket-pad-note, .rocket .rocket-pad-base { transition: opacity .4s ease !important; }
+  .rocket.rocket--park.is-ready { animation: rk-fadein .4s ease !important; }
+}
 
 /* ---------- Downloads 軟體下載 ---------- */
 .dl-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
