@@ -262,6 +262,77 @@
     after(0.45, done);
   }
 
+  // ---- cruise: the page scrolls slowly along with the rocket so the visitor sees the page again on the way
+  // (使用者：飛回來時頁面跟著慢慢往上滑、下去時也慢一點). Any wheel / touch / key / click by the visitor stops it
+  // and hands the page back. 巡航：頁面跟著火箭慢慢捲動，一路再看一次頁面；使用者一碰滾輪、螢幕、鍵盤就停下交還。
+  var cruising = null;
+  function stopCruise() { if (cruising) cruising.stop(); }
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) {
+    window.addEventListener(ev, stopCruise, { passive: true });
+  });
+  function easeIO(k) { return k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; }
+  function targetY(el) { // scroll so the element sits a bit below the middle 讓目標停在畫面中間偏下
+    var r = el.getBoundingClientRect();
+    var y = window.pageYOffset + r.top + r.height / 2 - window.innerHeight * 0.58;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    return Math.max(0, Math.min(max, y));
+  }
+  // cruiseTo(el, withShip, arrive, cancelled): withShip shows a flying rocket that rides along and finally docks
+  // onto el; arrive() runs on arrival, cancelled() if the visitor took over. 帶著飛行中的火箭捲到 el，最後停到 el 上
+  function cruiseTo(el, withShip, arrive, cancelled) {
+    stopCruise();
+    var y0 = window.pageYOffset, y1 = targetY(el), dist = Math.abs(y1 - y0);
+    var down = y1 > y0, H = window.innerHeight, W = document.documentElement.clientWidth;
+    // going down is slower, like a real descent (使用者：降到森林要更慢、比較真實) 下降比較慢，像真的降落
+    var dur = down ? Math.max(4, Math.min(16, dist / 260)) : Math.max(2.5, Math.min(12, dist / 380));
+    var DOCK = down ? 2.8 : 1.0; // final touchdown time 最後降落的秒數
+    var wrap = null, ship = null, R = Math.max(70, Math.min(130, W * 0.2));
+    if (withShip) {
+      wrap = document.createElement('div');
+      wrap.className = 'sky-show sky-show--cruise'; wrap.setAttribute('aria-hidden', 'true');
+      ship = document.createElement('div');
+      ship.className = 'sky-rocket';
+      ship.style.width = R + 'px';
+      ship.innerHTML = '<span class="sky-flame"></span><img src="' + SHIP + '" alt="">';
+      wrap.appendChild(ship);
+      document.body.appendChild(wrap);
+    }
+    var t0 = clock, done = false, dock = null;
+    var shipX = W / 2, shipY = down ? -R : H + R; // enters from above (going down) or below (going up) 從上方或下方進場
+    function place(x, y, w) {
+      ship.style.width = w + 'px';
+      ship.style.transform = 'translate3d(' + (x - w / 2).toFixed(1) + 'px,' + (y - w * 0.45).toFixed(1) + 'px,0)';
+    }
+    function finish(ok) {
+      if (done) return;
+      done = true; cruising = null;
+      frameFns.splice(frameFns.indexOf(frame), 1);
+      if (wrap) wrap.remove();
+      (ok ? arrive : (cancelled || arrive))();
+    }
+    function frame(now) {
+      var s = now - t0, k = Math.min(1, s / dur), e = easeIO(k);
+      if (dist > 2) window.scrollTo({ top: y0 + (y1 - y0) * e, behavior: 'instant' });
+      if (!ship) { if (k >= 1) finish(true); return; }
+      if (k < 1) { // ride along in the middle of the screen, swaying a little 在畫面中間跟著走、輕輕搖
+        var inK = Math.min(1, s / 1.2), cy = H * (down ? 0.42 : 0.5);
+        var y = shipY + (cy - shipY) * easeIO(inK) + Math.sin(now * 2.2) * 6;
+        place(shipX + Math.sin(now * 1.3) * 14, y, R);
+        return;
+      }
+      if (!dock) { // dock onto the target rocket 對準目標火箭降落
+        var r = el.getBoundingClientRect();
+        var m = /translate3d\(([-\d.]+)px,([-\d.]+)px/.exec(ship.style.transform) || [0, shipX - R / 2, H / 2];
+        dock = { t: now, x0: +m[1] + R / 2, y0: +m[2] + R * 0.45, x1: r.left + r.width / 2, y1: r.top + r.height * 0.45, w1: r.width };
+      }
+      var d = Math.min(1, (now - dock.t) / DOCK), de = down ? 1 - Math.pow(1 - d, 3) : easeIO(d); // slows to a gentle touchdown 越接近越慢
+      place(dock.x0 + (dock.x1 - dock.x0) * de, dock.y0 + (dock.y1 - dock.y0) * de, R + (dock.w1 - R) * de);
+      if (d >= 1) finish(true);
+    }
+    cruising = { stop: function () { finish(false); } };
+    frameFns.push(frame); kick();
+  }
+
   // ---- state changes 狀態切換
   function toParked(animateLanding) {
     setStep(top, 'is-gone is-away');
@@ -271,9 +342,9 @@
     if (!animateLanding) { setStep(park, 'is-ready'); return; }
     setStep(park, 'is-away');
     park.dataset.busy = '1';
-    whenSeen(park, function () {
-      run(park, [['is-return', 2.3], ['is-land', 0.9]], function () { setStep(park, 'is-ready'); delete park.dataset.busy; });
-    });
+    function ready() { setStep(park, 'is-ready'); delete park.dataset.busy; }
+    function landHere() { run(park, [['is-return', 2.3], ['is-land', 0.9]], ready); }
+    cruiseTo(park, true, function () { run(park, [['is-land', 0.9]], ready); }, function () { whenSeen(park, landHere); });
   }
 
   function toHome(animateLanding) {
@@ -287,12 +358,15 @@
     state = 'waiting';
     setStep(top, 'is-gone is-away');
     say(LABEL_WAIT, '火箭飛回來囉！');
-    whenSeen(top, function () { dropLogo(false); run(top, [['is-return', 2.3], ['is-land', 0.9]], done); });
+    dropLogo(false);
+    cruiseTo(top, true, function () { run(top, [['is-land', 0.9]], done); },
+      function () { whenSeen(top, function () { run(top, [['is-return', 2.3], ['is-land', 0.9]], done); }); });
   }
 
   top.addEventListener('click', function () {
     if (state === 'parked') { // go find it in the forest (only scrolls because the visitor asked) 點了才捲到森林
-      park.scrollIntoView({ behavior: mq.matches ? 'auto' : 'smooth', block: 'center' });
+      if (mq.matches) park.scrollIntoView({ behavior: 'auto', block: 'center' });
+      else cruiseTo(park, false, function () {});
       park.focus({ preventScroll: true });
       return;
     }
