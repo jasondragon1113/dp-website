@@ -1510,7 +1510,7 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .rocket:focus-visible { outline: 3px solid var(--book-star); outline-offset: 6px; border-radius: 16px; }
 .rocket-ship { position: relative; display: block; z-index: 1; }
 .rocket .story-hero-art { animation: kid-float 3.6s ease-in-out infinite; }
-.rocket[class*="is-"] .story-hero-art { animation: none; }
+.rocket[class*="is-"]:not(.is-ignite) .story-hero-art { animation: none; } /* keeps floating while igniting: no jump 點火時不停漂浮，免得跳一下 */
 .rocket-flame { position: absolute; left: 50%; top: 92%; width: 26%; height: 0; translate: -50% 0; border-radius: 45% 45% 50% 50% / 25% 25% 75% 75%;
   background: radial-gradient(ellipse 60% 70% at 50% 18%, #fffbe0 0 20%, #ffe066 34%, #ff9a2e 58%, rgba(255,72,0,.0) 78%);
   filter: blur(.5px); transition: height .25s ease; }
@@ -1522,7 +1522,7 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 /* 1 ignite 點火 */
 .rocket.is-ignite .rocket-ship { animation: rk-shake .09s linear infinite; }
 .rocket.is-ignite .rocket-flame { height: 18%; animation: rk-flicker .12s ease-in-out infinite alternate; }
-.rocket.is-ignite .rocket-smoke i, .rocket.is-launch .rocket-smoke i, .rocket.is-land .rocket-smoke i { animation: rk-smoke 1.4s ease-out forwards; }
+.rocket.is-ignite .rocket-smoke i, .rocket.is-launch .rocket-smoke i, .rocket.is-lift .rocket-smoke i, .rocket.is-land .rocket-smoke i { animation: rk-smoke 1.4s ease-out forwards; }
 .rocket-smoke i:nth-child(1) { --dx: -150px; --dy: -10px; } .rocket-smoke i:nth-child(2) { --dx: -90px; --dy: -40px; animation-delay: .08s !important; }
 .rocket-smoke i:nth-child(3) { --dx: -30px; --dy: -60px; animation-delay: .16s !important; } .rocket-smoke i:nth-child(4) { --dx: 30px; --dy: -55px; animation-delay: .05s !important; }
 .rocket-smoke i:nth-child(5) { --dx: 95px; --dy: -35px; animation-delay: .12s !important; } .rocket-smoke i:nth-child(6) { --dx: 155px; --dy: -8px; animation-delay: .2s !important; }
@@ -1577,6 +1577,9 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .rocket .rocket-ship { transition: opacity .4s ease, visibility .4s; }
 .rocket.is-gone .rocket-ship, .rocket.is-fade .rocket-ship { opacity: 0; visibility: hidden; }
 .rocket.is-gone .rocket-flame { height: 0; }
+/* rocket v5: one rocket only — hand-overs to / from the flying layer are instant, so the two never show at once
+   (使用者：途中看到一台一樣的火箭很怪) 火箭 v5：全程一艘；和飛行圖層交接是瞬間的，不會同時出現兩艘 */
+.rocket.is-gone:not(.is-fade) .rocket-ship, .rocket.is-land .rocket-ship, .rocket.is-return .rocket-ship { transition: none; }
 .rocket-pad { position: absolute; inset: 0; z-index: 0; display: grid; place-items: center; pointer-events: none; }
 .rocket-pad-note { font: 700 16px/1.3 var(--f-body); color: var(--ink); background: var(--book-star); border: 2px solid var(--ink); border-radius: 999px;
   padding: 6px 14px; white-space: nowrap; opacity: 0; scale: .7; rotate: -3deg; transition: opacity .35s ease, scale .35s cubic-bezier(.3,1.6,.5,1); }
@@ -1610,9 +1613,10 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .sky-logo.is-on { opacity: 1; scale: 1; }
 .sky-logo.is-off { opacity: 0; scale: 1.12; transition-duration: .8s; }
 .sky-show--calm .sky-logo { scale: 1 !important; transition: opacity .4s ease; }
+.sky-show--fly { z-index: 46; }
 .sky-rocket { position: absolute; left: 0; top: 0; will-change: transform; }
-.sky-rocket img { position: relative; z-index: 1; display: block; width: 100%; height: auto; }
-.sky-flame { position: absolute; z-index: 0; left: 50%; top: 90%; width: 34%; height: 62%; translate: -50% 0; border-radius: 45% 45% 50% 50% / 25% 25% 75% 75%;
+.sky-rocket img { position: relative; z-index: 1; display: block; width: 100%; height: auto; filter: drop-shadow(0 8px 16px rgba(0,0,0,.25)); }
+.sky-flame { position: absolute; z-index: 0; left: 50%; top: 95%; width: 32%; height: 62%; translate: -50% 0; border-radius: 45% 45% 50% 50% / 25% 25% 75% 75%;
   background: radial-gradient(ellipse 60% 70% at 50% 18%, #fffbe0 0 20%, #ffe066 34%, #ff9a2e 58%, rgba(255,72,0,0) 78%); animation: rk-flicker .1s ease-in-out infinite alternate; }
 .rk-paused .rocket *, .rk-paused .sky-show * { animation-play-state: paused !important; }
 @keyframes rk-fadein { from { opacity: 0; } to { opacity: 1; } }
