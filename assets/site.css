@@ -236,13 +236,13 @@ a.tag:hover { border-color: var(--ink); color: var(--ink); }
 @media (max-width: 760px) { .numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* ---------- Course staircase ---------- */
-.bands { display: grid; grid-template-columns: 3fr 4fr 1.4fr; gap: 14px; margin-bottom: 14px; }
+.bands { display: grid; grid-template-columns: var(--bands, 3fr 4fr 1.4fr); gap: 14px; margin-bottom: 14px; }
 .band { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; padding-bottom: 8px; border-bottom: 3px solid currentColor; }
 .band span { font-family: var(--f-num); font-weight: 500; color: var(--ink-soft); }
 .band--kids { color: var(--red); }
 .band--teen { color: var(--sky); }
 .band--pro { color: var(--ink); }
-.stairs { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 14px; align-items: end; padding-top: 12px; }
+.stairs { display: grid; grid-template-columns: repeat(var(--n, 8), minmax(0, 1fr)); gap: 14px; align-items: end; padding-top: 12px; }
 .brick {
   --h: 150px; --c: var(--yellow); --c-ink: var(--plate-ink);
   position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 6px;
@@ -281,7 +281,7 @@ a.tag:hover { border-color: var(--ink); color: var(--ink); }
   background-size: 34px 34px; color: var(--plate-ink);
 }
 .plate .section-head p, .plate .eyebrow { color: var(--plate-ink); }
-.toybox { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.toybox { display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: 24px; }
 .box {
   position: relative; display: grid; grid-template-rows: auto 1fr; background: var(--surface); color: var(--ink);
   border: 3px solid var(--ink); border-radius: 24px; overflow: hidden; box-shadow: 6px 6px 0 var(--ink);
@@ -337,7 +337,7 @@ a.tag:hover { border-color: var(--ink); color: var(--ink); }
 }
 
 /* ---------- Course cards (9–14) ---------- */
-.teen-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.teen-grid { display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); gap: 18px; }
 .card {
   display: grid; grid-template-rows: 160px auto; background: var(--surface); border: 2px solid var(--ink);
   border-radius: 22px; overflow: hidden; text-decoration: none; transition: transform .18s ease, box-shadow .18s ease;
