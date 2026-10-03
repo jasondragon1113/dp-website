@@ -48,7 +48,8 @@
         bk.hidden = !on;
         if (on) {
           bk.classList.remove('in');
-          bk.querySelector('.book-strip').scrollLeft = 0;
+          var strip = bk.querySelector('.book-strip');   // books without a trial have no strip 沒開放試讀的書沒有試讀列
+          if (strip) strip.scrollLeft = 0;
           requestAnimationFrame(function () { requestAnimationFrame(function () { bk.classList.add('in'); }); });
         }
       });
