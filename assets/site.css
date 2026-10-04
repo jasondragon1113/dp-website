@@ -1700,3 +1700,74 @@ html[lang="en"] .nav .menu { min-width: 300px; }
 html[lang="en"] .nav .menu a { white-space: nowrap; align-items: baseline; }
 html[lang="en"] .brick--8 .age { font-size: 17px; line-height: 1.1; }
 html[lang="en"] .camp-chip { white-space: nowrap; }
+
+/* ---------- 賽場外卡片的影片與連結 Off-field card videos and links (dark FTC cards) ---------- */
+.off-videos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 6px; }
+.off-videos .video { gap: 6px; }
+.off-videos .video .thumb { border: 1px solid #2d2d30; border-radius: 10px; }
+.off-videos .video .play { transform: scale(.8); }
+.off-videos .video .v-title { font-size: 13px; line-height: 1.4; color: #e5e7eb; }
+.off-body .charity-links { border-top-color: #2d2d30; }
+.off-body .charity-links a { color: #F57E25; }
+
+/* ---------- 預約試聽 Trial-class booking form (book.html) ---------- */
+.book-wrap { display: grid; gap: 28px; }
+@media (min-width: 960px) { .book-wrap { grid-template-columns: minmax(0, 1fr) 300px; align-items: start; } }
+.book-form { display: grid; gap: 18px; min-width: 0; }
+.book-sec { margin: 0; min-width: 0; border: 2px solid var(--ink); border-radius: 22px; background: var(--surface); padding: 18px 18px 20px; box-shadow: 6px 6px 0 var(--tint-yellow); }
+.book-sec legend { float: left; width: 100%; padding: 0; margin: 0 0 14px; display: flex; align-items: center; gap: 10px; font-family: var(--f-display); font-size: 22px; line-height: 1.3; }
+.book-sec legend + * { clear: both; }
+.book-num { flex: none; width: 34px; height: 34px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--yellow); border: 2px solid var(--ink);
+  font-family: var(--f-num); font-weight: 700; font-size: 17px; }
+.book-grid { display: grid; gap: 14px; clear: both; }
+@media (min-width: 640px) { .book-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.book-field { display: grid; gap: 6px; font-weight: 700; min-width: 0; }
+.book-field--wide { margin-top: 4px; }
+.book-label { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.book-label small { font-weight: 500; color: var(--ink-soft); font-size: 13px; }
+.book-req { font-size: 12px; font-weight: 700; color: #fff; background: var(--red); padding: 1px 9px; border-radius: 999px; }
+.book-form input[type=text], .book-form input[type=tel], .book-form select, .book-form textarea {
+  width: 100%; min-height: 48px; font: inherit; font-weight: 500; color: var(--ink); padding: 11px 14px;
+  border: 2px solid var(--line); border-radius: 14px; background: var(--paper); transition: border-color .15s ease, background-color .15s ease; }
+.book-form textarea { resize: vertical; min-height: 84px; line-height: 1.6; }
+.book-form input:focus, .book-form select:focus, .book-form textarea:focus { outline: none; border-color: var(--sky); background: #fff; box-shadow: 0 0 0 3px var(--tint-sky); }
+.book-form [aria-invalid="true"] { border-color: var(--red); background: var(--tint-red); }
+.book-err { color: var(--red); font-size: 14px; font-weight: 700; }
+.book-hint { color: var(--ink-soft); font-size: 14px; margin-bottom: 10px; clear: both; }
+.book-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+.book-chip { position: relative; cursor: pointer; }
+.book-chip input { position: absolute; left: 12px; top: 50%; width: 1px; height: 1px; opacity: 0; margin: 0; pointer-events: none; }
+.book-chip span { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border-radius: 999px; border: 2px solid var(--ink); background: #fff;
+  font-weight: 700; box-shadow: 0 3px 0 var(--ink); transition: background-color .15s ease, transform .15s ease; }
+.book-chip input:checked + span { background: var(--green); color: #fff; }
+.book-chip input:checked + span::before { content: "✓"; }
+.book-chip input:focus-visible + span { outline: 3px solid var(--sky); outline-offset: 3px; }
+.book-chip input:active + span { transform: translateY(2px); box-shadow: 0 1px 0 var(--ink); }
+.book-hp { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+.book-agree { display: flex; align-items: flex-start; gap: 10px; font-weight: 700; cursor: pointer; }
+.book-agree input { flex: none; width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--green); }
+.book-send { display: grid; gap: 8px; justify-items: start; }
+.book-send .btn { font-size: 18px; padding: 14px 36px; }
+.btn[disabled] { opacity: .5; cursor: not-allowed; transform: none; }
+.book-note { color: var(--ink-soft); font-size: 14px; }
+.book-errors { border: 2px solid var(--red); background: var(--tint-red); border-radius: 18px; padding: 14px 18px; margin-bottom: 18px; font-weight: 700; }
+.book-errors ul { margin: 6px 0 0; padding-left: 1.3em; font-weight: 500; }
+.book-side { display: grid; gap: 16px; }
+.book-tip { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 18px 20px; display: grid; gap: 6px; }
+.book-tip h2 { font-size: 22px; }
+.book-tip p { color: var(--ink-soft); }
+.book-tip--privacy { background: var(--tint-green); border-color: transparent; }
+.book-links { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.book-links a { color: var(--purple); font-weight: 700; text-decoration: none; }
+.book-links a:hover { text-decoration: underline; }
+.book-done { background: var(--surface); border: 2px solid var(--ink); border-radius: 24px; padding: 24px; display: grid; gap: 12px; justify-items: start; box-shadow: 8px 8px 0 var(--yellow); min-width: 0; }
+.book-done .sticker { width: 120px; }
+.book-done h2 { font-size: clamp(26px, 4vw, 36px); }
+.book-done > p b { font-family: var(--f-num); font-size: 20px; white-space: nowrap; }
+.book-sum { margin: 4px 0; width: 100%; border-top: 2px dotted var(--line); }
+.book-sum div { display: grid; grid-template-columns: 6.5em minmax(0, 1fr); gap: 10px; padding: 8px 0; border-bottom: 2px dotted var(--line); }
+.book-sum dt { color: var(--ink-soft); }
+.book-sum dd { margin: 0; font-weight: 700; overflow-wrap: anywhere; }
+.book-sum .tag { margin: 0 6px 4px 0; }
+.book-again { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+.store-links a.store-book { background: var(--line-green); border-color: var(--line-green-dark); color: #fff; font-weight: 700; }
