@@ -220,7 +220,7 @@
     var P = [[x0, y0], [x0, y0 - 0.45 * Math.max(0, y0 - yT)], [cx + 0.1 * X, yT],
       [cx - 0.7 * X, cy - 0.65 * S], [cx - 0.9 * X, cy + 0.15 * S], [cx - 0.45 * X, cy + 0.85 * S], [cx + 0.35 * X, cy + 0.85 * S],
       [cx + 0.9 * X, cy + 0.1 * S], [cx + 0.6 * X, cy - 0.7 * S], [cx + 0.12 * X, hy]];
-    var LOOP_END = 8, T_L = 0.7, WRITE_T = 3.0, T_F = 1.0, SHRINK = 2.8;  // T_L: lift-off (2× the old 1.4 s) 起飛
+    var LOOP_END = 8, T_L = 0.4, WRITE_T = 3.0, T_F = 1.0, SHRINK = 2.8;  // T_L: lift-off (2× the old 1.4 s) 起飛
     var vLoop = (LOOP_END - 2) / WRITE_T, mL = vLoop * T_L / 2, mF = vLoop * T_F;
     var T_SET = T_L + WRITE_T + T_F;                                       // settled into the hover 停穩
     var T_LOGO = T_L + 4.5, T_DISPERSE = T_L + 6.3, T_END = T_L + 7.4;    // T_DISPERSE: the logo glides to the pad 開始滑到發射台
@@ -347,7 +347,7 @@
     stopCruise();
     var y0 = window.pageYOffset, y1 = targetY(el), dist = Math.abs(y1 - y0), t0 = clock;
     if (dist < 2) return;
-    var dur = y1 > y0 ? Math.max(4, Math.min(16, dist / 260)) : Math.max(1.25, Math.min(6, dist / 760));
+    var dur = y1 > y0 ? Math.max(4, Math.min(16, dist / 260)) : Math.max(0.7, Math.min(2.5, dist / 2200));
     function frame(now) {
       var k = Math.min(1, (now - t0) / dur);
       scrollTo(y0 + (y1 - y0) * easeIO(k));
@@ -370,9 +370,9 @@
     stopCruise();
     var W = document.documentElement.clientWidth, H = window.innerHeight;
     var y0 = window.pageYOffset, y1 = targetY(el), dist = Math.abs(y1 - y0);
-    var dur = down ? Math.max(4, Math.min(16, dist / 260)) : Math.max(1.25, Math.min(6, dist / 760)); // was 380 px/s up 原本往上 380 px/s
-    var DOCK = down ? 2.8 : 0.8, RIDE = H * (down ? 0.42 : 0.4);
-    var LIFT = down ? 1.6 : 0.7;                    // time to reach the riding height (going up: the lift-off) 到巡航高度（往上＝起飛）
+    var dur = down ? Math.max(4, Math.min(16, dist / 260)) : Math.max(0.7, Math.min(2.5, dist / 2200)); // up 2200 px/s (使用者：上升再更快；原 380→760→2200) 往上
+    var DOCK = down ? 2.8 : 0.6, RIDE = H * (down ? 0.42 : 0.4);
+    var LIFT = down ? 1.6 : 0.4;                    // time to reach the riding height (going up: the lift-off) 到巡航高度（往上＝起飛）
     var tD = down ? Math.max(LIFT, dur - 0.8) : Math.max(LIFT, dur - 0.3); // touchdown starts while the page still eases in 頁面快停時開始降落
     var sx = flyer.x, sy = flyer.y, w0 = flyer.w, fl0 = flyer.fl;
     var tx = spot(el).x, w1 = spot(el).w, wT0 = 0, wT1 = tD + DOCK, wA = w0;
@@ -480,7 +480,7 @@
       return;
     }
     setStep(top, 'is-ignite');
-    after(1.1, function () { // lift-off: this very rocket leaves the pad 起飛：就是這艘離開發射台
+    after(0.7, function () { // shorter ignition (使用者：上升再更快) 點火縮短 // lift-off: this very rocket leaves the pad 起飛：就是這艘離開發射台
       flyerFrom(top);
       setStep(top, 'is-gone is-lift');
       say(LABEL_SHOW, '');
@@ -500,7 +500,7 @@
       return;
     }
     setStep(park, 'is-ignite');
-    after(1.0, function () {
+    after(0.6, function () {
       flyerFrom(park);
       setStep(park, 'is-gone is-lift');
       if (document.activeElement === park) top.focus({ preventScroll: true }); // keep keyboard focus 鍵盤焦點跟著火箭
