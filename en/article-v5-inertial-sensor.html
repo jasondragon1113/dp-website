@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>[實測] VEX新的感測器 V5 Inertial Sensor | Dr. Player Robotic Lab</title>
-<meta name="description" content="VEX V5 新的慣性感測器到貨實測：3 軸加速度計加 3 軸陀螺儀，飄移問題解決，讀數也更多。">
+<title>[Hands-On] VEX&#x27;s New V5 Inertial Sensor | Dr. Player Robotic Lab</title>
+<meta name="description" content="A hands-on test of the new VEX V5 Inertial Sensor, a 3-axis accelerometer plus a 3-axis gyroscope. The drift problem is fixed, and there are more readings too.">
 <link rel="alternate" hreflang="zh-Hant-TW" href="https://dproboticslab.com/article-v5-inertial-sensor.html">
 <link rel="alternate" hreflang="en" href="https://dproboticslab.com/en/article-v5-inertial-sensor.html">
 <link rel="alternate" hreflang="x-default" href="https://dproboticslab.com/article-v5-inertial-sensor.html">
@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@400;500;700&family=Fredoka:wght@500;600;700&family=Huninn&family=Outfit:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
-<link rel="stylesheet" href="../assets/site.css?v=67ee1560">
+<link rel="stylesheet" href="../assets/site.css?v=104a4348">
 <script src="../assets/countup.js?v=7639d8da" defer></script>
 </head>
 <body class="article-page">
@@ -24,66 +24,66 @@
       <img class="logo-light" src="../assets/brand/wanle-logo-horizontal.png" alt="Dr. Player Robotic Lab" width="120" height="40">
       <img class="logo-dark" src="../assets/brand/wanle-logo-white.png" alt="Dr. Player Robotic Lab" width="122" height="40">
     </a>
-    <nav class="nav" aria-label="主選單">
+    <nav class="nav" aria-label="Main menu">
       <details class="nav-group">
-        <summary data-group="courses">課程介紹</summary>
+        <summary data-group="courses">Courses</summary>
         <div class="menu menu--left">
-          <a href="courses.html">課程地圖 <small>3 歲到高中</small></a>
-          <a href="kids.html">小小玩家 <small>3–8 歲</small></a>
-          <a href="courses.html#teen">進階課程 <small>9–14 歲</small></a>
-          <a data-nav="compete" href="compete.html">比賽專班 <small>選手培訓</small></a>
-          <a href="camps.html">寒暑假營隊</a>
+          <a href="courses.html">Course Map <small>Ages 3–18</small></a>
+          <a href="kids.html">Little Makers <small>Ages 3–8</small></a>
+          <a href="courses.html#teen">Advanced Courses <small>Ages 9–14</small></a>
+          <a data-nav="compete" href="compete.html">Competition Team <small>Team training</small></a>
+          <a href="camps.html">Holiday Camps</a>
         </div>
       </details>
       <a data-nav="awards" href="awards.html">Awards</a>
-      <a data-nav="locations" href="locations.html">教室介紹</a>
-      <a data-nav="charity" href="charity.html">公益與偏鄉</a>
-      <a data-nav="about" href="about.html">關於我們</a>
+      <a data-nav="locations" href="locations.html">Locations</a>
+      <a data-nav="charity" href="charity.html">Outreach</a>
+      <a data-nav="about" href="about.html">About Us</a>
       <details class="nav-group">
-        <summary data-group="resources" class="is-current">教學資源</summary>
+        <summary data-group="resources" class="is-current">Resources</summary>
         <div class="menu">
-          <a data-nav="tools" href="tools.html">免費工具</a>
-          <a data-nav="articles" aria-current="page" href="articles.html">文章</a>
-          <a href="https://course.dproboticslab.com/">教案系統</a>
-          <a href="https://course-en.dproboticslab.com/">教案系統（英文）</a>
-          <a data-nav="downloads" href="downloads.html">軟體下載</a>
-          <a href="https://dproboticslab-my.sharepoint.com/:f:/g/personal/admin_dproboticslab_onmicrosoft_com/Et-zIrIPAilEtMk3ODq4634BrxLmglZSoNHtznKEJEWrIQ">教案存放區 <small>限老師</small></a>
-          <a href="https://dproboticslab-my.sharepoint.com/:f:/g/personal/admin_dproboticslab_onmicrosoft_com/EnoygdmmsBRAvo61R0qECp0BV12jRp7wFv7mqDu1Y8N9IA">行政資料區 <small>限行政</small></a>
-          <a href="../admin/">網站管理 <small>限管理員</small></a>
+          <a data-nav="tools" href="tools.html">Free Tools</a>
+          <a data-nav="articles" aria-current="page" href="articles.html">Articles</a>
+          <a href="https://course.dproboticslab.com/">Lesson Platform</a>
+          <a href="https://course-en.dproboticslab.com/">Lesson Platform (English)</a>
+          <a data-nav="downloads" href="downloads.html">Downloads</a>
+          <a href="https://dproboticslab-my.sharepoint.com/:f:/g/personal/admin_dproboticslab_onmicrosoft_com/Et-zIrIPAilEtMk3ODq4634BrxLmglZSoNHtznKEJEWrIQ">Lesson Files <small>Teachers only</small></a>
+          <a href="https://dproboticslab-my.sharepoint.com/:f:/g/personal/admin_dproboticslab_onmicrosoft_com/EnoygdmmsBRAvo61R0qECp0BV12jRp7wFv7mqDu1Y8N9IA">Staff Files <small>Staff only</small></a>
+          <a href="../admin/">Site Admin <small>Admins only</small></a>
         </div>
       </details>
-      <a class="nav-vex" href="https://vex-v5.dproboticslab.com/"><span aria-hidden="true"></span>VEX 專區</a>
+      <a class="nav-vex" href="https://vex-v5.dproboticslab.com/"><span aria-hidden="true"></span>VEX Hub</a>
       <a class="btn btn--line" href="https://line.me/ti/p/@039qsoxy">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-        預約試聽
+        Book a Trial
       </a>
       <a class="lang-switch lang-switch--nav" href="../article-v5-inertial-sensor.html" hreflang="zh-Hant-TW" aria-label="中文版" data-lang-switch><span>中</span><span class="lang-sep" aria-hidden="true">/</span><span class="is-on">EN</span></a>
     </nav>
     <a class="lang-switch lang-switch--bar" href="../article-v5-inertial-sensor.html" hreflang="zh-Hant-TW" aria-label="中文版" data-lang-switch><span>中</span><span class="lang-sep" aria-hidden="true">/</span><span class="is-on">EN</span></a>
     <details class="nav-toggle">
-      <summary aria-label="開啟選單">
+      <summary aria-label="Open menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
       </summary>
       <div class="panel">
         <a class="lang-switch lang-switch--panel" href="../article-v5-inertial-sensor.html" hreflang="zh-Hant-TW" aria-label="中文版" data-lang-switch><span>中</span><span class="lang-sep" aria-hidden="true">/</span><span class="is-on">EN</span></a>
-        <a data-nav="courses" href="courses.html">課程介紹</a>
-        <a class="sub" data-nav="kids" href="kids.html">小小玩家 3–8 歲</a>
-        <a class="sub" href="courses.html#teen">進階課程 9–14 歲</a>
-        <a class="sub" data-nav="compete" href="compete.html">比賽專班</a>
-        <a class="sub" data-nav="camps" href="camps.html">寒暑假營隊</a>
+        <a data-nav="courses" href="courses.html">Courses</a>
+        <a class="sub" data-nav="kids" href="kids.html">Little Makers, ages 3–8</a>
+        <a class="sub" href="courses.html#teen">Advanced Courses, ages 9–14</a>
+        <a class="sub" data-nav="compete" href="compete.html">Competition Team</a>
+        <a class="sub" data-nav="camps" href="camps.html">Holiday Camps</a>
         <a data-nav="awards" href="awards.html">Awards</a>
-        <a data-nav="locations" href="locations.html">教室介紹</a>
-        <a data-nav="charity" href="charity.html">公益與偏鄉</a>
-        <a data-nav="about" href="about.html">關於我們</a>
-        <a href="https://vex-v5.dproboticslab.com/">VEX 專區</a>
-        <a data-nav="tools" href="tools.html">免費工具</a>
-        <a data-nav="articles" aria-current="page" href="articles.html">文章</a>
-        <a href="https://course.dproboticslab.com/">教案系統</a>
-        <a data-nav="downloads" href="downloads.html">軟體下載</a>
-        <a href="https://dproboticslab-my.sharepoint.com/:f:/g/personal/admin_dproboticslab_onmicrosoft_com/Et-zIrIPAilEtMk3ODq4634BrxLmglZSoNHtznKEJEWrIQ">教案存放區（限老師）</a>
-        <a href="https://dproboticslab-my.sharepoint.com/:f:/g/personal/admin_dproboticslab_onmicrosoft_com/EnoygdmmsBRAvo61R0qECp0BV12jRp7wFv7mqDu1Y8N9IA">行政資料區（限行政）</a>
-        <a href="../admin/">網站管理（限管理員）</a>
-        <a class="btn btn--line" href="https://line.me/ti/p/@039qsoxy">LINE 預約試聽</a>
+        <a data-nav="locations" href="locations.html">Locations</a>
+        <a data-nav="charity" href="charity.html">Outreach</a>
+        <a data-nav="about" href="about.html">About Us</a>
+        <a href="https://vex-v5.dproboticslab.com/">VEX Hub</a>
+        <a data-nav="tools" href="tools.html">Free Tools</a>
+        <a data-nav="articles" aria-current="page" href="articles.html">Articles</a>
+        <a href="https://course.dproboticslab.com/">Lesson Platform</a>
+        <a data-nav="downloads" href="downloads.html">Downloads</a>
+        <a href="https://dproboticslab-my.sharepoint.com/:f:/g/personal/admin_dproboticslab_onmicrosoft_com/Et-zIrIPAilEtMk3ODq4634BrxLmglZSoNHtznKEJEWrIQ">Lesson Files (teachers only)</a>
+        <a href="https://dproboticslab-my.sharepoint.com/:f:/g/personal/admin_dproboticslab_onmicrosoft_com/EnoygdmmsBRAvo61R0qECp0BV12jRp7wFv7mqDu1Y8N9IA">Staff Files (staff only)</a>
+        <a href="../admin/">Site Admin (admins only)</a>
+        <a class="btn btn--line" href="https://line.me/ti/p/@039qsoxy">Book a Trial Class on LINE</a>
       </div>
     </details>
   </div>
@@ -93,20 +93,20 @@
 <section class="page-hero page-hero--yellow a-hero">
   <div class="wrap">
     <div class="hero-text">
-      <nav class="crumbs" aria-label="目前位置"><ol><li><a href="articles.html">文章</a></li><li><a href="articles.html#news">最新消息</a></li></ol></nav>
-      <div class="a-card-meta"><span class="a-chip a-chip--news">最新消息</span><time datetime="2019-12-17">2019/12/17</time></div>
-      <h1>[實測] VEX新的感測器 V5 Inertial Sensor</h1>
+      <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="articles.html">Articles</a></li><li><a href="articles.html#news">News</a></li></ol></nav>
+      <div class="a-card-meta"><span class="a-chip a-chip--news">News</span><time datetime="2019-12-17">2019/12/17</time></div>
+      <h1>[Hands-On] VEX&#x27;s New V5 Inertial Sensor</h1>
       <p class="a-stale">This article is from 2019; some details may have changed.</p>
     </div>
   </div>
 </section>
 <article class="section section--white a-page">
-  <div class="wrap"><div class="a-body"><figure><img src="../assets/img/articles/v5-inertial-sensor-01.webp" alt="[實測] VEX新的感測器 V5 Inertial Sensor 配圖" width="1000" height="1000" loading="lazy"></figure><p>2020.01.07 更新</p><p>萬眾矚目的感測器終於到拉~</p><figure><img src="../assets/img/articles/v5-inertial-sensor-02.webp" alt="[實測] VEX新的感測器 V5 Inertial Sensor 配圖" width="1024" height="498" loading="lazy"></figure><p>趕緊來實測下，到底還會不會飄移呢？<br>更新完VEXCode，打開Inertial Example，直接灌進去<br>執行結果如下，根據我們實際測試，飄移現象確實解決了，而且具有更多的讀數，</p><figure><img src="../assets/img/articles/v5-inertial-sensor-03.webp" alt="[實測] VEX新的感測器 V5 Inertial Sensor 配圖" width="480" height="272" loading="lazy"></figure><p>包含角速度等等，所以可以做測程也說不定。<br>你說我怎麼截EDR的圖的？私訊小編就教你哦~<br>哪裡買，趕快聯繫我們粉絲專頁吧~</p><h3>V5 慣性感測器是什麼</h3><p>VEX EDR V5 最近推出了一顆慣性感測器，是3軸（X，Y和Z）加速度計和3軸陀螺儀合而為一的一顆新Sensor，加速度計測量機器人的線性加速度（包括重力），而陀螺儀測量圍繞V5慣性感測器三軸的旋轉速率。</p><p>加速度計與 3軸陀螺儀合在一個感測器中的組合可實現更準確的量測，並更精細的控制機器人。</p><figure><img src="../assets/img/articles/v5-inertial-sensor-04.webp" alt="[實測] VEX新的感測器 V5 Inertial Sensor 配圖" width="480" height="272" loading="lazy"></figure><p><strong>加速度計：</strong> 一個方位可以將機器人的X軸作為其向前和向後運動，將其Y軸作為其左右運動，並且將其Z軸作為其向上和向下運動(ex:機器人將自己從地面上抬起）。<br><strong>陀螺儀：</strong>陀螺儀不是測量沿3軸的線性運動，而是測量繞3軸的旋轉運動。 當內部電子設備創建固定參考點時，傳感器會測量此旋轉。 當傳感器旋轉離開此參考點時，它會改變輸出信號。</p><p>使用這顆新感測器前，必須更新到最新版的VEXCode哦~這顆感測器在程式運行初始化階段( vexcodeinit() )，進行快速校正，相較於V5主機內建的gyro還要來的精準喔~</p><p><a href="https://www.vexrobotics.com/276-4855.html">https://www.vexrobotics.com/276-4855.html</a></p></div></div>
+  <div class="wrap"><div class="a-body"><figure><img src="../assets/img/articles/v5-inertial-sensor-01.webp" alt="[Hands-On] VEX's New V5 Inertial Sensor (image)" width="1000" height="1000" loading="lazy"></figure><p>Updated 2020.01.07</p><p>The much-anticipated sensor has finally arrived!</p><figure><img src="../assets/img/articles/v5-inertial-sensor-02.webp" alt="[Hands-On] VEX's New V5 Inertial Sensor (image)" width="1024" height="498" loading="lazy"></figure><p>Let's test it right away: will it still drift?<br>After updating VEXcode, open the Inertial Example and load it straight onto the Brain.<br>Here are the results. In our actual testing, the drift problem is indeed solved, and there are more readings,</p><figure><img src="../assets/img/articles/v5-inertial-sensor-03.webp" alt="[Hands-On] VEX's New V5 Inertial Sensor (image)" width="480" height="272" loading="lazy"></figure><p>including angular velocity and more, so you might even be able to do odometry.<br>Wondering how we captured the screenshot from the EDR? Message our editor and we'll show you!<br>Want to buy one? Contact our fan page right away!</p><h3>What Is the V5 Inertial Sensor?</h3><p>VEX EDR V5 recently released an Inertial Sensor, a new sensor that combines a 3-axis (X, Y, and Z) accelerometer and a 3-axis gyroscope in one. The accelerometer measures the robot's linear acceleration (including gravity), while the gyroscope measures the rate of rotation around the V5 Inertial Sensor's three axes.</p><p>Combining an accelerometer and a 3-axis gyroscope in one sensor enables more accurate measurements and finer control of the robot.</p><figure><img src="../assets/img/articles/v5-inertial-sensor-04.webp" alt="[Hands-On] VEX's New V5 Inertial Sensor (image)" width="480" height="272" loading="lazy"></figure><p><strong>Accelerometer:</strong> For orientation, the robot's X axis can be its forward and backward motion, its Y axis its left and right motion, and its Z axis its up and down motion (for example, the robot lifting itself off the ground).<br><strong>Gyroscope:</strong> Instead of measuring linear motion along 3 axes, a gyroscope measures rotational motion around 3 axes. The sensor measures this rotation as its internal electronics create a fixed reference point. When the sensor rotates away from this reference point, its output signal changes.</p><p>Before using this new sensor, you must update to the latest version of VEXcode! The sensor does a quick calibration during program initialization ( vexcodeinit() ), and it is more accurate than the gyro built into the V5 Brain!</p><p><a href="https://www.vexrobotics.com/276-4855.html">https://www.vexrobotics.com/276-4855.html</a></p></div></div>
 </article>
-<nav class="section a-pager" aria-label="上一篇與下一篇">
+<nav class="section a-pager" aria-label="Previous and next article">
   <div class="wrap">
-    <div class="a-pager-row"><a class="a-step a-step--prev" href="article-winter-camp-2020.html"><span class="a-step-dir">← 上一篇</span><span class="a-step-title">機器人實驗中心の冬令營要來拉~</span></a><a class="a-step a-step--next" href="article-honors-2019.html"><span class="a-step-dir">下一篇 →</span><span class="a-step-title">2019 玩樂高手 榮譽榜</span></a></div>
-    <p class="a-more"><a class="btn" href="articles.html">看更多文章</a></p>
+    <div class="a-pager-row"><a class="a-step a-step--prev" href="article-winter-camp-2020.html"><span class="a-step-dir">← Previous</span><span class="a-step-title">Winter Camps Are Coming to the Robotics Lab!</span></a><a class="a-step a-step--next" href="article-honors-2019.html"><span class="a-step-dir">Next →</span><span class="a-step-title">Dr. Player Robotic Lab 2019 Awards</span></a></div>
+    <p class="a-more"><a class="btn" href="articles.html">More articles</a></p>
   </div>
 </nav>
 </main>
@@ -114,7 +114,7 @@
   <div class="wrap">
     <div>
       <img class="logo" src="../assets/brand/wanle-logo-white.png" alt="Dr. Player Robotic Lab" width="147" height="48">
-      <p style="margin-top:14px;max-width:22em">從積木到機器人，讓孩子在遊戲中學科技與程式。</p>
+      <p style="margin-top:14px;max-width:22em">From bricks to robots — kids learn tech and coding through play.</p>
       <div class="social">
         <a href="https://www.facebook.com/dproboticslab" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
         <a href="https://line.me/ti/p/@039qsoxy" aria-label="LINE"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></a>
@@ -122,53 +122,53 @@
       </div>
     </div>
     <div>
-      <h4>課程與比賽</h4>
+      <h4>Courses &amp; Competitions</h4>
       <ul>
-        <li><a href="kids.html">小小玩家 3–8 歲</a></li>
-        <li><a href="courses.html">課程介紹</a></li>
-        <li><a href="camps.html">寒暑假營隊</a></li>
-        <li><a href="compete.html">比賽專班</a></li>
+        <li><a href="kids.html">Little Makers, ages 3–8</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="camps.html">Holiday Camps</a></li>
+        <li><a href="compete.html">Competition Team</a></li>
         <li><a href="awards.html">Awards</a></li>
-        <li><a href="locations.html">教室介紹</a></li>
-        <li><a href="charity.html">公益與偏鄉</a></li>
-        <li><a href="about.html">關於我們</a></li>
-        <li><a href="https://vex-v5.dproboticslab.com/">VEX 專區</a></li>
+        <li><a href="locations.html">Locations</a></li>
+        <li><a href="charity.html">Outreach</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="https://vex-v5.dproboticslab.com/">VEX Hub</a></li>
       </ul>
     </div>
     <div>
-      <h4>教學資源</h4>
+      <h4>Resources</h4>
       <ul>
-        <li><a href="https://course.dproboticslab.com/">教案系統</a></li>
-        <li><a href="https://course-en.dproboticslab.com/">教案系統（英文）</a></li>
-        <li><a href="downloads.html">軟體下載</a></li>
-        <li><a href="tools.html">免費工具</a></li>
-        <li><a href="articles.html">文章</a></li>
-        <li><a href="franchise.html">合作機會</a></li>
+        <li><a href="https://course.dproboticslab.com/">Lesson Platform</a></li>
+        <li><a href="https://course-en.dproboticslab.com/">Lesson Platform (English)</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+        <li><a href="tools.html">Free Tools</a></li>
+        <li><a href="articles.html">Articles</a></li>
+        <li><a href="franchise.html">Partnerships</a></li>
       </ul>
     </div>
     <p class="copyright">© Dr. Player Robotic Lab</p>
   </div>
 </footer>
 <div class="buddy" id="buddy">
-  <div class="buddy-panel" id="buddy-panel" role="dialog" aria-label="小幫手" hidden>
-    <div class="buddy-head"><b>嗨！需要幫忙嗎？</b><button type="button" class="buddy-x" aria-label="關閉小幫手">×</button></div>
+  <div class="buddy-panel" id="buddy-panel" role="dialog" aria-label="Helper" hidden>
+    <div class="buddy-head"><b>Hi! Need a hand?</b><button type="button" class="buddy-x" aria-label="Close helper">×</button></div>
     <div class="buddy-actions">
-      <a class="buddy-act buddy-act--line" href="https://line.me/ti/p/@039qsoxy">LINE 預約試聽</a>
-      <button type="button" class="buddy-act" data-buddy="phones">打給教室</button>
-      <button type="button" class="buddy-act" data-buddy="faq">常見問題</button>
-      <a class="buddy-act" href="camps.html">寒暑假營隊</a>
+      <a class="buddy-act buddy-act--line" href="https://line.me/ti/p/@039qsoxy">Book a Trial Class on LINE</a>
+      <button type="button" class="buddy-act" data-buddy="phones">Call a location</button>
+      <button type="button" class="buddy-act" data-buddy="faq">FAQ</button>
+      <a class="buddy-act" href="camps.html">Holiday Camps</a>
     </div>
-    <ul class="buddy-sub buddy-phones" data-sub="phones" hidden><li><span>台北大安</span><a href="tel:+886227791555">02-2779-1555</a></li><li><span>新竹竹北</span><a href="tel:+88636577333">03-657-7333</a></li><li><span>台中文心</span><a href="tel:+886424734555">04-2473-4555</a></li><li><span>台中實驗中心</span><a href="tel:+886423231666">04-2323-1666</a></li><li><span>南投草屯</span><a href="tel:+886492334111">049-233-4111</a></li><li><span>高雄左營</span><a href="tel:+88673501777">07-350-1777</a></li></ul>
+    <ul class="buddy-sub buddy-phones" data-sub="phones" hidden><li><span>Taipei Da'an</span><a href="tel:+886227791555">02-2779-1555</a></li><li><span>Hsinchu Zhubei</span><a href="tel:+88636577333">03-657-7333</a></li><li><span>Taichung Wenxin</span><a href="tel:+886424734555">04-2473-4555</a></li><li><span>Taichung Robotics Lab</span><a href="tel:+886423231666">04-2323-1666</a></li><li><span>Nantou Caotun</span><a href="tel:+886492334111">049-233-4111</a></li><li><span>Kaohsiung Zuoying</span><a href="tel:+88673501777">07-350-1777</a></li></ul>
     <div class="buddy-sub buddy-faq" data-sub="faq" hidden>
-      <details><summary>幾歲可以開始上課？</summary><p>3 歲起就有 ESM 幼兒啟蒙，6 歲 SPM、7 歲 VEX GO，之後一路銜接到高中。</p></details>
-      <details><summary>一班幾個人？</summary><p>小班制，一班最多 10 人。</p></details>
-      <details><summary>教具要自己買嗎？</summary><p>不用，上課一人一套教具，不必跟別人共用。</p></details>
-      <details><summary>請假可以補課嗎？</summary><p>可以，請假後安排補課。</p></details>
-      <details><summary>想參加比賽怎麼辦？</summary><p>有比賽專班：VEX、FIRST、WRO。VEX IQ／V5 競賽班每年 6 月底開班。<a href="compete.html">看比賽專班</a></p></details>
+      <details><summary>What age can kids start?</summary><p>From age 3 with ESM, then SPM at 6 and VEX GO at 7 — and it keeps going all the way through high school.</p></details>
+      <details><summary>How big are the classes?</summary><p>Small classes — 10 kids max.</p></details>
+      <details><summary>Do we need to buy a kit?</summary><p>No. Every child gets their own kit in class — no sharing needed.</p></details>
+      <details><summary>Can we make up a missed class?</summary><p>Yes. Just let us know and we'll set up a make-up class.</p></details>
+      <details><summary>What if my child wants to compete?</summary><p>Yes — we have Competition Teams for VEX, FIRST and WRO. VEX IQ / V5 teams start at the end of June each year.<a href="compete.html">See Competition Team</a></p></details>
     </div>
   </div>
-  <button type="button" class="buddy-btn" aria-expanded="false" aria-controls="buddy-panel" aria-label="打開小幫手">
-    <span class="buddy-say">有問題找我！</span>
+  <button type="button" class="buddy-btn" aria-expanded="false" aria-controls="buddy-panel" aria-label="Open helper">
+    <span class="buddy-say">Ask me!</span>
     <img src="../assets/stickers/find-me.png" alt="" width="124" height="130">
   </button>
 </div>

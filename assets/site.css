@@ -1694,3 +1694,9 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .lang-note a { color: #fff; }
 .lang-note-x { all: unset; cursor: pointer; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; font-size: 20px; }
 .lang-note-x:hover, .lang-note-x:focus-visible { background: rgba(255, 255, 255, .18); }
+
+/* ---------- English pages: longer words 英文頁：英文字較長的調整（只影響 html[lang=en]，中文頁不變） ---------- */
+html[lang="en"] .nav .menu { min-width: 300px; }
+html[lang="en"] .nav .menu a { white-space: nowrap; align-items: baseline; }
+html[lang="en"] .brick--8 .age { font-size: 17px; line-height: 1.1; }
+html[lang="en"] .camp-chip { white-space: nowrap; }

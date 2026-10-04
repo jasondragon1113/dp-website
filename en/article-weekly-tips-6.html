@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Weekly Tips #6 – VEX V5 主機硬體大解密 | Dr. Player Robotic Lab</title>
-<meta name="description" content="V5 主機大解密：雙核心處理器、觸控螢幕、記憶體，還拆開主機看看裡面的電路板。">
+<title>Weekly Tips #6 – Inside the VEX V5 Brain | Dr. Player Robotic Lab</title>
+<meta name="description" content="The V5 Brain unpacked: a dual-core processor, touchscreen, and memory, plus a look at the circuit board inside.">
 <link rel="alternate" hreflang="zh-Hant-TW" href="https://dproboticslab.com/article-weekly-tips-6.html">
 <link rel="alternate" hreflang="en" href="https://dproboticslab.com/en/article-weekly-tips-6.html">
 <link rel="alternate" hreflang="x-default" href="https://dproboticslab.com/article-weekly-tips-6.html">
@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@400;500;700&family=Fredoka:wght@500;600;700&family=Huninn&family=Outfit:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
-<link rel="stylesheet" href="../assets/site.css?v=67ee1560">
+<link rel="stylesheet" href="../assets/site.css?v=104a4348">
 <script src="../assets/countup.js?v=7639d8da" defer></script>
 </head>
 <body class="article-page">
@@ -24,66 +24,66 @@
       <img class="logo-light" src="../assets/brand/wanle-logo-horizontal.png" alt="Dr. Player Robotic Lab" width="120" height="40">
       <img class="logo-dark" src="../assets/brand/wanle-logo-white.png" alt="Dr. Player Robotic Lab" width="122" height="40">
     </a>
-    <nav class="nav" aria-label="主選單">
+    <nav class="nav" aria-label="Main menu">
       <details class="nav-group">
-        <summary data-group="courses">課程介紹</summary>
+        <summary data-group="courses">Courses</summary>
         <div class="menu menu--left">
-          <a href="courses.html">課程地圖 <small>3 歲到高中</small></a>
-          <a href="kids.html">小小玩家 <small>3–8 歲</small></a>
-          <a href="courses.html#teen">進階課程 <small>9–14 歲</small></a>
-          <a data-nav="compete" href="compete.html">比賽專班 <small>選手培訓</small></a>
-          <a href="camps.html">寒暑假營隊</a>
+          <a href="courses.html">Course Map <small>Ages 3–18</small></a>
+          <a href="kids.html">Little Makers <small>Ages 3–8</small></a>
+          <a href="courses.html#teen">Advanced Courses <small>Ages 9–14</small></a>
+          <a data-nav="compete" href="compete.html">Competition Team <small>Team training</small></a>
+          <a href="camps.html">Holiday Camps</a>
         </div>
       </details>
       <a data-nav="awards" href="awards.html">Awards</a>
-      <a data-nav="locations" href="locations.html">教室介紹</a>
-      <a data-nav="charity" href="charity.html">公益與偏鄉</a>
-      <a data-nav="about" href="about.html">關於我們</a>
+      <a data-nav="locations" href="locations.html">Locations</a>
+      <a data-nav="charity" href="charity.html">Outreach</a>
+      <a data-nav="about" href="about.html">About Us</a>
       <details class="nav-group">
-        <summary data-group="resources" class="is-current">教學資源</summary>
+        <summary data-group="resources" class="is-current">Resources</summary>
         <div class="menu">
-          <a data-nav="tools" href="tools.html">免費工具</a>
-          <a data-nav="articles" aria-current="page" href="articles.html">文章</a>
-          <a href="https://course.dproboticslab.com/">教案系統</a>
-          <a href="https://course-en.dproboticslab.com/">教案系統（英文）</a>
-          <a data-nav="downloads" href="downloads.html">軟體下載</a>
-          <a href="https://dproboticslab-my.sharepoint.com/:f:/g/personal/admin_dproboticslab_onmicrosoft_com/Et-zIrIPAilEtMk3ODq4634BrxLmglZSoNHtznKEJEWrIQ">教案存放區 <small>限老師</small></a>
-          <a href="https://dproboticslab-my.sharepoint.com/:f:/g/personal/admin_dproboticslab_onmicrosoft_com/EnoygdmmsBRAvo61R0qECp0BV12jRp7wFv7mqDu1Y8N9IA">行政資料區 <small>限行政</small></a>
-          <a href="../admin/">網站管理 <small>限管理員</small></a>
+          <a data-nav="tools" href="tools.html">Free Tools</a>
+          <a data-nav="articles" aria-current="page" href="articles.html">Articles</a>
+          <a href="https://course.dproboticslab.com/">Lesson Platform</a>
+          <a href="https://course-en.dproboticslab.com/">Lesson Platform (English)</a>
+          <a data-nav="downloads" href="downloads.html">Downloads</a>
+          <a href="https://dproboticslab-my.sharepoint.com/:f:/g/personal/admin_dproboticslab_onmicrosoft_com/Et-zIrIPAilEtMk3ODq4634BrxLmglZSoNHtznKEJEWrIQ">Lesson Files <small>Teachers only</small></a>
+          <a href="https://dproboticslab-my.sharepoint.com/:f:/g/personal/admin_dproboticslab_onmicrosoft_com/EnoygdmmsBRAvo61R0qECp0BV12jRp7wFv7mqDu1Y8N9IA">Staff Files <small>Staff only</small></a>
+          <a href="../admin/">Site Admin <small>Admins only</small></a>
         </div>
       </details>
-      <a class="nav-vex" href="https://vex-v5.dproboticslab.com/"><span aria-hidden="true"></span>VEX 專區</a>
+      <a class="nav-vex" href="https://vex-v5.dproboticslab.com/"><span aria-hidden="true"></span>VEX Hub</a>
       <a class="btn btn--line" href="https://line.me/ti/p/@039qsoxy">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-        預約試聽
+        Book a Trial
       </a>
       <a class="lang-switch lang-switch--nav" href="../article-weekly-tips-6.html" hreflang="zh-Hant-TW" aria-label="中文版" data-lang-switch><span>中</span><span class="lang-sep" aria-hidden="true">/</span><span class="is-on">EN</span></a>
     </nav>
     <a class="lang-switch lang-switch--bar" href="../article-weekly-tips-6.html" hreflang="zh-Hant-TW" aria-label="中文版" data-lang-switch><span>中</span><span class="lang-sep" aria-hidden="true">/</span><span class="is-on">EN</span></a>
     <details class="nav-toggle">
-      <summary aria-label="開啟選單">
+      <summary aria-label="Open menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
       </summary>
       <div class="panel">
         <a class="lang-switch lang-switch--panel" href="../article-weekly-tips-6.html" hreflang="zh-Hant-TW" aria-label="中文版" data-lang-switch><span>中</span><span class="lang-sep" aria-hidden="true">/</span><span class="is-on">EN</span></a>
-        <a data-nav="courses" href="courses.html">課程介紹</a>
-        <a class="sub" data-nav="kids" href="kids.html">小小玩家 3–8 歲</a>
-        <a class="sub" href="courses.html#teen">進階課程 9–14 歲</a>
-        <a class="sub" data-nav="compete" href="compete.html">比賽專班</a>
-        <a class="sub" data-nav="camps" href="camps.html">寒暑假營隊</a>
+        <a data-nav="courses" href="courses.html">Courses</a>
+        <a class="sub" data-nav="kids" href="kids.html">Little Makers, ages 3–8</a>
+        <a class="sub" href="courses.html#teen">Advanced Courses, ages 9–14</a>
+        <a class="sub" data-nav="compete" href="compete.html">Competition Team</a>
+        <a class="sub" data-nav="camps" href="camps.html">Holiday Camps</a>
         <a data-nav="awards" href="awards.html">Awards</a>
-        <a data-nav="locations" href="locations.html">教室介紹</a>
-        <a data-nav="charity" href="charity.html">公益與偏鄉</a>
-        <a data-nav="about" href="about.html">關於我們</a>
-        <a href="https://vex-v5.dproboticslab.com/">VEX 專區</a>
-        <a data-nav="tools" href="tools.html">免費工具</a>
-        <a data-nav="articles" aria-current="page" href="articles.html">文章</a>
-        <a href="https://course.dproboticslab.com/">教案系統</a>
-        <a data-nav="downloads" href="downloads.html">軟體下載</a>
-        <a href="https://dproboticslab-my.sharepoint.com/:f:/g/personal/admin_dproboticslab_onmicrosoft_com/Et-zIrIPAilEtMk3ODq4634BrxLmglZSoNHtznKEJEWrIQ">教案存放區（限老師）</a>
-        <a href="https://dproboticslab-my.sharepoint.com/:f:/g/personal/admin_dproboticslab_onmicrosoft_com/EnoygdmmsBRAvo61R0qECp0BV12jRp7wFv7mqDu1Y8N9IA">行政資料區（限行政）</a>
-        <a href="../admin/">網站管理（限管理員）</a>
-        <a class="btn btn--line" href="https://line.me/ti/p/@039qsoxy">LINE 預約試聽</a>
+        <a data-nav="locations" href="locations.html">Locations</a>
+        <a data-nav="charity" href="charity.html">Outreach</a>
+        <a data-nav="about" href="about.html">About Us</a>
+        <a href="https://vex-v5.dproboticslab.com/">VEX Hub</a>
+        <a data-nav="tools" href="tools.html">Free Tools</a>
+        <a data-nav="articles" aria-current="page" href="articles.html">Articles</a>
+        <a href="https://course.dproboticslab.com/">Lesson Platform</a>
+        <a data-nav="downloads" href="downloads.html">Downloads</a>
+        <a href="https://dproboticslab-my.sharepoint.com/:f:/g/personal/admin_dproboticslab_onmicrosoft_com/Et-zIrIPAilEtMk3ODq4634BrxLmglZSoNHtznKEJEWrIQ">Lesson Files (teachers only)</a>
+        <a href="https://dproboticslab-my.sharepoint.com/:f:/g/personal/admin_dproboticslab_onmicrosoft_com/EnoygdmmsBRAvo61R0qECp0BV12jRp7wFv7mqDu1Y8N9IA">Staff Files (staff only)</a>
+        <a href="../admin/">Site Admin (admins only)</a>
+        <a class="btn btn--line" href="https://line.me/ti/p/@039qsoxy">Book a Trial Class on LINE</a>
       </div>
     </details>
   </div>
@@ -93,20 +93,20 @@
 <section class="page-hero page-hero--green a-hero">
   <div class="wrap">
     <div class="hero-text">
-      <nav class="crumbs" aria-label="目前位置"><ol><li><a href="articles.html">文章</a></li><li><a href="articles.html#tips">Weekly Tips</a></li></ol></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="articles.html">Articles</a></li><li><a href="articles.html#tips">Weekly Tips</a></li></ol></nav>
       <div class="a-card-meta"><span class="a-chip a-chip--tips">Weekly Tips</span><time datetime="2020-06-11">2020/06/11</time></div>
-      <h1>Weekly Tips #6 – VEX V5 主機硬體大解密</h1>
+      <h1>Weekly Tips #6 – Inside the VEX V5 Brain</h1>
       <p class="a-stale">This article is from 2020; some details may have changed.</p>
     </div>
   </div>
 </section>
 <article class="section section--white a-page">
-  <div class="wrap"><div class="a-body"><figure><img src="../assets/img/articles/weekly-tips-6-01.webp" alt="Weekly Tips #6 – VEX V5 主機硬體大解密 配圖" width="1024" height="683" loading="lazy"></figure><figure><img src="../assets/img/articles/weekly-tips-6-02.webp" alt="Weekly Tips #6 – VEX V5 主機硬體大解密 配圖" width="1024" height="576" loading="lazy"></figure><p>上週介紹了VEX V5的套件內容，本週開始將進行為期近一個月，來詳細解析VEX V5中的各大部件哦!!</p><figure><img src="../assets/img/articles/weekly-tips-6-03.webp" alt="Weekly Tips #6 – VEX V5 主機硬體大解密 配圖" width="1024" height="576" loading="lazy"></figure><p>首先我們來談談VEX V5的主機，他採用了ARM® Cortex™-A9 架構(跟各位手機一樣的CPU架構喔)，並使用雙核心667Mhz的處理器，也就是你的程式可以獨享一顆CPU，在做一些高速運算的時候會更有幫助哦!!</p><figure><img src="../assets/img/articles/weekly-tips-6-04.webp" alt="Weekly Tips #6 – VEX V5 主機硬體大解密 配圖" width="1024" height="576" loading="lazy"></figure><p>V5主機還帶有FPGA功能，不過這台FPGA主要是作為螢幕控制，故他的螢幕也是相當強大，4.25”的TFT彩色觸控螢幕WQVGA <em>480×272</em> pixels解析度，遠超過同級其他平台!!</p><figure><img src="../assets/img/articles/weekly-tips-6-05.webp" alt="Weekly Tips #6 – VEX V5 主機硬體大解密 配圖" width="1024" height="576" loading="lazy"></figure><p>V5的RAM有128MB，雖然聽起來好像很小，但實際上以現在在比賽上用的很複雜的程式，也不會把他用完(可能還會剩)，所以程式複雜也不怕爆記憶體的!<br>並且內建32MB的快閃記憶體可以存放程式，如果不夠用或是想另外做其他事(安裝他牌作業系統…!?)，還可以安裝最高16GB的記憶卡哦!!</p><figure><img src="../assets/img/articles/weekly-tips-6-06.webp" alt="Weekly Tips #6 – VEX V5 主機硬體大解密 配圖" width="1024" height="576" loading="lazy"></figure><p>前面這些乾貨不夠意思?? 來來看過來，為了讓各位更清楚V5的大腦，所以玩樂高手團隊特地拆了一部主機來給各位看看啦~~<br>由此可以看到V5主機的用料還是蠻實在的，做工相當不錯!</p><figure><img src="../assets/img/articles/weekly-tips-6-07.webp" alt="Weekly Tips #6 – VEX V5 主機硬體大解密 配圖" width="1024" height="576" loading="lazy"></figure><p>電路板背面可以看到一堆整整齊齊的IC，他是TI VP1782的RS485通訊IC，這就是V5 Smart I/O的重要功臣，主機每個Port跟感測器、馬達的Port都有這顆IC，來搭建起主機跟外設的溝通橋樑，由於橋梁都一樣，所以就不會有Lego EV3分輸出入的問題啦~~ (VEX IQ是走I2C，原理類似)</p><p>想要了解更多有關V5各部件的知識嗎，下週四Weekly Tips，我們不見不散!!</p></div></div>
+  <div class="wrap"><div class="a-body"><figure><img src="../assets/img/articles/weekly-tips-6-01.webp" alt="Weekly Tips #6 – Inside the VEX V5 Brain (image)" width="1024" height="683" loading="lazy"></figure><figure><img src="../assets/img/articles/weekly-tips-6-02.webp" alt="Weekly Tips #6 – Inside the VEX V5 Brain (image)" width="1024" height="576" loading="lazy"></figure><p>Last week we introduced what's in the VEX V5 kit. Starting this week, we'll spend about a month looking closely at the major components of VEX V5!</p><figure><img src="../assets/img/articles/weekly-tips-6-03.webp" alt="Weekly Tips #6 – Inside the VEX V5 Brain (image)" width="1024" height="576" loading="lazy"></figure><p>Let's start with the VEX V5 Brain. It uses an ARM® Cortex™-A9 architecture (the same CPU architecture as your phone) and a dual-core 667 MHz processor, which means your program can have a core all to itself. That helps a lot with high-speed computation!</p><figure><img src="../assets/img/articles/weekly-tips-6-04.webp" alt="Weekly Tips #6 – Inside the VEX V5 Brain (image)" width="1024" height="576" loading="lazy"></figure><p>The V5 Brain also has FPGA capability, though the FPGA is mainly used to drive the screen. So the screen is very impressive too: a 4.25” TFT color touchscreen, WQVGA <em>480×272</em> pixels, far beyond other platforms in its class!!</p><figure><img src="../assets/img/articles/weekly-tips-6-05.webp" alt="Weekly Tips #6 – Inside the VEX V5 Brain (image)" width="1024" height="576" loading="lazy"></figure><p>The V5 has 128 MB of RAM. That might sound small, but even the very complex programs used in competitions today won't use it all up (there may even be some left over), so you don't need to worry about running out of memory with complex programs!<br>It also has 32 MB of built-in flash memory for storing programs. If that's not enough, or you want to do something else (install another operating system…!?), you can add a memory card of up to 16 GB!</p><figure><img src="../assets/img/articles/weekly-tips-6-06.webp" alt="Weekly Tips #6 – Inside the VEX V5 Brain (image)" width="1024" height="576" loading="lazy"></figure><p>Not enough hard-core specs for you?? Come take a look! To give you a clearer picture of the V5's brain, the Dr. Player Robotic Lab team took apart a Brain to show you!<br>As you can see, the V5 Brain is built with solid materials and very good workmanship!</p><figure><img src="../assets/img/articles/weekly-tips-6-07.webp" alt="Weekly Tips #6 – Inside the VEX V5 Brain (image)" width="1024" height="576" loading="lazy"></figure><p>On the back of the circuit board you can see a neat row of ICs. These are TI VP1782 RS485 communication ICs, the key to the V5 Smart I/O. Every Brain port, and every sensor and motor port, has one of these ICs, building a bridge of communication between the Brain and its peripherals. Since all the bridges are the same, you won't have the input/output port distinction problem of the LEGO EV3! (VEX IQ uses I2C, which works on a similar principle.)</p><p>Want to learn more about the V5's components? See you at next Thursday's Weekly Tips!!</p></div></div>
 </article>
-<nav class="section a-pager" aria-label="上一篇與下一篇">
+<nav class="section a-pager" aria-label="Previous and next article">
   <div class="wrap">
-    <div class="a-pager-row"><a class="a-step a-step--prev" href="article-weekly-tips-5.html"><span class="a-step-dir">← 上一篇</span><span class="a-step-title">Weekly Tips #5 – VEX V5介紹</span></a><a class="a-step a-step--next" href="article-weekly-tips-7.html"><span class="a-step-dir">下一篇 →</span><span class="a-step-title">Weekly Tips #7 – VEX V5 Smart Motor 大揭密</span></a></div>
-    <p class="a-more"><a class="btn" href="articles.html">看更多文章</a></p>
+    <div class="a-pager-row"><a class="a-step a-step--prev" href="article-weekly-tips-5.html"><span class="a-step-dir">← Previous</span><span class="a-step-title">Weekly Tips #5 – Introducing VEX V5</span></a><a class="a-step a-step--next" href="article-weekly-tips-7.html"><span class="a-step-dir">Next →</span><span class="a-step-title">Weekly Tips #7 – Inside the VEX V5 Smart Motor</span></a></div>
+    <p class="a-more"><a class="btn" href="articles.html">More articles</a></p>
   </div>
 </nav>
 </main>
@@ -114,7 +114,7 @@
   <div class="wrap">
     <div>
       <img class="logo" src="../assets/brand/wanle-logo-white.png" alt="Dr. Player Robotic Lab" width="147" height="48">
-      <p style="margin-top:14px;max-width:22em">從積木到機器人，讓孩子在遊戲中學科技與程式。</p>
+      <p style="margin-top:14px;max-width:22em">From bricks to robots — kids learn tech and coding through play.</p>
       <div class="social">
         <a href="https://www.facebook.com/dproboticslab" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
         <a href="https://line.me/ti/p/@039qsoxy" aria-label="LINE"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></a>
@@ -122,53 +122,53 @@
       </div>
     </div>
     <div>
-      <h4>課程與比賽</h4>
+      <h4>Courses &amp; Competitions</h4>
       <ul>
-        <li><a href="kids.html">小小玩家 3–8 歲</a></li>
-        <li><a href="courses.html">課程介紹</a></li>
-        <li><a href="camps.html">寒暑假營隊</a></li>
-        <li><a href="compete.html">比賽專班</a></li>
+        <li><a href="kids.html">Little Makers, ages 3–8</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="camps.html">Holiday Camps</a></li>
+        <li><a href="compete.html">Competition Team</a></li>
         <li><a href="awards.html">Awards</a></li>
-        <li><a href="locations.html">教室介紹</a></li>
-        <li><a href="charity.html">公益與偏鄉</a></li>
-        <li><a href="about.html">關於我們</a></li>
-        <li><a href="https://vex-v5.dproboticslab.com/">VEX 專區</a></li>
+        <li><a href="locations.html">Locations</a></li>
+        <li><a href="charity.html">Outreach</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="https://vex-v5.dproboticslab.com/">VEX Hub</a></li>
       </ul>
     </div>
     <div>
-      <h4>教學資源</h4>
+      <h4>Resources</h4>
       <ul>
-        <li><a href="https://course.dproboticslab.com/">教案系統</a></li>
-        <li><a href="https://course-en.dproboticslab.com/">教案系統（英文）</a></li>
-        <li><a href="downloads.html">軟體下載</a></li>
-        <li><a href="tools.html">免費工具</a></li>
-        <li><a href="articles.html">文章</a></li>
-        <li><a href="franchise.html">合作機會</a></li>
+        <li><a href="https://course.dproboticslab.com/">Lesson Platform</a></li>
+        <li><a href="https://course-en.dproboticslab.com/">Lesson Platform (English)</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+        <li><a href="tools.html">Free Tools</a></li>
+        <li><a href="articles.html">Articles</a></li>
+        <li><a href="franchise.html">Partnerships</a></li>
       </ul>
     </div>
     <p class="copyright">© Dr. Player Robotic Lab</p>
   </div>
 </footer>
 <div class="buddy" id="buddy">
-  <div class="buddy-panel" id="buddy-panel" role="dialog" aria-label="小幫手" hidden>
-    <div class="buddy-head"><b>嗨！需要幫忙嗎？</b><button type="button" class="buddy-x" aria-label="關閉小幫手">×</button></div>
+  <div class="buddy-panel" id="buddy-panel" role="dialog" aria-label="Helper" hidden>
+    <div class="buddy-head"><b>Hi! Need a hand?</b><button type="button" class="buddy-x" aria-label="Close helper">×</button></div>
     <div class="buddy-actions">
-      <a class="buddy-act buddy-act--line" href="https://line.me/ti/p/@039qsoxy">LINE 預約試聽</a>
-      <button type="button" class="buddy-act" data-buddy="phones">打給教室</button>
-      <button type="button" class="buddy-act" data-buddy="faq">常見問題</button>
-      <a class="buddy-act" href="camps.html">寒暑假營隊</a>
+      <a class="buddy-act buddy-act--line" href="https://line.me/ti/p/@039qsoxy">Book a Trial Class on LINE</a>
+      <button type="button" class="buddy-act" data-buddy="phones">Call a location</button>
+      <button type="button" class="buddy-act" data-buddy="faq">FAQ</button>
+      <a class="buddy-act" href="camps.html">Holiday Camps</a>
     </div>
-    <ul class="buddy-sub buddy-phones" data-sub="phones" hidden><li><span>台北大安</span><a href="tel:+886227791555">02-2779-1555</a></li><li><span>新竹竹北</span><a href="tel:+88636577333">03-657-7333</a></li><li><span>台中文心</span><a href="tel:+886424734555">04-2473-4555</a></li><li><span>台中實驗中心</span><a href="tel:+886423231666">04-2323-1666</a></li><li><span>南投草屯</span><a href="tel:+886492334111">049-233-4111</a></li><li><span>高雄左營</span><a href="tel:+88673501777">07-350-1777</a></li></ul>
+    <ul class="buddy-sub buddy-phones" data-sub="phones" hidden><li><span>Taipei Da'an</span><a href="tel:+886227791555">02-2779-1555</a></li><li><span>Hsinchu Zhubei</span><a href="tel:+88636577333">03-657-7333</a></li><li><span>Taichung Wenxin</span><a href="tel:+886424734555">04-2473-4555</a></li><li><span>Taichung Robotics Lab</span><a href="tel:+886423231666">04-2323-1666</a></li><li><span>Nantou Caotun</span><a href="tel:+886492334111">049-233-4111</a></li><li><span>Kaohsiung Zuoying</span><a href="tel:+88673501777">07-350-1777</a></li></ul>
     <div class="buddy-sub buddy-faq" data-sub="faq" hidden>
-      <details><summary>幾歲可以開始上課？</summary><p>3 歲起就有 ESM 幼兒啟蒙，6 歲 SPM、7 歲 VEX GO，之後一路銜接到高中。</p></details>
-      <details><summary>一班幾個人？</summary><p>小班制，一班最多 10 人。</p></details>
-      <details><summary>教具要自己買嗎？</summary><p>不用，上課一人一套教具，不必跟別人共用。</p></details>
-      <details><summary>請假可以補課嗎？</summary><p>可以，請假後安排補課。</p></details>
-      <details><summary>想參加比賽怎麼辦？</summary><p>有比賽專班：VEX、FIRST、WRO。VEX IQ／V5 競賽班每年 6 月底開班。<a href="compete.html">看比賽專班</a></p></details>
+      <details><summary>What age can kids start?</summary><p>From age 3 with ESM, then SPM at 6 and VEX GO at 7 — and it keeps going all the way through high school.</p></details>
+      <details><summary>How big are the classes?</summary><p>Small classes — 10 kids max.</p></details>
+      <details><summary>Do we need to buy a kit?</summary><p>No. Every child gets their own kit in class — no sharing needed.</p></details>
+      <details><summary>Can we make up a missed class?</summary><p>Yes. Just let us know and we'll set up a make-up class.</p></details>
+      <details><summary>What if my child wants to compete?</summary><p>Yes — we have Competition Teams for VEX, FIRST and WRO. VEX IQ / V5 teams start at the end of June each year.<a href="compete.html">See Competition Team</a></p></details>
     </div>
   </div>
-  <button type="button" class="buddy-btn" aria-expanded="false" aria-controls="buddy-panel" aria-label="打開小幫手">
-    <span class="buddy-say">有問題找我！</span>
+  <button type="button" class="buddy-btn" aria-expanded="false" aria-controls="buddy-panel" aria-label="Open helper">
+    <span class="buddy-say">Ask me!</span>
     <img src="../assets/stickers/find-me.png" alt="" width="124" height="130">
   </button>
 </div>

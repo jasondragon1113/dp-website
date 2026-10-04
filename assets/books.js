@@ -7,10 +7,11 @@
   var title = dlg.querySelector('.br-title');
   var count = dlg.querySelector('.br-count');
   var pages = [], i = 0;
+  var EN = document.documentElement.lang === 'en';   // English page 英文頁
 
   function show() {
     img.src = pages[i];
-    img.alt = title.textContent + ' 試讀第 ' + (i + 1) + ' 頁';
+    img.alt = EN ? title.textContent + ', preview page ' + (i + 1) : title.textContent + ' 試讀第 ' + (i + 1) + ' 頁';
     count.textContent = (i + 1) + ' / ' + pages.length;
     dlg.querySelector('.br-prev').disabled = i === 0;
     dlg.querySelector('.br-next').disabled = i === pages.length - 1;

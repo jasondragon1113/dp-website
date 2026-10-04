@@ -20,10 +20,12 @@
   var COLORS = [[232, 56, 47], [255, 206, 38]];
   var STEP = ['is-ignite', 'is-lift', 'is-return', 'is-land', 'is-gone', 'is-fade', 'is-ready'];
   var LABEL_HOME = top.getAttribute('aria-label');
-  var LABEL_SHOW = '火箭飛上天了';
-  var LABEL_GONE = '火箭降落在森林囉，點我到頁面最下面的森林找它';
-  var LABEL_PARK = '點我讓火箭從森林飛回去';
-  var LABEL_WAIT = '火箭正在飛回來';
+  // English pages get English labels 英文頁用英文字
+  var EN = document.documentElement.lang === 'en';
+  var LABEL_SHOW = EN ? 'The rocket is flying!' : '火箭飛上天了';
+  var LABEL_GONE = EN ? 'The rocket landed in the forest. Tap to find it at the bottom of the page' : '火箭降落在森林囉，點我到頁面最下面的森林找它';
+  var LABEL_PARK = EN ? 'Tap to fly the rocket back from the forest' : '點我讓火箭從森林飛回去';
+  var LABEL_WAIT = EN ? 'The rocket is flying back' : '火箭正在飛回來';
   var state = 'home'; // home | busy | parked | waiting (flying home: lands once the top is in view)
 
   // ---- one clock for everything, driven by requestAnimationFrame, so it pauses while the tab is hidden
@@ -106,7 +108,7 @@
   park.innerHTML = '<span class="rocket-ship"><img class="rocket-park-art" src="' + SHIP + '" alt="" width="900" height="799">' +
     '<span class="rocket-flame" aria-hidden="true"></span></span>' +
     '<span class="rocket-smoke" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>' +
-    '<span class="rocket-hint" aria-hidden="true">點我飛回去！</span>';
+    '<span class="rocket-hint" aria-hidden="true">' + (EN ? 'Tap to fly back!' : '點我飛回去！') + '</span>';
   land.appendChild(park);
 
   // ---- "lands when you look": play the landing once the spot scrolls into view 捲到看得見才降落
@@ -437,7 +439,7 @@
   // ---- state changes 狀態切換
   function toParked(animateLanding) {
     setStep(top, 'is-gone' + (animateLanding ? ' is-lift' : ''));
-    say(LABEL_GONE, '火箭降落在森林囉 <b>↓</b>');
+    say(LABEL_GONE, EN ? 'Landed in the forest <b>↓</b>' : '火箭降落在森林囉 <b>↓</b>');
     park.hidden = false;
     state = 'parked';
     if (!animateLanding) { setStep(park, 'is-ready'); return; }
@@ -452,13 +454,13 @@
     function done() {
       setStep(top, '');
       say(LABEL_HOME, '');
-      if (hint) { hint.textContent = '再飛一次！'; top.classList.remove('was-flown'); }
+      if (hint) { hint.textContent = EN ? 'Fly again!' : '再飛一次！'; top.classList.remove('was-flown'); }
       state = 'home';
     }
     if (!animateLanding) { dropLogo(false); done(); return; }
     state = 'waiting';
     setStep(top, 'is-gone');
-    say(LABEL_WAIT, '火箭飛回來囉！');
+    say(LABEL_WAIT, EN ? 'The rocket is back!' : '火箭飛回來囉！');
     dropLogo(false);
     fly(top, false, function () { setStep(top, 'is-land'); flyerDrop(); after(0.9, done); },
       function () { whenSeen(top, function () { run(top, [['is-return', 2.3], ['is-land', 0.9]], done); }); });
