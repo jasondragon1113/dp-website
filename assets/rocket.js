@@ -11,7 +11,8 @@
   var land = document.querySelector('.kids-land');
   if (!top || !land) return;
   var mq = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
-  var LOGO = 'assets/img/books/wan-mark-sky.webp';
+  // English pages live in /en/: shared files are one folder up. 英文頁在 /en/，圖檔在上一層。
+  var LOGO = (document.documentElement.lang === 'en' ? '../' : '') + 'assets/img/books/wan-mark-sky.webp';
   var SHIP = top.querySelector('.story-hero-art').getAttribute('src');
   // 170 points sampled from the logo's alpha mask (x, y in 0–99, colour 0 red / 1 yellow), farthest-point order
   // 從 logo 透明遮罩取樣的 170 個點（最遠點排序：只取前 N 個也分布均勻）
@@ -220,10 +221,11 @@
     var P = [[x0, y0], [x0, y0 - 0.45 * Math.max(0, y0 - yT)], [cx + 0.1 * X, yT],
       [cx - 0.7 * X, cy - 0.65 * S], [cx - 0.9 * X, cy + 0.15 * S], [cx - 0.45 * X, cy + 0.85 * S], [cx + 0.35 * X, cy + 0.85 * S],
       [cx + 0.9 * X, cy + 0.1 * S], [cx + 0.6 * X, cy - 0.7 * S], [cx + 0.12 * X, hy]];
-    var LOOP_END = 8, T_L = 0.4, WRITE_T = 3.0, T_F = 1.0, SHRINK = 2.8;  // T_L: lift-off (2× the old 1.4 s) 起飛
+    var TS = 0.5;  // the whole 玩 show runs at 2× speed (使用者：玩出現的動畫整體快 2 倍) 整段寫字秀 2 倍速
+    var LOOP_END = 8, T_L = 0.4, WRITE_T = 3.0 * TS, T_F = 1.0 * TS, SHRINK = 2.0;  // T_L: lift-off 起飛; SHRINK kept at 2 s so the size change stays smooth 縮小維持 2 秒才平順
     var vLoop = (LOOP_END - 2) / WRITE_T, mL = vLoop * T_L / 2, mF = vLoop * T_F;
     var T_SET = T_L + WRITE_T + T_F;                                       // settled into the hover 停穩
-    var T_LOGO = T_L + 4.5, T_DISPERSE = T_L + 6.3, T_END = T_L + 7.4;    // T_DISPERSE: the logo glides to the pad 開始滑到發射台
+    var T_LOGO = T_L + 4.5 * TS, T_DISPERSE = T_L + 6.3 * TS, T_END = T_L + 7.4 * TS;    // T_DISPERSE: the logo glides to the pad 開始滑到發射台
     function uAt(s) { // path parameter: accelerate off the pad, steady loop, ease into the hover 參數：加速升空、等速繞圈、減速停
       if (s < T_L) { var a = s / T_L; return 2 * (a * a * (3 - 2 * a) + mL * (a * a * a - a * a)); }
       if (s < T_L + WRITE_T) return 2 + (s - T_L) * vLoop;
@@ -269,7 +271,7 @@
         var bl = smooth((s - T_L - WRITE_T) / T_F);
         rot = hd + (upright - hd) * bl;
       } else rot = hd;
-      var bob = Math.min(1, Math.max(0, (s - T_SET) / 1.0));             // gentle hover bob 盤旋時輕輕上下
+      var bob = Math.min(1, Math.max(0, (s - T_SET) / (1.0 * TS)));             // gentle hover bob 盤旋時輕輕上下
       flyer.x = pos[0] + Math.sin((s - T_SET) * 1.3) * 5 * bob;
       flyer.y = pos[1] + Math.sin((s - T_SET) * 2.2) * 4 * bob;
       flyer.w = logLerp(w0, Rw, s / SHRINK);
@@ -279,31 +281,31 @@
       flyerDraw();
       if (s > T_L && s < T_L + WRITE_T) {
         var r1 = (rot - 90) * Math.PI / 180, hx = Math.cos(r1), hy2 = Math.sin(r1);
-        var want = Math.min(N, Math.floor(Math.max(0, s - T_L - 0.15) / (WRITE_T - 0.25) * N));
+        var want = Math.min(N, Math.floor(Math.max(0, s - T_L - 0.15 * TS) / (WRITE_T - 0.25 * TS) * N));
         while (spawned < want) { spawn(s, pos, hx, hy2); spawned++; }
       }
       if (s >= T_LOGO && !logo.classList.contains('is-on')) logo.classList.add('is-on');
       if (s >= T_DISPERSE && !logo.dataset.settle) { // glide onto the launch pad 滑到發射台上方
         logo.dataset.settle = '1';
         var b = keptBox(), k0 = b.size / S;
-        logo.style.transition = 'opacity .6s ease, scale .6s ease, transform 1s cubic-bezier(.5,0,.2,1)';
+        logo.style.transition = 'opacity .3s ease, scale .3s ease, transform .5s cubic-bezier(.5,0,.2,1)';
         logo.style.transformOrigin = '0 0';
         logo.style.transform = 'translate(' + (b.x - (cx - S / 2)).toFixed(1) + 'px,' + (b.y - (cy - S / 2)).toFixed(1) + 'px) scale(' + k0.toFixed(3) + ')';
       }
 
       // the puffs 煙團
       g.clearRect(0, 0, W, H);
-      var halo = Math.min(1, Math.max(0, (s - T_LOGO) / 0.6));      // soften into a white cloud behind the logo 變成 logo 背後的白雲
-      var gone = Math.min(1, Math.max(0, (s - T_DISPERSE) / 1.0));  // drift apart and fade 散開淡出
+      var halo = Math.min(1, Math.max(0, (s - T_LOGO) / (0.6 * TS)));      // soften into a white cloud behind the logo 變成 logo 背後的白雲
+      var gone = Math.min(1, Math.max(0, (s - T_DISPERSE) / (1.0 * TS)));  // drift apart and fade 散開淡出
       for (var q = 0; q < puffs.length; q++) {
         var p = puffs[q], a = s - p.s;
-        var k = ease((a - 0.2) / 1.3), dr = Math.min(a, 0.45);
+        var k = ease((a - 0.2 * TS) / (1.3 * TS)), dr = Math.min(a / TS, 0.45);
         var x = p.x0 + p.vx * dr, y = p.y0 + p.vy * dr;
         x += (p.t.x - x) * k; y += (p.t.y - y) * k;
         var wob = Math.sin(now * 2 + p.w);
         x += wob * 2; y += Math.cos(now * 1.7 + p.w) * 2;
         if (gone > 0) { x += (p.t.x - cx) * gone * 0.3; y += (p.t.y - cy) * gone * 0.3 - gone * 30; }
-        var r = pr * p.sz * Math.min(1, 0.35 + a / 0.5) * (1 + halo * 0.35 + gone * 0.6) * (1 + wob * 0.05);
+        var r = pr * p.sz * Math.min(1, 0.35 + a / (0.5 * TS)) * (1 + halo * 0.35 + gone * 0.6) * (1 + wob * 0.05);
         g.globalAlpha = (1 - halo * 0.45) * (1 - gone);
         g.drawImage(sprites[p.t.c][Math.round(k * (1 - halo) * (TINTS - 1))], x - r, y - r, r * 2, r * 2);
       }

@@ -12,9 +12,10 @@
     'come-to-class.png': 'assets/stickers/cny/v4-04.webp', // 好久不見
     'call-me.png': 'assets/stickers/cny/v1-03.webp'        // 平平安安
   };
+  var up = document.documentElement.lang === 'en' ? '../' : '';   // English pages live in /en/ 英文頁在 /en/
   document.documentElement.classList.add('is-cny');
   document.querySelectorAll('img[src*="assets/stickers/"]').forEach(function (img) {
     var name = img.getAttribute('src').split('/').pop().split('?')[0];
-    if (swap[name]) img.src = swap[name];
+    if (swap[name]) img.src = up + swap[name];
   });
 })();
