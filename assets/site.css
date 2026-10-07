@@ -1835,7 +1835,7 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .nav .lang-switch { margin-left: 8px; }
 .lang-switch--bar { display: none; margin-left: auto; }
 @media (max-width: 1140px) { .lang-switch--bar { display: inline-flex; } .lang-switch--bar + .nav-toggle { margin-left: 0; } }
-.nav-toggle .panel a.lang-switch { justify-self: start; padding: 8px 14px; margin-bottom: 6px; border-bottom: 1px solid var(--line); }
+/* the menu panel has no 中/EN of its own: the bar next to ☰ already shows it at the same width (使用者：兩個中/EN 很怪) */
 /* First visit with an English browser: a small closable note (assets/lang.js). 英文瀏覽器第一次進站的小提示。 */
 .lang-note {
   position: fixed; left: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); z-index: 41; max-width: calc(100vw - 150px);
