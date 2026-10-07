@@ -162,6 +162,17 @@
     f.el.style.width = f.w.toFixed(2) + 'px';
     f.el.style.transform = 'translate3d(' + (f.x - f.w / 2).toFixed(1) + 'px,' + (f.y - h / 2).toFixed(1) + 'px,0) rotate(' + f.rot.toFixed(2) + 'deg)';
     f.flame.style.height = (f.fl * 100).toFixed(1) + '%';
+    // side jets follow how fast the nose turns: turning right (clockwise) puffs on the left, and the other way round
+    // 側邊噴氣跟著機頭轉動速度：往右轉從左邊噴，往左轉從右邊噴
+    var dt = clock - f.tPrev;
+    var d = ((f.rot - f.rPrev) % 360 + 540) % 360 - 180;                // a whole-turn jump (-360 → 0) is not a turn 整圈跳角不算轉向
+    if (dt > 0) { f.om += (d / dt - f.om) * Math.min(1, dt * 12); f.tPrev = clock; f.rPrev = f.rot; }
+    var k = Math.max(0, Math.min(1, (Math.abs(f.om) - 40) / 160));
+    jet(f.jl, f.om > 0 ? k : 0); jet(f.jr, f.om < 0 ? k : 0);
+  }
+  function jet(el, k) {
+    el.style.opacity = k ? (0.55 + 0.45 * k).toFixed(2) : '0';
+    el.style.scale = k ? ((0.45 + 0.55 * k) * (0.88 + Math.random() * 0.24)).toFixed(2) + ' 1' : '0 1';
   }
   // take the rocket out of a button: same frame, same box 從按鈕接手：同一幀、同一個框
   function flyerFrom(btn) {
@@ -171,12 +182,14 @@
       layer.className = 'sky-show sky-show--fly'; layer.setAttribute('aria-hidden', 'true');
       var el = document.createElement('div');
       el.className = 'sky-rocket';
-      el.innerHTML = '<span class="sky-flame"></span><img src="' + SHIP + '" alt="">';
+      el.innerHTML = '<span class="sky-flame"></span><span class="sky-jet sky-jet--l"></span><span class="sky-jet sky-jet--r"></span>' +
+        '<img src="' + SHIP + '" alt="">';
       layer.appendChild(el);
       document.body.appendChild(layer);
-      flyer = { layer: layer, el: el, flame: el.firstChild };
+      flyer = { layer: layer, el: el, flame: el.children[0], jl: el.children[1], jr: el.children[2] };
     }
     flyer.x = s.x; flyer.y = s.y; flyer.w = s.w; flyer.rot = 0; flyer.fl = 0.34;
+    flyer.om = 0; flyer.rPrev = 0; flyer.tPrev = clock;
     flyerDraw();
   }
   function flyerDrop() { if (flyer) { flyer.layer.remove(); flyer = null; } }
