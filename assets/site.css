@@ -987,6 +987,61 @@ body.tech-page .h-tabs button[aria-selected="true"] { background: #e31b23; borde
   .tw-list { grid-template-columns: 1fr; }
 }
 
+/* locations map 服務據點地圖（{{store-map}}，assets/locmap.js）：電腦＝卡片在地圖右邊對齊那個點；手機／沒有滑鼠＝卡片在地圖正下方 */
+.loc-map { display: grid; grid-template-columns: minmax(240px, 340px) minmax(250px, 300px) minmax(0, 1fr); gap: 28px; align-items: start; }
+.loc-map-sticker { left: auto; right: -26px; bottom: -24px; width: 132px; }
+.loc-map-pin.is-on circle:not(.tw-pulse) { stroke-width: 2.4; }
+.loc-map-pin .tw-pulse { pointer-events: none; }  /* the growing ring must not catch taps meant for a neighbour 擴散的圈不要搶到旁邊的點 */
+.loc-map-pin:focus:not(:focus-visible) { outline: none; }  /* mouse click: no ring (Chrome rings SVG links on any focus) 滑鼠點不畫框 */
+.loc-map-zone { position: relative; align-self: stretch; min-height: 300px; }
+.loc-map-hint { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); margin: 0; padding: 22px 18px; text-align: center;
+  color: var(--ink-soft); font-size: 15px; border: 2px dashed var(--line); border-radius: 20px; }
+.loc-map-zone.has-card .loc-map-hint { visibility: hidden; }
+.loc-map-card { position: absolute; left: 0; right: 0; top: var(--top, 0px); z-index: 2; display: grid; gap: 8px; justify-items: start;
+  padding: 20px 18px 16px; background: var(--surface); border: 3px solid var(--ink); border-radius: 22px;
+  box-shadow: inset 0 7px 0 var(--c), 5px 5px 0 var(--ink); animation: loc-map-pop .18s ease-out; scroll-margin: 90px 0 20px; }
+.loc-map-card[hidden], .loc-map-today[hidden], .loc-map-today [hidden] { display: none; }
+.loc-map-card::before { content: ""; position: absolute; left: -12px; top: var(--arrow, 46px); width: 18px; height: 18px; background: var(--surface);
+  border-left: 3px solid var(--ink); border-bottom: 3px solid var(--ink); border-bottom-left-radius: 4px; transform: translateY(-50%) rotate(45deg); }
+.loc-map-card.is-pinned { box-shadow: inset 0 7px 0 var(--c), 0 0 0 4px var(--yellow), 5px 5px 0 4px var(--ink); }
+@keyframes loc-map-pop { from { opacity: 0; transform: translateX(-6px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes loc-map-drop { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+.loc-map-card h3 { font-size: 22px; padding-right: 34px; }
+.loc-map-addr { margin: 0; color: var(--ink-soft); font-size: 14px; }
+.loc-map-today { margin: 0; display: inline-flex; gap: 8px; align-items: baseline; padding: 5px 12px; border-radius: 12px; background: var(--tint-green); font-weight: 700; }
+.loc-map-today b { font-family: var(--f-num); font-weight: 600; font-variant-numeric: tabular-nums; }
+.loc-map-today.is-closed { background: var(--tint-red); color: var(--red); }
+.loc-map-contact { margin: 0; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.loc-map-contact a { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; text-decoration: none; }
+.loc-map-contact a:hover { text-decoration: underline; }
+.loc-map-card svg { width: 16px; height: 16px; flex: none; }
+.loc-map-acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.loc-map-acts a { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px; border: 2px solid var(--ink);
+  background: var(--surface); text-decoration: none; font-weight: 700; font-size: 14px; }
+.loc-map-acts a:hover { background: var(--tint-yellow); }
+.loc-map-acts .loc-map-book { background: var(--yellow); }
+.loc-map-x { position: absolute; top: 12px; right: 10px; width: 32px; height: 32px; display: grid; place-items: center; padding: 0; cursor: pointer;
+  border-radius: 50%; border: 2px solid var(--ink); background: var(--surface); color: var(--ink); font: 700 20px/1 var(--f-num); }
+.loc-map-x:hover { background: var(--tint-yellow); }
+.loc-map-list { grid-template-columns: 1fr; gap: 10px; }
+.loc-map-item { padding: 0; transition: transform .15s ease, box-shadow .15s ease; }
+.loc-map-item a { display: flex; gap: 12px; align-items: center; width: 100%; min-width: 0; padding: 10px 14px; border-radius: 16px; color: inherit; text-decoration: none; }
+.loc-map-name { display: grid; min-width: 0; }
+.loc-map-name b { font-family: var(--f-display); font-weight: 400; font-size: 19px; }
+.loc-map-item small { margin-left: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.loc-map-item:hover, .loc-map-item.is-on { background: var(--tint-yellow); box-shadow: 4px 4px 0 var(--ink); transform: translate(-2px, -2px); }
+@media (max-width: 900px), (hover: none) {
+  .loc-map { grid-template-columns: 1fr; gap: 20px; }
+  .loc-map-art { width: 100%; max-width: 320px; margin-inline: auto; }
+  .loc-map-zone { min-height: 0; }
+  .loc-map-zone:not(.has-card), .loc-map-hint { display: none; }
+  .loc-map-card { position: relative; top: auto; margin-top: 6px; animation-name: loc-map-drop; }
+  .loc-map-card::before { left: 50%; top: -12px; transform: translateX(-50%) rotate(135deg); }
+  .loc-map-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) { .loc-map-list { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .loc-map-card { animation: none; } .loc-map-item { transition: none; } }
+
 /* ---------- kids page: picture-book night sky 小小玩家：繪本星空風 ---------- */
 .kids-page { --book-night: #334388; --book-blue: #2f5fae; --book-star: #ffe27a; }
 .story-hero, .story-sky {
