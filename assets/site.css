@@ -1283,6 +1283,13 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .tool-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 22px; padding: 0; }
 .tool-tags li { font-size: 13px; padding: 3px 10px; border-radius: 999px; border: 1px solid #3f3f46; color: #e5e7eb; }
 .tool-tags li:first-child { border-color: #e31b23; color: #fff; background: rgba(227,27,35,.15); }
+/* Timer card: one dark pill per program (V5 / IQ), carrying the official white-on-dark logo. 計時器卡：V5／IQ 各一顆深底膠囊（官方反白 logo 一定要深底） */
+.tool-progs { display: flex; flex-wrap: wrap; gap: 12px; }
+.lulu .l-btn.tool-prog { background: #07070a; border-color: #3f3f46; color: #fff; gap: 12px; }
+.lulu .l-btn.tool-prog:hover { background: #07070a; border-color: #e5e7eb; }
+.tool-prog img { display: block; height: 20px; width: auto; }
+.tool-prog span { opacity: .7; }
+.tool-prog:hover span { opacity: 1; }
 .tool-more { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-block: 48px 8px; }
 .tool-more p { font-family: var(--l-mono); color: #a1a1aa; }
 @media (max-width: 860px) {
