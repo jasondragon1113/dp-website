@@ -13,6 +13,23 @@
       }
     });
   } catch (e) { /* old browser: no preselect 舊瀏覽器就不預選 */ }
+  // Time chips follow the classroom: each store <option> has data-times="weekday_pm …" (from its opening hours); the
+  // others are hidden and unticked. No classroom picked: all of them. 時段跟著教室：沒開的隱藏並取消勾選；沒選教室全部顯示。
+  var storeSel = form.elements.store, storeHint = form.querySelector('.book-hint-store');
+  function followStore() {
+    var opt = storeSel.selectedIndex >= 0 ? storeSel.options[storeSel.selectedIndex] : null;
+    var list = opt && opt.value ? opt.getAttribute('data-times') : null;
+    var allow = list === null ? null : ' ' + list + ' ', cut = false;
+    var boxes = form.querySelectorAll('input[name="times[]"]');
+    for (var i = 0; i < boxes.length; i++) {
+      var ok = allow === null || allow.indexOf(' ' + boxes[i].value + ' ') >= 0;
+      if (!ok) { boxes[i].checked = false; cut = true; }
+      boxes[i].disabled = !ok;
+      boxes[i].parentNode.hidden = !ok;
+    }
+    if (storeHint) storeHint.hidden = !cut;
+  }
+  if (storeSel) { storeSel.addEventListener('change', followStore); followStore(); }
   var errs = document.getElementById('book-errors');
   if (errs) {
     var bad = form.querySelector('[aria-invalid="true"]');
