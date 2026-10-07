@@ -247,31 +247,37 @@ a.tag:hover { border-color: var(--ink); color: var(--ink); }
   --h: 150px; --c: var(--yellow); --c-ink: var(--plate-ink);
   position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 6px;
   height: var(--h); padding: 22px 12px 12px; border-radius: 10px 10px 8px 8px;
-  background: var(--c); color: var(--c-ink); text-decoration: none;
+  /* stacked look: one seam every --layer, counted from the bottom, so each step up is one more brick (使用者：要有積木堆疊感)
+     堆疊感：從底部往上每 --layer 一條接縫（上緣亮、下緣暗），每往上一級就多疊一塊 */
+  --layer: 30px;
+  background: linear-gradient(to bottom, rgba(255,255,255,.2) 0 2px, transparent 2px calc(100% - 4px), rgba(0,0,0,.17) calc(100% - 4px))
+    0 100% / 100% var(--layer) repeat-y var(--c);
+  color: var(--c-ink); text-decoration: none;
   box-shadow: inset 0 -6px 0 rgba(0,0,0,.14); transition: transform .18s ease;
 }
 .brick::before {
   /* studs on top of the brick 積木上面的凸點 */
   content: ""; position: absolute; left: 10px; right: 10px; top: -9px; height: 10px;
-  background: radial-gradient(ellipse 9px 10px at 50% 100%, var(--c) 98%, transparent) 0 0 / 24px 10px repeat-x;
+  /* space: only whole studs, spread evenly — repeat-x cut the last one in half (使用者回報破圖) 只排整顆凸點，不切半顆 */
+  background: radial-gradient(ellipse 9px 10px at 50% 100%, var(--c) 98%, transparent) 0 0 / 24px 10px space no-repeat;
 }
 .brick:hover { transform: translateY(-6px); }
 .brick .age { font-family: var(--f-num); font-weight: 700; font-size: 34px; line-height: 1; }
 .brick .name { font-weight: 700; font-size: 15px; line-height: 1.35; }
 .brick .kit { font-size: 12px; opacity: .9; line-height: 1.35; }
 .brick--1 { --h: 150px; --c: var(--yellow); --c-ink: #3b2b05; }
-.brick--2 { --h: 178px; --c: var(--red); --c-ink: #fff; }
-.brick--3 { --h: 206px; --c: var(--green); --c-ink: #fff; }
-.brick--4 { --h: 234px; --c: var(--sky); --c-ink: #fff; }
-.brick--5 { --h: 262px; --c: #2f7fc0; --c-ink: #fff; }
-.brick--6 { --h: 262px; --c: var(--purple); --c-ink: #fff; }
-.brick--7 { --h: 290px; --c: #43378a; --c-ink: #fff; }
-.brick--8 { --h: 318px; --c: var(--ink); --c-ink: #fff; }
+.brick--2 { --h: 180px; --c: var(--red); --c-ink: #fff; }
+.brick--3 { --h: 210px; --c: var(--green); --c-ink: #fff; }
+.brick--4 { --h: 240px; --c: var(--sky); --c-ink: #fff; }
+.brick--5 { --h: 270px; --c: #2f7fc0; --c-ink: #fff; }
+.brick--6 { --h: 270px; --c: var(--purple); --c-ink: #fff; }
+.brick--7 { --h: 300px; --c: #43378a; --c-ink: #fff; }
+.brick--8 { --h: 330px; --c: var(--ink); --c-ink: #fff; }
 .brick--8 .age { font-size: 22px; }
 @media (max-width: 900px) {
   .bands { display: none; }
   .stairs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; }
-  .brick { --h: auto !important; min-height: 128px; }
+  .brick { --h: auto !important; min-height: 150px; }
 }
 
 /* ---------- Kids zone (3–8) ---------- */
@@ -654,7 +660,7 @@ a.tag:hover { border-color: var(--ink); color: var(--ink); }
 }
 .lego::before {
   content: ""; position: absolute; left: 0; right: 0; top: -8px; height: 9px;
-  background: radial-gradient(ellipse 9px 9px at 50% 100%, color-mix(in srgb, var(--c) 88%, #fff) 97%, transparent) 0 0 / 28px 9px repeat-x;
+  background: radial-gradient(ellipse 9px 9px at 50% 100%, color-mix(in srgb, var(--c) 88%, #fff) 97%, transparent) 0 0 / 28px 9px space no-repeat; /* whole studs only 只排整顆 */
 }
 .lego--tall { height: 44px; }
 .bricks-layer { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
@@ -693,7 +699,7 @@ a.tag:hover { border-color: var(--ink); color: var(--ink); }
 }
 .eyebrow::before {
   content: ""; position: absolute; left: 4px; right: 4px; top: -6px; height: 7px;
-  background: radial-gradient(ellipse 6px 7px at 50% 100%, color-mix(in srgb, var(--red) 85%, #fff) 97%, transparent) 0 0 / 18px 7px repeat-x;
+  background: radial-gradient(ellipse 6px 7px at 50% 100%, color-mix(in srgb, var(--red) 85%, #fff) 97%, transparent) 0 0 / 18px 7px space no-repeat; /* whole studs only 只排整顆 */
 }
 .plate .eyebrow, .page-hero--yellow .eyebrow { background: var(--ink); color: #fff !important; }
 .plate .eyebrow::before, .page-hero--yellow .eyebrow::before { background-image: radial-gradient(ellipse 6px 7px at 50% 100%, #3d3664 97%, transparent); }
@@ -707,7 +713,7 @@ a.tag:hover { border-color: var(--ink); color: var(--ink); }
 .btn { position: relative; border-radius: 12px; margin-top: 7px; }
 .btn::before {
   content: ""; position: absolute; left: 12px; right: 12px; top: -9px; height: 8px;
-  background: radial-gradient(ellipse 8px 8px at 50% 100%, var(--stud, var(--surface)) 80%, var(--stud-edge, var(--ink)) 82% 96%, transparent 100%) 0 0 / 22px 8px repeat-x;
+  background: radial-gradient(ellipse 8px 8px at 50% 100%, var(--stud, var(--surface)) 80%, var(--stud-edge, var(--ink)) 82% 96%, transparent 100%) 0 0 / 22px 8px space no-repeat; /* whole studs only 只排整顆 */
 }
 .btn--line { --stud: var(--line-green); --stud-edge: var(--line-green-dark); }
 .nav .btn { margin-top: 6px; }
@@ -724,7 +730,7 @@ a.tag:hover { border-color: var(--ink); color: var(--ink); }
 .site-footer::before {
   /* the footer is a dark brick: studs along its top edge 頁尾像一塊深色積木，頂端一排凸點 */
   content: ""; position: absolute; left: 0; right: 0; top: -8px; height: 8px;
-  background: radial-gradient(ellipse 9px 8px at 50% 100%, var(--ink) 97%, transparent) 0 0 / 28px 8px repeat-x;
+  background: radial-gradient(ellipse 9px 8px at 50% 100%, var(--ink) 97%, transparent) 0 0 / 28px 8px space no-repeat; /* whole studs only 只排整顆 */
 }
 
 /* Home hero on a sky baseplate with bricks scattered around. 首頁主視覺：天藍底板＋散落積木。 */
@@ -1267,7 +1273,7 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 /* staircase prev / next — the same bricks as the course map 上一階／下一階：沿用課程地圖積木 */
 .step-nav { padding-top: 0; }
 .step-row { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 18px; align-items: end; padding-top: 12px; }
-.step-nav .brick { --h: auto; min-height: 104px; padding: 22px 18px 14px; justify-content: flex-end; }
+.step-nav .brick { --h: auto; min-height: 120px; padding: 22px 18px 14px; justify-content: flex-end; }
 .step-nav .brick .name { font-size: 18px; }
 .step-dir { font-size: 14px; font-weight: 700; opacity: .9; }
 .step--next { text-align: right; align-items: flex-end; }
