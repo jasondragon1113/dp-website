@@ -1042,6 +1042,81 @@ body.tech-page .h-tabs button[aria-selected="true"] { background: #e31b23; borde
 @media (max-width: 560px) { .loc-map-list { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .loc-map-card { animation: none; } .loc-map-item { transition: none; } }
 
+/* home world map 首頁世界賽場地圖（{{event-map}}，assets/evmap.js）：電腦＝小卡浮在點旁邊；手機／沒有滑鼠＝小卡在地圖正下方；
+   ≤760px＝世界／台灣兩個按鈕切換、世界圖左右滑 */
+.ev-map-sum { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 0; font-weight: 700; }
+.ev-map-sum span { white-space: nowrap; }
+.ev-map-sum span:not(:last-child)::after { content: "・"; margin-inline: 6px; color: var(--ink-soft); }
+.ev-map-sum b { font: 600 24px var(--f-num); color: var(--purple); margin-right: 4px; }
+.ev-map { position: relative; }
+.ev-map-tabs { display: none; }
+.ev-map-figs { display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 20px; align-items: stretch; }
+.ev-map-fig { position: relative; min-width: 0; }
+.ev-map-world { display: flex; flex-direction: column; justify-content: center; padding: 14px 12px; border-radius: 28px; background: var(--tint-sky); border: 3px solid var(--ink); }
+.ev-map-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.ev-map-tw { display: grid; place-items: center; padding: 14px; border-radius: 28px; }
+.ev-map-chip { position: absolute; top: 12px; left: 14px; z-index: 1; padding: 1px 12px; border-radius: 999px; background: var(--surface); border: 2px solid var(--ink);
+  font-weight: 700; font-size: 14px; pointer-events: none; }
+.ev-map-swipe { display: none; }
+.ev-map-arc { fill: none; stroke: var(--purple); stroke-width: .55; stroke-linecap: round; opacity: .55; stroke-dasharray: 1; stroke-dashoffset: 0;
+  transition: stroke-dashoffset .7s ease calc(var(--i, 0) * 16ms), stroke-width .15s ease, opacity .15s ease; }
+.ev-arcs-wait .ev-map-arc { stroke-dashoffset: 1; transition: none; }
+.ev-map-arc.is-on { stroke: var(--red); stroke-width: 1.1; opacity: 1; }
+.ev-map-home { fill: var(--yellow); stroke: var(--ink); stroke-width: .7; }
+.ev-map-home-name { font: 700 5px var(--f-body); fill: var(--ink); paint-order: stroke; stroke: var(--tint-sky); stroke-width: 1.6px; pointer-events: none; }
+.ev-map-world .tw-pin circle { stroke-width: .55; }
+.ev-map-world .tw-pulse { animation: none; opacity: 0; stroke-width: 3.4; }  /* invisible ring = a larger tap target 看不見的圈＝放大點擊範圍 */
+.ev-map-tw .tw-pin circle { stroke-width: 1; }
+.ev-map-tw .tw-pulse { pointer-events: none; }  /* the growing ring must not catch a neighbour's tap 擴散的圈不要搶到旁邊的點 */
+.ev-map-pin:hover circle:not(.tw-pulse), .ev-map-pin.is-on circle:not(.tw-pulse) { fill: var(--yellow); }
+.ev-map-world .ev-map-pin:hover circle:not(.tw-pulse), .ev-map-world .ev-map-pin.is-on circle:not(.tw-pulse) { stroke-width: 1; }
+.ev-map-tw .ev-map-pin:hover circle:not(.tw-pulse), .ev-map-tw .ev-map-pin.is-on circle:not(.tw-pulse) { stroke-width: 1.8; }
+.ev-map-pin:focus:not(:focus-visible) { outline: none; }  /* mouse click: no ring 滑鼠點不畫框 */
+.ev-map-card { position: absolute; z-index: 5; left: var(--x, 0px); top: var(--y, 0px); width: min(330px, 100%); display: grid; gap: 6px; justify-items: start;
+  padding: 18px 16px 12px 18px; background: var(--surface); border: 3px solid var(--ink); border-radius: 22px; box-shadow: inset 0 7px 0 var(--red), 5px 5px 0 var(--ink);
+  animation: loc-map-pop .18s ease-out; scroll-margin: 90px 0 20px; }
+.ev-map-card::before { content: ""; position: absolute; left: -12px; top: var(--arrow, 46px); width: 18px; height: 18px; background: var(--surface);
+  border-left: 3px solid var(--ink); border-bottom: 3px solid var(--ink); border-bottom-left-radius: 4px; transform: translateY(-50%) rotate(45deg); }
+.ev-map-card.is-left::before { left: auto; right: -12px; transform: translateY(-50%) rotate(-135deg); }
+.ev-map-card.is-pinned { box-shadow: inset 0 7px 0 var(--red), 0 0 0 4px var(--yellow), 5px 5px 0 4px var(--ink); }
+.ev-map-card h3 { font-size: 22px; padding-right: 34px; }
+.ev-map-times { margin: 0; padding: 2px 12px; border-radius: 12px; background: var(--tint-yellow); font-weight: 700; font-size: 14px; }
+.ev-map-events { list-style: none; margin: 4px 0 0; padding: 0 6px 0 0; width: 100%; max-height: 232px; overflow-y: auto; overscroll-behavior: contain;
+  display: grid; gap: 6px; font-size: 14px; line-height: 1.45; }
+.ev-map-events li { display: grid; grid-template-columns: 2.7em auto minmax(0, 1fr); gap: 6px; align-items: baseline; padding-bottom: 6px; border-bottom: 1px dashed var(--line); }
+.ev-map-events li:last-child { border-bottom: 0; }
+.ev-map-events time { font: 600 14px var(--f-num); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.ev-map-ev { overflow-wrap: anywhere; }
+.ev-prog { padding: 0 7px; border-radius: 999px; border: 1.5px solid var(--ink); background: var(--paper); font: 600 11px/1.65 var(--f-num); white-space: nowrap; }
+.ev-prog--v5 { background: var(--tint-red); }
+.ev-prog--iq { background: var(--tint-sky); }
+.ev-prog--wro { background: var(--tint-yellow); }
+.ev-prog--fll, .ev-prog--flljr { background: var(--tint-green); }
+.ev-prog--ftc { background: #ffe5cc; }
+.ev-prog--frc, .ev-prog--wsc { background: var(--tint-purple); }
+.ev-map-x { position: absolute; top: 12px; right: 10px; width: 32px; height: 32px; display: grid; place-items: center; padding: 0; cursor: pointer;
+  border-radius: 50%; border: 2px solid var(--ink); background: var(--surface); color: var(--ink); font: 700 20px/1 var(--f-num); }
+.ev-map-x:hover { background: var(--tint-yellow); }
+@media (max-width: 900px), (hover: none) {
+  .ev-map-card { position: relative; left: auto; top: auto; width: auto; margin-top: 16px; animation-name: loc-map-drop; }
+  .ev-map-card::before, .ev-map-card.is-left::before { left: 50%; right: auto; top: -12px; transform: translateX(-50%) rotate(135deg); }
+}
+@media (max-width: 900px) { .ev-map-figs { grid-template-columns: minmax(0, 1fr) 190px; gap: 14px; } }
+@media (max-width: 760px) {
+  .ev-map-figs { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .ev-map.is-tabs .ev-map-tabs { display: flex; gap: 10px; margin-bottom: 14px; }
+  .ev-map-tabs button { padding: 7px 20px; border-radius: 999px; border: 2px solid var(--ink); background: var(--surface); color: var(--ink); font: 700 16px var(--f-body); cursor: pointer; }
+  .ev-map-tabs button[aria-pressed="true"] { background: var(--yellow); box-shadow: 3px 3px 0 var(--ink); }
+  .ev-map.is-tabs[data-tab="world"] [data-panel="taiwan"], .ev-map.is-tabs[data-tab="taiwan"] [data-panel="world"] { display: none; }
+  .ev-map.is-tabs .ev-map-chip { display: none; }
+  .ev-map-world { padding: 10px 0 8px; }
+  .ev-map-scroll { overflow-x: auto; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; }
+  .ev-map-scroll .ev-map-svg { width: 760px; max-width: none; padding-inline: 8px; box-sizing: content-box; }
+  .ev-map-swipe { display: block; margin: 4px 0 0; text-align: center; font-size: 13px; color: var(--ink-soft); }
+  .ev-map-tw { width: 100%; max-width: 300px; margin-inline: auto; }
+}
+@media (prefers-reduced-motion: reduce) { .ev-map-arc { transition: none; } .ev-map-card { animation: none; } }
+
 /* ---------- kids page: picture-book night sky 小小玩家：繪本星空風 ---------- */
 .kids-page { --book-night: #334388; --book-blue: #2f5fae; --book-star: #ffe27a; }
 .story-hero, .story-sky {
