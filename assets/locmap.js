@@ -90,6 +90,16 @@
     el.addEventListener('blur', function () { if (!touchMode.matches) hideSoon(); });
     el.addEventListener('click', function (e) {
       e.preventDefault();
+      // list item: scroll down to that location's full section (使用者：點那個店就自動滑到那個店的區塊) 點清單＝捲到該據點區塊
+      if (el.closest('.loc-map-item')) {
+        var target = document.getElementById(id);
+        pinned = null; preview = null; cancelHide(); render();
+        if (target) {
+          target.scrollIntoView({ block: 'start', behavior: still.matches ? 'auto' : 'smooth' });
+          if (history.replaceState) history.replaceState(null, '', '#' + id);
+        }
+        return;
+      }
       lastTrigger = el;
       cancelHide();
       if (touchMode.matches) {

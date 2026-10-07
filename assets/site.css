@@ -1058,18 +1058,24 @@ body.tech-page .h-tabs button[aria-selected="true"] { background: #e31b23; borde
 .ev-map-chip { position: absolute; top: 12px; left: 14px; z-index: 1; padding: 1px 12px; border-radius: 999px; background: var(--surface); border: 2px solid var(--ink);
   font-weight: 700; font-size: 14px; pointer-events: none; }
 .ev-map-swipe { display: none; }
-.ev-map-arc { fill: none; stroke: var(--purple); stroke-width: .55; stroke-linecap: round; opacity: .55; stroke-dasharray: 1; stroke-dashoffset: 0;
+.ev-map-arc { fill: none; stroke: #ff8a3d; stroke-width: .55; stroke-linecap: round; opacity: .4; stroke-dasharray: 1; stroke-dashoffset: 0;
   transition: stroke-dashoffset .7s ease calc(var(--i, 0) * 16ms), stroke-width .15s ease, opacity .15s ease; }
 .ev-arcs-wait .ev-map-arc { stroke-dashoffset: 1; transition: none; }
-.ev-map-arc.is-on { stroke: var(--red); stroke-width: 1.1; opacity: 1; }
+.ev-map-arc.is-on { stroke: #f06a12; stroke-width: 1.1; opacity: 1; }
 .ev-map-home { fill: var(--yellow); stroke: var(--ink); stroke-width: .7; }
 .ev-map-home-name { font: 700 5px var(--f-body); fill: var(--ink); paint-order: stroke; stroke: var(--tint-sky); stroke-width: 1.6px; pointer-events: none; }
 .ev-map-world .tw-pin circle { stroke-width: .55; }
+/* orange pins with a white rim (使用者 10-07：紅點太噁心 → 橘色) 橘點白框；台灣主點維持黃＋深框 */
+.ev-map-pin:not(.ev-map-home-pin) circle:not(.tw-pulse) { stroke: #fff; }
+.ev-map-world .ev-map-pin:not(.ev-map-home-pin) circle:not(.tw-pulse) { stroke-width: .7; }
+.ev-map-tw .ev-map-pin circle:not(.tw-pulse) { stroke-width: 1.4; }
+.ev-map-tw .tw-pulse { opacity: .2; }
 .ev-map-world .tw-pulse { animation: none; opacity: 0; stroke-width: 3.4; }  /* invisible ring = a larger tap target 看不見的圈＝放大點擊範圍 */
 .ev-map-tw .tw-pin circle { stroke-width: 1; }
 .ev-map-tw .tw-pulse { pointer-events: none; }  /* the growing ring must not catch a neighbour's tap 擴散的圈不要搶到旁邊的點 */
 .ev-map-pin:hover circle:not(.tw-pulse), .ev-map-pin.is-on circle:not(.tw-pulse) { fill: var(--yellow); }
 .ev-map-world .ev-map-pin:hover circle:not(.tw-pulse), .ev-map-world .ev-map-pin.is-on circle:not(.tw-pulse) { stroke-width: 1; }
+.ev-map-world .ev-map-home-pin circle:not(.tw-pulse) { stroke-width: .7; }  /* the yellow Taiwan dot, clickable when it has a card 有小卡時可以點的台灣黃點 */
 .ev-map-tw .ev-map-pin:hover circle:not(.tw-pulse), .ev-map-tw .ev-map-pin.is-on circle:not(.tw-pulse) { stroke-width: 1.8; }
 .ev-map-pin:focus:not(:focus-visible) { outline: none; }  /* mouse click: no ring 滑鼠點不畫框 */
 .ev-map-card { position: absolute; z-index: 5; left: var(--x, 0px); top: var(--y, 0px); width: min(330px, 100%); display: grid; gap: 6px; justify-items: start;
@@ -1080,6 +1086,7 @@ body.tech-page .h-tabs button[aria-selected="true"] { background: #e31b23; borde
 .ev-map-card.is-left::before { left: auto; right: -12px; transform: translateY(-50%) rotate(-135deg); }
 .ev-map-card.is-pinned { box-shadow: inset 0 7px 0 var(--red), 0 0 0 4px var(--yellow), 5px 5px 0 4px var(--ink); }
 .ev-map-card h3 { font-size: 22px; padding-right: 34px; }
+.ev-map-card .city { padding-right: 34px; }  /* the longer "city unknown" lines must not run under the × 較長的「城市不詳」小字不要壓到關閉鈕 */
 .ev-map-times { margin: 0; padding: 2px 12px; border-radius: 12px; background: var(--tint-yellow); font-weight: 700; font-size: 14px; }
 .ev-map-events { list-style: none; margin: 4px 0 0; padding: 0 6px 0 0; width: 100%; max-height: 232px; overflow-y: auto; overscroll-behavior: contain;
   display: grid; gap: 6px; font-size: 14px; line-height: 1.45; }
