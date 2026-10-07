@@ -173,14 +173,23 @@
       f.om += (d / dt - f.om) * a; f.vl += (vl - f.vl) * a;
       f.tPrev = clock; f.rPrev = f.rot; f.xPrev = f.x; f.yPrev = f.y;
     }
+    // four jets like a real RCS (使用者：平移和旋轉噴法要不一樣) 四個噴口，像真的姿態控制：
+    //   turn → nose and tail on OPPOSITE sides (a couple); drift → nose and tail on the SAME side (pure push, no spin)
+    //   轉向＝機頭、機尾對角噴（產生旋轉）；平移＝機頭、機尾同一側一起噴（只推不轉）
     var kT = Math.max(0, Math.min(1, (Math.abs(f.om) - 40) / 160)) * (f.om > 0 ? 1 : -1);
     var kS = Math.max(0, Math.min(1, (Math.abs(f.vl) - 0.2) / 0.9)) * (f.vl > 0 ? 1 : -1);
-    var k = Math.max(-1, Math.min(1, kT + kS));
-    jet(f.jl, k > 0 ? k : 0); jet(f.jr, k < 0 ? -k : 0);
+    jet(f.jets[0], kT + kS);    // nose, left side: pushes the nose right 機頭左：把機頭往右推
+    jet(f.jets[1], -kT - kS); // nose, right side 機頭右
+    jet(f.jets[2], kS - kT); // tail, left side 機尾左
+    jet(f.jets[3], kT - kS); // tail, right side 機尾右
   }
+  // short puffs, not a steady stream: a little demand = an occasional puff, a lot = almost continuous; all on one beat so
+  // a nose / tail pair always puffs together 間段噴氣：需求小偶爾噴一下、大就幾乎連續；同一節拍，成對的噴口一定一起噴
   function jet(el, k) {
-    el.style.opacity = k ? (0.55 + 0.45 * k).toFixed(2) : '0';
-    el.style.scale = k ? ((0.45 + 0.55 * k) * (0.88 + Math.random() * 0.24)).toFixed(2) + ' 1' : '0 1';
+    k = Math.max(0, Math.min(1, k));
+    var on = k > 0 && ((clock / 0.22) % 1) < 0.3 + 0.7 * k;
+    el.style.opacity = on ? (0.6 + 0.4 * k).toFixed(2) : '0';
+    el.style.scale = on ? ((0.5 + 0.5 * k) * (0.85 + Math.random() * 0.3)).toFixed(2) + ' 1' : '0 1';
   }
   // take the rocket out of a button: same frame, same box 從按鈕接手：同一幀、同一個框
   function flyerFrom(btn) {
@@ -191,10 +200,10 @@
       var el = document.createElement('div');
       el.className = 'sky-rocket';
       el.innerHTML = '<span class="sky-flame"></span><span class="sky-jet sky-jet--l"></span><span class="sky-jet sky-jet--r"></span>' +
-        '<img src="' + SHIP + '" alt="">';
+        '<span class="sky-jet sky-jet--l sky-jet--tail"></span><span class="sky-jet sky-jet--r sky-jet--tail"></span><img src="' + SHIP + '" alt="">';
       layer.appendChild(el);
       document.body.appendChild(layer);
-      flyer = { layer: layer, el: el, flame: el.children[0], jl: el.children[1], jr: el.children[2] };
+      flyer = { layer: layer, el: el, flame: el.children[0], jets: [el.children[1], el.children[2], el.children[3], el.children[4]] };
     }
     flyer.x = s.x; flyer.y = s.y; flyer.w = s.w; flyer.rot = 0; flyer.fl = 0.34;
     flyer.om = 0; flyer.vl = 0; flyer.rPrev = 0; flyer.xPrev = s.x; flyer.yPrev = s.y; flyer.tPrev = clock;

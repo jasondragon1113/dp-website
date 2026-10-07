@@ -1626,11 +1626,12 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
   background: radial-gradient(ellipse 60% 70% at 50% 18%, #fffbe0 0 20%, #ffe066 34%, #ff9a2e 58%, rgba(255,72,0,0) 78%); animation: rk-flicker .1s ease-in-out infinite alternate; }
 /* flames are centred with margin auto, not translate: -50% — iOS Safari sometimes dropped the translate while the
    flicker animated scale, so the flame jumped off-centre (使用者 iPhone 回報) 火焰改用 margin 置中，不靠 translate */
-/* side jets: while the rocket turns, a puff fires on the opposite side near the nose (rocket.js sets opacity / scale)
+/* side jets: two at the nose, two at the tail; rocket.js fires them in puffs (turn = opposite corners, drift = same side)
    (使用者：火箭左右轉向時，反方向側邊噴氣) 轉向時機頭反方向側邊噴氣 */
 .sky-jet { position: absolute; z-index: 0; top: 23%; width: 40%; height: 14%; opacity: 0; scale: 0 1; pointer-events: none; border-radius: 50%; }
 .sky-jet--l { right: 76%; transform-origin: 100% 50%; background: radial-gradient(ellipse 100% 50% at 100% 50%, #fff 0 18%, rgba(225,240,255,.85) 42%, rgba(225,240,255,0) 72%); }
 .sky-jet--r { left: 76%; transform-origin: 0 50%; background: radial-gradient(ellipse 100% 50% at 0 50%, #fff 0 18%, rgba(225,240,255,.85) 42%, rgba(225,240,255,0) 72%); }
+.sky-jet--tail { top: 78%; width: 34%; height: 12%; } .sky-jet--l.sky-jet--tail { right: 97%; } .sky-jet--r.sky-jet--tail { left: 97%; } /* tail jets at the wide base 機尾噴口在底部最寬處 */
 .rk-paused .rocket *, .rk-paused .sky-show * { animation-play-state: paused !important; }
 @keyframes rk-fadein { from { opacity: 0; } to { opacity: 1; } }
 /* reduced motion: no flight, no particles, just gentle fades (beats the site-wide "no transitions" rule on purpose)
