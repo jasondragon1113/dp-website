@@ -162,13 +162,21 @@
     f.el.style.width = f.w.toFixed(2) + 'px';
     f.el.style.transform = 'translate3d(' + (f.x - f.w / 2).toFixed(1) + 'px,' + (f.y - h / 2).toFixed(1) + 'px,0) rotate(' + f.rot.toFixed(2) + 'deg)';
     f.flame.style.height = (f.fl * 100).toFixed(1) + '%';
-    // side jets follow how fast the nose turns: turning right (clockwise) puffs on the left, and the other way round
-    // 側邊噴氣跟著機頭轉動速度：往右轉從左邊噴，往左轉從右邊噴
+    // side jets: turning right (clockwise) or drifting right puffs on the left, and the other way round
+    // 側邊噴氣：往右轉或往右飄從左邊噴，往左從右邊噴（使用者：上升下降的側向移動也要噴）
     var dt = clock - f.tPrev;
-    var d = ((f.rot - f.rPrev) % 360 + 540) % 360 - 180;                // a whole-turn jump (-360 → 0) is not a turn 整圈跳角不算轉向
-    if (dt > 0) { f.om += (d / dt - f.om) * Math.min(1, dt * 12); f.tPrev = clock; f.rPrev = f.rot; }
-    var k = Math.max(0, Math.min(1, (Math.abs(f.om) - 40) / 160));
-    jet(f.jl, f.om > 0 ? k : 0); jet(f.jr, f.om < 0 ? k : 0);
+    if (dt > 0) {
+      var d = ((f.rot - f.rPrev) % 360 + 540) % 360 - 180;              // a whole-turn jump (-360 → 0) is not a turn 整圈跳角不算轉向
+      var r = f.rot * Math.PI / 180;                                    // sideways speed in the rocket's own frame, in rocket widths / s 機身座標的側向速度
+      var vl = ((f.x - f.xPrev) * Math.cos(r) + (f.y - f.yPrev) * Math.sin(r)) / dt / f.w;
+      var a = Math.min(1, dt * 12);
+      f.om += (d / dt - f.om) * a; f.vl += (vl - f.vl) * a;
+      f.tPrev = clock; f.rPrev = f.rot; f.xPrev = f.x; f.yPrev = f.y;
+    }
+    var kT = Math.max(0, Math.min(1, (Math.abs(f.om) - 40) / 160)) * (f.om > 0 ? 1 : -1);
+    var kS = Math.max(0, Math.min(1, (Math.abs(f.vl) - 0.2) / 0.9)) * (f.vl > 0 ? 1 : -1);
+    var k = Math.max(-1, Math.min(1, kT + kS));
+    jet(f.jl, k > 0 ? k : 0); jet(f.jr, k < 0 ? -k : 0);
   }
   function jet(el, k) {
     el.style.opacity = k ? (0.55 + 0.45 * k).toFixed(2) : '0';
@@ -189,7 +197,7 @@
       flyer = { layer: layer, el: el, flame: el.children[0], jl: el.children[1], jr: el.children[2] };
     }
     flyer.x = s.x; flyer.y = s.y; flyer.w = s.w; flyer.rot = 0; flyer.fl = 0.34;
-    flyer.om = 0; flyer.rPrev = 0; flyer.tPrev = clock;
+    flyer.om = 0; flyer.vl = 0; flyer.rPrev = 0; flyer.xPrev = s.x; flyer.yPrev = s.y; flyer.tPrev = clock;
     flyerDraw();
   }
   function flyerDrop() { if (flyer) { flyer.layer.remove(); flyer = null; } }
