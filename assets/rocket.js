@@ -189,7 +189,7 @@
     k = Math.max(0, Math.min(1, k));
     var on = k > 0 && ((clock / 0.22) % 1) < 0.3 + 0.7 * k;
     el.style.opacity = on ? (0.6 + 0.4 * k).toFixed(2) : '0';
-    el.style.scale = on ? ((0.5 + 0.5 * k) * (0.85 + Math.random() * 0.3)).toFixed(2) + ' 1' : '0 1';
+    el.style.transform = on ? 'scale(' + ((0.5 + 0.5 * k) * (0.85 + Math.random() * 0.3)).toFixed(2) + ',1)' : 'scale(0,1)';
   }
   // take the rocket out of a button: same frame, same box 從按鈕接手：同一幀、同一個框
   function flyerFrom(btn) {
@@ -374,7 +374,16 @@
     var max = document.documentElement.scrollHeight - window.innerHeight;
     return Math.max(0, Math.min(max, y));
   }
-  function scrollTo(y) { window.scrollTo({ top: y, behavior: 'instant' }); }
+  // Instant scroll every frame. html has scroll-behavior: smooth, so switch it off just for this call; the plain
+  // scrollTo(x, y) form works on every browser (some older ones throw on behavior: 'instant', which stopped the whole
+  // animation loop). 每幀瞬間捲動：暫時關掉 smooth；用最舊的 scrollTo(x, y) 寫法（舊瀏覽器不認 'instant' 會丟錯、整段動畫停住）
+  var rootStyle = document.documentElement.style;
+  function scrollTo(y) {
+    var prev = rootStyle.scrollBehavior;
+    rootStyle.scrollBehavior = 'auto';
+    window.scrollTo(0, y);
+    rootStyle.scrollBehavior = prev;
+  }
 
   // scroll only (no rocket): "go find it in the forest" 只捲動（不帶火箭）：帶你去森林找火箭
   function glideTo(el) {

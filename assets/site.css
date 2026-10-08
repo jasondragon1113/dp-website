@@ -1690,7 +1690,7 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .rocket-ship { position: relative; display: block; z-index: 1; }
 .rocket .story-hero-art { animation: kid-float 3.6s ease-in-out infinite; }
 .rocket[class*="is-"]:not(.is-ignite) .story-hero-art { animation: none; } /* keeps floating while igniting: no jump 點火時不停漂浮，免得跳一下 */
-.rocket-flame { position: absolute; left: 0; right: 0; margin-inline: auto; top: 92%; width: 26%; height: 0; border-radius: 45% 45% 50% 50% / 25% 25% 75% 75%;
+.rocket-flame { position: absolute; left: 0; right: 0; margin-left: auto; margin-right: auto; top: 92%; width: 26%; height: 0; border-radius: 45% 45% 50% 50% / 25% 25% 75% 75%;
   background: radial-gradient(ellipse 60% 70% at 50% 18%, #fffbe0 0 20%, #ffe066 34%, #ff9a2e 58%, rgba(255,72,0,.0) 78%);
   filter: blur(.5px); transition: height .25s ease; }
 .rocket-smoke { position: absolute; left: 50%; bottom: -2%; width: 0; height: 0; z-index: 2; pointer-events: none; }
@@ -1710,20 +1710,22 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .rocket.is-launch .rocket-ship { animation: rk-launch 1.4s cubic-bezier(.55,0,.9,.4) forwards; }
 .rocket.is-launch .rocket-flame, .rocket.is-return .rocket-flame { height: 46%; animation: rk-flicker .1s ease-in-out infinite alternate; }
 /* 3 away 飛出畫面 */
-.rocket.is-away .rocket-ship { translate: 0 -160vh; }
+.rocket.is-away .rocket-ship { transform: translateY(-160vh); }
 /* 4 return 飛回來 */
 .rocket.is-return .rocket-ship { animation: rk-return 2.3s cubic-bezier(.15,.6,.35,1) forwards; }
 /* 5 land 降落 */
 .rocket.is-land .rocket-ship { animation: rk-land .9s cubic-bezier(.3,1.6,.5,1); }
 .rocket.is-land .rocket-flame { height: 6%; }
 .rocket.is-wiggle .rocket-ship { animation: rk-shake .12s linear 4; }
-@keyframes rk-shake { 0% { translate: -2px 0; rotate: -.6deg; } 50% { translate: 2px 1px; rotate: .6deg; } 100% { translate: -2px 0; rotate: -.6deg; } }
-@keyframes rk-flicker { from { scale: 1 .9; opacity: .9; } to { scale: 1.08 1.12; opacity: 1; } }
+/* All rocket motion uses `transform`, not the newer `translate` / `rotate` / `scale` properties (Chrome 104, iOS 14.1):
+   on older phones those were ignored (2026-10-08 老師舊手機回報火箭飛回去看不到). 一律用 transform，舊手機才吃得到 */
+@keyframes rk-shake { 0% { transform: translate(-2px, 0) rotate(-.6deg); } 50% { transform: translate(2px, 1px) rotate(.6deg); } 100% { transform: translate(-2px, 0) rotate(-.6deg); } }
+@keyframes rk-flicker { from { transform: scale(1, .9); opacity: .9; } to { transform: scale(1.08, 1.12); opacity: 1; } }
 @keyframes rk-smoke { 0% { opacity: .95; transform: translate(0, 0) scale(.3); } 60% { opacity: .8; } 100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.6); } }
-@keyframes rk-launch { 0% { translate: 0 0; } 15% { translate: 0 10px; } 100% { translate: 0 -160vh; } }
-@keyframes rk-return { 0% { translate: 0 -160vh; rotate: 0deg; } 60% { translate: 0 -12px; rotate: -2deg; } 85% { rotate: 1.5deg; } 100% { translate: 0 0; rotate: 0deg; } }
-@keyframes rk-land { 0% { translate: 0 0; } 30% { translate: 0 8px; scale: 1.03 .96; } 100% { translate: 0 0; scale: 1 1; } }
-@media (max-width: 860px) { .rocket { max-width: min(60vw, 250px); margin-inline: auto; } .rocket-hint { font-size: 13px; } } /* 使用者：手機版火箭小一點 */
+@keyframes rk-launch { 0% { transform: translateY(0); } 15% { transform: translateY(10px); } 100% { transform: translateY(-160vh); } }
+@keyframes rk-return { 0% { transform: translateY(-160vh) rotate(0deg); } 60% { transform: translateY(-12px) rotate(-2deg); } 85% { transform: translateY(-4px) rotate(1.5deg); } 100% { transform: translateY(0) rotate(0deg); } }
+@keyframes rk-land { 0% { transform: translateY(0) scale(1, 1); } 30% { transform: translateY(8px) scale(1.03, .96); } 100% { transform: translateY(0) scale(1, 1); } }
+@media (max-width: 860px) { .rocket { max-width: 250px; max-width: min(60vw, 250px); margin-left: auto; margin-right: auto; } .rocket-hint { font-size: 13px; } } /* 使用者：手機版火箭小一點 */
 .rocket-ship .story-hero-art { position: relative; z-index: 1; }
 .rocket-flame { top: 76%; z-index: 0; width: 30%; }
 .rocket.is-ignite .rocket-flame { height: 26%; }
@@ -1759,23 +1761,23 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 /* rocket v5: one rocket only — hand-overs to / from the flying layer are instant, so the two never show at once
    (使用者：途中看到一台一樣的火箭很怪) 火箭 v5：全程一艘；和飛行圖層交接是瞬間的，不會同時出現兩艘 */
 .rocket.is-gone:not(.is-fade) .rocket-ship, .rocket.is-land .rocket-ship, .rocket.is-return .rocket-ship { transition: none; }
-.rocket-pad { position: absolute; inset: 0; z-index: 0; display: grid; place-items: center; pointer-events: none; }
+.rocket-pad { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 0; display: grid; place-items: center; pointer-events: none; }
 .rocket-pad-note { font: 700 16px/1.3 var(--f-body); color: var(--ink); background: var(--book-star); border: 2px solid var(--ink); border-radius: 999px;
-  padding: 6px 14px; white-space: nowrap; opacity: 0; scale: .7; rotate: -3deg; transition: opacity .35s ease, scale .35s cubic-bezier(.3,1.6,.5,1); }
-.rocket.is-gone .rocket-pad-note:not(:empty) { opacity: 1; scale: 1; }
+  padding: 6px 14px; white-space: nowrap; opacity: 0; transform: scale(.7) rotate(-3deg); transition: opacity .35s ease, transform .35s cubic-bezier(.3,1.6,.5,1); }
+.rocket.is-gone .rocket-pad-note:not(:empty) { opacity: 1; transform: scale(1) rotate(-3deg); }
 .rocket-pad-note b { display: inline-block; animation: rk-arrow 1s ease-in-out infinite; }
 /* the 玩 logo kept above the pad after the show; the note moves under it 飛完後留在發射台上方的「玩」，提示移到下面 */
 .rocket-pad-logo { position: absolute; height: auto; max-width: none; opacity: 1; transition: opacity .5s ease; filter: drop-shadow(0 6px 14px rgba(0,0,0,.25)); }
 .rocket-pad-logo.is-new { opacity: 0; }
 .rocket-pad.has-logo .rocket-pad-note { align-self: end; position: relative; z-index: 1; margin-bottom: 2%; }
-.rocket-pad-base { position: absolute; left: 50%; bottom: -5%; width: 64%; height: clamp(14px, 2vw, 20px); translate: -50% 0; border-radius: 50%;
+.rocket-pad-base { position: absolute; left: 50%; bottom: -5%; width: 64%; height: 16px; height: clamp(14px, 2vw, 20px); transform: translateX(-50%); border-radius: 50%;
   background: radial-gradient(ellipse at center, var(--book-star) 0 26%, #4d5487 28% 100%); border: 2px solid var(--ink); box-shadow: 0 5px 0 rgba(0,0,0,.25);
   opacity: 0; transition: opacity .4s ease; }
 .rocket.is-gone .rocket-pad-base, .rocket.is-return .rocket-pad-base, .rocket.is-land .rocket-pad-base { opacity: 1; }
-@keyframes rk-arrow { 0%, 100% { translate: 0 -2px; } 50% { translate: 0 4px; } }
+@keyframes rk-arrow { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(4px); } }
 /* the parked rocket, standing on the grass in the middle of the forest floor 停在頁底森林中間草地上的火箭 */
 .rocket--park { position: absolute; z-index: 2; left: 50%; bottom: calc(clamp(220px, 30vw, 460px) * .13); width: clamp(150px, 17vw, 250px); /* 使用者：森林裡大一點 */
-  max-width: none; margin: 0; translate: -50% 0; }
+  max-width: none; margin: 0; transform: translateX(-50%); }
 .rocket--park[hidden] { display: none; }
 .rocket-park-art { display: block; width: 100%; height: auto; position: relative; z-index: 1; filter: drop-shadow(0 6px 8px rgba(0,0,0,.3)); }
 .rocket--park .rocket-hint { top: -22%; right: -42%; font-size: 13px; padding: 2px 10px; }
@@ -1786,22 +1788,25 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .rocket--park .rocket-smoke i:nth-child(5) { --dx: 58px; --dy: 6px; }   .rocket--park .rocket-smoke i:nth-child(6) { --dx: 90px; --dy: 0px; }
 .rocket--park .rocket-smoke i:nth-child(7) { --dx: 0px; --dy: 4px; }
 /* the sky show layer (fixed over the viewport, never catches clicks) 天空秀圖層：蓋在畫面上、不擋點擊 */
-.sky-show { position: fixed; inset: 0; z-index: 45; pointer-events: none; overflow: hidden; contain: strict; }
-.sky-show canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-.sky-logo { position: absolute; opacity: 0; scale: .88; transition: opacity .3s ease, scale .3s cubic-bezier(.3,1.5,.5,1); filter: drop-shadow(0 6px 14px rgba(0,0,0,.25)); }
-.sky-logo.is-on { opacity: 1; scale: 1; }
-.sky-logo.is-off { opacity: 0; scale: 1.12; transition-duration: .8s; }
-.sky-show--calm .sky-logo { scale: 1 !important; transition: opacity .4s ease; }
+/* top/right/bottom/left + width/height, NOT `inset: 0`: browsers without `inset` (iOS ≤ 14.4, Chrome ≤ 86) made this
+   layer 0×0 and, with overflow hidden, clipped the flying rocket away — the rocket vanished on older phones
+   (2026-10-08 老師回報舊手機火箭飛回去看不到；inset 不支援時圖層變 0×0 把火箭裁掉) */
+.sky-show { position: fixed; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; z-index: 45; pointer-events: none; overflow: hidden; contain: strict; }
+.sky-show canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.sky-logo { position: absolute; opacity: 0; transform: scale(.88); transition: opacity .3s ease, transform .3s cubic-bezier(.3,1.5,.5,1); filter: drop-shadow(0 6px 14px rgba(0,0,0,.25)); }
+.sky-logo.is-on { opacity: 1; transform: scale(1); }
+.sky-logo.is-off { opacity: 0; transform: scale(1.12); transition-duration: .8s; }
+.sky-show--calm .sky-logo { transform: none !important; transition: opacity .4s ease; }
 .sky-show--fly { z-index: 46; }
 .sky-rocket { position: absolute; left: 0; top: 0; will-change: transform; }
 .sky-rocket img { position: relative; z-index: 1; display: block; width: 100%; height: auto; filter: drop-shadow(0 8px 16px rgba(0,0,0,.25)); }
-.sky-flame { position: absolute; z-index: 0; left: 0; right: 0; margin-inline: auto; top: 95%; width: 32%; height: 62%; border-radius: 45% 45% 50% 50% / 25% 25% 75% 75%;
+.sky-flame { position: absolute; z-index: 0; left: 0; right: 0; margin-left: auto; margin-right: auto; top: 95%; width: 32%; height: 62%; border-radius: 45% 45% 50% 50% / 25% 25% 75% 75%;
   background: radial-gradient(ellipse 60% 70% at 50% 18%, #fffbe0 0 20%, #ffe066 34%, #ff9a2e 58%, rgba(255,72,0,0) 78%); animation: rk-flicker .1s ease-in-out infinite alternate; }
 /* flames are centred with margin auto, not translate: -50% — iOS Safari sometimes dropped the translate while the
    flicker animated scale, so the flame jumped off-centre (使用者 iPhone 回報) 火焰改用 margin 置中，不靠 translate */
 /* side jets: two at the nose, two at the tail; rocket.js fires them in puffs (turn = opposite corners, drift = same side)
    (使用者：火箭左右轉向時，反方向側邊噴氣) 轉向時機頭反方向側邊噴氣 */
-.sky-jet { position: absolute; z-index: 0; top: 23%; width: 40%; height: 14%; opacity: 0; scale: 0 1; pointer-events: none; border-radius: 50%; }
+.sky-jet { position: absolute; z-index: 0; top: 23%; width: 40%; height: 14%; opacity: 0; transform: scale(0, 1); pointer-events: none; border-radius: 50%; }
 .sky-jet--l { right: 76%; transform-origin: 100% 50%; background: radial-gradient(ellipse 100% 50% at 100% 50%, #fff 0 18%, rgba(225,240,255,.85) 42%, rgba(225,240,255,0) 72%); }
 .sky-jet--r { left: 76%; transform-origin: 0 50%; background: radial-gradient(ellipse 100% 50% at 0 50%, #fff 0 18%, rgba(225,240,255,.85) 42%, rgba(225,240,255,0) 72%); }
 .sky-jet--tail { top: 78%; width: 34%; height: 12%; } .sky-jet--l.sky-jet--tail { right: 97%; } .sky-jet--r.sky-jet--tail { left: 97%; } /* tail jets at the wide base 機尾噴口在底部最寬處 */
