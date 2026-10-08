@@ -1020,6 +1020,16 @@ body.tech-page .h-tabs button[aria-selected="true"] { background: #e31b23; borde
   background: var(--surface); text-decoration: none; font-weight: 700; font-size: 14px; }
 .loc-map-acts a:hover { background: var(--tint-yellow); }
 .loc-map-acts .loc-map-book { background: var(--yellow); }
+/* 預約諮詢／導航／看教室照片 三顆固定同一排，窄螢幕等分縮小、不另起一行（中文不折行；英文字長允許在鈕內折行） */
+.loc-map-acts { flex-wrap: nowrap; }
+.loc-map-acts a { flex: 1 1 auto; justify-content: center; text-align: center; min-width: 0; white-space: nowrap; }
+html[lang=en] .loc-map-acts a { white-space: normal; line-height: 1.15; }
+@media (max-width: 520px) {
+  .loc-map-acts { gap: 6px; }
+  .loc-map-acts a { padding: 7px 6px; gap: 4px; font-size: 13px; }
+  .loc-map-acts svg { width: 14px; height: 14px; }
+  html[lang=en] .loc-map-acts a { font-size: 12px; padding-inline: 7px; gap: 3px; min-width: min-content; }
+}
 .loc-map-x { position: absolute; top: 12px; right: 10px; width: 32px; height: 32px; display: grid; place-items: center; padding: 0; cursor: pointer;
   border-radius: 50%; border: 2px solid var(--ink); background: var(--surface); color: var(--ink); font: 700 20px/1 var(--f-num); }
 .loc-map-x:hover { background: var(--tint-yellow); }
@@ -1283,6 +1293,11 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .tool-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 22px; padding: 0; }
 .tool-tags li { font-size: 13px; padding: 3px 10px; border-radius: 999px; border: 1px solid #3f3f46; color: #e5e7eb; }
 .tool-tags li:first-child { border-color: #e31b23; color: #fff; background: rgba(227,27,35,.15); }
+/* Scorer card: two phone previews side by side (V5 left, IQ right), each linking to its own scorer. 計分器卡：並排兩支手機畫面（左 V5、右 IQ），各連到自己的計分器 */
+.tool-screen--phones { aspect-ratio: auto; display: flex; justify-content: center; align-items: flex-start; gap: clamp(14px, 3vw, 28px); padding: 28px clamp(16px, 4vw, 40px); background: #07070a; }
+.tool-phone { display: block; flex: 1 1 0; max-width: 210px; border-radius: 26px; overflow: hidden; border: 3px solid #4b4b52; background: #000; line-height: 0; transition: border-color .2s ease, transform .2s ease; }
+.tool-phone:hover { border-color: #e5e7eb; transform: translateY(-3px); }
+.tool-phone img { display: block; width: 100%; height: auto; }
 /* Timer card: one dark pill per program (V5 / IQ), carrying the official white-on-dark logo. 計時器卡：V5／IQ 各一顆深底膠囊（官方反白 logo 一定要深底） */
 .tool-progs { display: flex; flex-wrap: wrap; gap: 12px; }
 .lulu .l-btn.tool-prog { background: #07070a; border-color: #3f3f46; color: #fff; gap: 12px; }

@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Free VEX Tools | Dr. Player Robotic Lab</title>
-<meta name="description" content="Free tools from the Dr. Player VEX Hub: VEX Competition Timer, Override scorer, Whiteboard strategy board, stream replays and global rankings. Just open and go — no login.">
+<meta name="description" content="Free tools from the Dr. Player VEX Hub: VEX Competition Timer, VEX scorer (V5 Override / IQ Level Up), Whiteboard strategy board, stream replays and global rankings. Just open and go — no login.">
 <link rel="alternate" hreflang="zh-Hant-TW" href="https://dproboticslab.com/tools.html">
 <link rel="alternate" hreflang="en" href="https://dproboticslab.com/en/tools.html">
 <link rel="alternate" hreflang="x-default" href="https://dproboticslab.com/tools.html">
@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@400;500;700&family=Fredoka:wght@500;600;700&family=Huninn&family=Outfit:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
-<link rel="stylesheet" href="../assets/site.css?v=d0ffd569">
+<link rel="stylesheet" href="../assets/site.css?v=dc0dfae4">
 <script src="../assets/countup.js?v=7639d8da" defer></script>
 <script src="../assets/tools.js?v=43a0fcbb" defer></script>
 </head>
@@ -127,13 +127,19 @@
       </div>
     </article>
     <article class="tool-row" id="t-score">
-      <div class="tool-screen"><video src="../assets/img/tools/score.mp4" poster="../assets/img/tools/score.webp" muted loop playsinline preload="none" aria-label="Override scorer in action"></video></div>
+      <div class="tool-screen tool-screen--phones">
+        <a class="tool-phone" href="https://vex-v5.dproboticslab.com/score" tabindex="-1"><img src="../assets/img/tools/score-v5.webp" alt="VEX V5 scorer in action" width="600" height="1061" loading="lazy" decoding="async"></a>
+        <a class="tool-phone" href="https://vex-v5.dproboticslab.com/score/iq" tabindex="-1"><img src="../assets/img/tools/score-iq.webp" alt="VEX IQ scorer in action" width="600" height="1061" loading="lazy" decoding="async"></a>
+      </div>
       <div class="tool-text">
         <p class="tool-n">02 · This season's game</p>
-        <h2>Override scorer</h2>
-        <p>Live scoring for this season's game — just tap the objects on the field. Check the score yourself before the refs call it.</p>
+        <h2>VEX Scorer</h2>
+        <p>Works for both V5 Override and IQ Level Up — just tap the objects on the field to add points. Work out the score yourself before the refs call it.</p>
         <ul class="tool-tags"><li>No login</li><li>Tap to score</li></ul>
-        <a class="l-btn l-btn--primary" href="https://vex-v5.dproboticslab.com/score">Open scorer ↗</a>
+        <div class="tool-progs">
+          <a class="l-btn tool-prog" href="https://vex-v5.dproboticslab.com/score"><img src="../assets/brand/program-v5.png" alt="VEX V5 scorer" width="590" height="128"><span aria-hidden="true">↗</span></a>
+          <a class="l-btn tool-prog" href="https://vex-v5.dproboticslab.com/score/iq"><img src="../assets/brand/program-iq.png" alt="VEX IQ scorer" width="579" height="128"><span aria-hidden="true">↗</span></a>
+        </div>
       </div>
     </article>
     <article class="tool-row" id="t-field">
