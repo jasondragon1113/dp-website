@@ -8,6 +8,20 @@
   src: url("fonts/jh1-subset.woff2") format("woff2");
   font-display: swap;
 }
+/* Chinese body font, self-hosted subset (tools/build.py subset_body_font; 2026-10-08, was Google Fonts = 2 MB on mobile).
+   中文內文字型改自架子集：400 與 700 兩檔各約 340 KB；500／600 由瀏覽器取最近的字重。 */
+@font-face {
+  font-family: "Chiron GoRound TC";
+  font-weight: 400;
+  src: url("fonts/chiron-400.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chiron GoRound TC";
+  font-weight: 700;
+  src: url("fonts/chiron-700.woff2") format("woff2");
+  font-display: swap;
+}
 :root {
   color-scheme: light;
   --paper: #f6f7fc;
@@ -31,7 +45,7 @@
   --line-green: #06c755;
   --line-green-dark: #048a3b;
   --shadow: 0 1px 0 rgba(38, 33, 66, .06), 0 10px 28px -14px rgba(38, 33, 66, .28);
-  --f-display: "JH Round", "Huninn", "Chiron GoRound TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --f-display: "JH Round", "Chiron GoRound TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
   --f-body: "Chiron GoRound TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
   --f-num: "Fredoka", "Chiron GoRound TC", system-ui, sans-serif;
   --wrap: 1160px;
