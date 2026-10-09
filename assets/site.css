@@ -902,8 +902,11 @@ body.tech-page .h-tabs button { border-color: #3f3f46; color: #a1a1aa; }
 body.tech-page .h-tabs button:hover { border-color: #e5e7eb; color: #fff; }
 body.tech-page .h-tabs button[aria-selected="true"] { background: #e31b23; border-color: #e31b23; color: #fff; }
 
+/* The kids-page rocket is left out on purpose: it only moves after a child taps it, and the user decided it always plays in
+   full (2026-10-09 使用者：手機開「減少動態效果」也要完整播放). 小小玩家火箭例外：點了才動，使用者裁示一律完整播放 */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  *:not(.rocket, .rocket *, .sky-show, .sky-show *), *:not(.rocket, .rocket *, .sky-show, .sky-show *)::before,
+  *:not(.rocket, .rocket *, .sky-show, .sky-show *)::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
 
 /* ---------- charity page 公益頁 ---------- */
@@ -1812,14 +1815,8 @@ body.tech-page .c-tabs button[aria-selected="true"] .tab-n { background: var(--a
 .sky-jet--tail { top: 78%; width: 34%; height: 12%; } .sky-jet--l.sky-jet--tail { right: 97%; } .sky-jet--r.sky-jet--tail { left: 97%; } /* tail jets at the wide base 機尾噴口在底部最寬處 */
 .rk-paused .rocket *, .rk-paused .sky-show * { animation-play-state: paused !important; }
 @keyframes rk-fadein { from { opacity: 0; } to { opacity: 1; } }
-/* reduced motion: no flight, no particles, just gentle fades (beats the site-wide "no transitions" rule on purpose)
-   減少動態：不飛、不噴煙，只保留淡入淡出（刻意蓋過全站關閉轉場的規則） */
-@media (prefers-reduced-motion: reduce) {
-  .rocket .rocket-hint, .rocket .rocket-pad-note b { animation: none !important; }
-  .rocket .rocket-ship, .sky-show--calm .sky-logo { transition: opacity .4s ease, visibility .4s !important; }
-  .rocket .rocket-pad-note, .rocket .rocket-pad-base { transition: opacity .4s ease !important; }
-  .rocket.rocket--park.is-ready { animation: rk-fadein .4s ease !important; }
-}
+/* (2026-10-09) the reduced-motion "fade only" version was removed: the rocket always plays in full (see the site-wide
+   reduced-motion rule). 減少動態版（只淡入淡出）已拿掉：使用者裁示一律完整播放 */
 
 /* ---------- Downloads 軟體下載 ---------- */
 .dl-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }

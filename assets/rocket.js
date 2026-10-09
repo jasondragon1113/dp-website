@@ -5,12 +5,12 @@
 // the target at exactly that box; its size changes evenly along the whole flight.
 // 小小玩家主視覺火箭：點火 → 起飛 → 在天空噴煙聚成「玩」logo → 盤旋 → 頁面跟著往下，降落在頁底森林；
 // 點森林裡的火箭 → 起飛、頁面跟著往上，降落回頂端發射台。全程只有一艘火箭（原位交接、大小整段漸變）。
-// prefers-reduced-motion：不飛、不噴煙，只淡入淡出。
+// 不看 prefers-reduced-motion：火箭是孩子點了才動，使用者 2026-10-09 裁示手機開「減少動態效果」也一律完整播放
+// （之前的淡入淡出版會讓人以為壞了：「玩」直接出現、點了瞬移到森林、飛回去要自己滑上去）。
 (function () {
   var top = document.querySelector('.rocket');
   var land = document.querySelector('.kids-land');
   if (!top || !land) return;
-  var mq = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   // English pages live in /en/: shared files are one folder up. 英文頁在 /en/，圖檔在上一層。
   var LOGO = (document.documentElement.lang === 'en' ? '../' : '') + 'assets/img/books/wan-mark-sky.webp';
   var SHIP = top.querySelector('.story-hero-art').getAttribute('src');
@@ -353,12 +353,6 @@
     frameFns.push(frame); kick();
   }
 
-  // calm version: the logo just fades in above the pad 減少動態版：logo 直接在發射台上方淡入
-  function calmLogo(done) {
-    keepLogo(true);
-    after(0.45, done);
-  }
-
   // ---- cruise: the page scrolls slowly along with the rocket so the visitor sees the page again on the way
   // (使用者：飛回來時頁面跟著慢慢往上滑、下去時也慢一點). Any wheel / touch / key / click by the visitor stops it
   // and hands the page back. 巡航：頁面跟著火箭慢慢捲動，一路再看一次頁面；使用者一碰滾輪、螢幕、鍵盤就停下交還。
@@ -507,8 +501,7 @@
 
   top.addEventListener('click', function () {
     if (state === 'parked') { // go find it in the forest (only scrolls because the visitor asked) 點了才捲到森林
-      if (mq.matches) park.scrollIntoView({ behavior: 'auto', block: 'center' });
-      else glideTo(park);
+      glideTo(park);
       park.focus({ preventScroll: true });
       return;
     }
@@ -516,12 +509,6 @@
     state = 'busy';
     top.classList.add('was-flown');
     preloadLogo();
-    if (mq.matches) {
-      setStep(top, 'is-fade');
-      say(LABEL_SHOW, '');
-      calmLogo(function () { toParked(false); });
-      return;
-    }
     setStep(top, 'is-ignite');
     after(0.7, function () { // shorter ignition (使用者：上升再更快) 點火縮短 // lift-off: this very rocket leaves the pad 起飛：就是這艘離開發射台
       flyerFrom(top);
@@ -534,14 +521,6 @@
   park.addEventListener('click', function () {
     if (state !== 'parked' || park.dataset.busy) return;
     state = 'busy';
-    if (mq.matches) {
-      setStep(park, 'is-fade');
-      after(0.45, function () {
-        if (document.activeElement === park) top.focus({ preventScroll: true });
-        park.hidden = true; setStep(park, ''); toHome(false);
-      });
-      return;
-    }
     setStep(park, 'is-ignite');
     after(0.6, function () {
       flyerFrom(park);
